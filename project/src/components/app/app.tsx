@@ -1,12 +1,14 @@
 import MainPageScreen from '../main-page-screen/main-page-screen';
 
 type AppScreenProps = {
+  isAuthorized: boolean;
+  userEmail: string;
   placesCount: number;
 }
 
-function App({placesCount}: AppScreenProps): JSX.Element {
+function App({isAuthorized, userEmail, placesCount}: AppScreenProps): JSX.Element {
   return (
-    <MainPageScreen placesCount={placesCount} />
+    <MainPageScreen isAuthorized={isAuthorized} userEmail={userEmail} placesCount={placesCount} />
   );
 }
 
