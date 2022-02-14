@@ -3,16 +3,15 @@ import Footer from '../footer/footer';
 import PlaceCard from '../place-card/place-card';
 
 type FavoritesScreenProps = {
-  isAuthorized: boolean;
   userEmail: string;
   cardSecondClass: string,
 }
 
-function FavoritesScreen ({isAuthorized, userEmail, cardSecondClass}: FavoritesScreenProps):JSX.Element {
+function FavoritesScreen ({userEmail, cardSecondClass}: FavoritesScreenProps):JSX.Element {
   return (
 
     <div className="page">
-      <Header isAuthorized={isAuthorized} userEmail={userEmail} />
+      <Header userEmail={userEmail} />
 
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">

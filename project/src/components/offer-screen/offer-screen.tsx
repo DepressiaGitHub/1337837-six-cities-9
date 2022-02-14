@@ -2,15 +2,14 @@ import Header from '../header/header';
 import PlaceCard from '../place-card/place-card';
 
 type OfferScreenProps = {
-  isAuthorized: boolean;
   userEmail: string;
   cardSecondClass: string,
 }
 
-function OfferScreen ({isAuthorized, userEmail, cardSecondClass}: OfferScreenProps):JSX.Element {
+function OfferScreen ({userEmail, cardSecondClass}: OfferScreenProps):JSX.Element {
   return (
     <div className="page">
-      <Header isAuthorized={isAuthorized} userEmail={userEmail} />
+      <Header userEmail={userEmail} />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">

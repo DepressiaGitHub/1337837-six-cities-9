@@ -2,17 +2,16 @@ import Header from '../header/header';
 import PlaceCard from '../place-card/place-card';
 
 type mainPageScreenProps = {
-  isAuthorized: boolean;
   userEmail: string;
   placesCount: number;
   cardSecondClass: string,
 }
 
-function MainPageScreen ({isAuthorized, userEmail, placesCount, cardSecondClass}: mainPageScreenProps):JSX.Element {
+function MainPageScreen ({userEmail, placesCount, cardSecondClass}: mainPageScreenProps):JSX.Element {
   return (
 
     <div className="page page--gray page--main">
-      <Header isAuthorized={isAuthorized} userEmail={userEmail} />
+      <Header userEmail={userEmail} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
