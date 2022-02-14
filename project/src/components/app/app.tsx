@@ -4,11 +4,17 @@ type AppScreenProps = {
   isAuthorized: boolean;
   userEmail: string;
   placesCount: number;
+  cardSecondClass: string,
 }
 
-function App({isAuthorized, userEmail, placesCount}: AppScreenProps): JSX.Element {
+function App({isAuthorized, userEmail, placesCount, cardSecondClass}: AppScreenProps): JSX.Element {
   return (
-    <MainPageScreen isAuthorized={isAuthorized} userEmail={userEmail} placesCount={placesCount} />
+    <MainPageScreen
+      isAuthorized={isAuthorized}
+      userEmail={userEmail}
+      placesCount={placesCount}
+      cardSecondClass={cardSecondClass}
+    />
   );
 }
 

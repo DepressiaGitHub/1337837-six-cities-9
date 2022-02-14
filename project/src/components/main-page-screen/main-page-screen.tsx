@@ -5,9 +5,10 @@ type mainPageScreenProps = {
   isAuthorized: boolean;
   userEmail: string;
   placesCount: number;
+  cardSecondClass: string,
 }
 
-function MainPageScreen ({isAuthorized, userEmail, placesCount}: mainPageScreenProps):JSX.Element {
+function MainPageScreen ({isAuthorized, userEmail, placesCount, cardSecondClass}: mainPageScreenProps):JSX.Element {
   return (
 
     <div className="page page--gray page--main">
@@ -71,11 +72,21 @@ function MainPageScreen ({isAuthorized, userEmail, placesCount}: mainPageScreenP
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
+                <PlaceCard
+                  secondClass={cardSecondClass}
+                />
+                <PlaceCard
+                  secondClass={cardSecondClass}
+                />
+                <PlaceCard
+                  secondClass={cardSecondClass}
+                />
+                <PlaceCard
+                  secondClass={cardSecondClass}
+                />
+                <PlaceCard
+                  secondClass={cardSecondClass}
+                />
               </div>
             </section>
             <div className="cities__right-section">

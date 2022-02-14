@@ -4,9 +4,10 @@ import PlaceCard from '../place-card/place-card';
 type OfferScreenProps = {
   isAuthorized: boolean;
   userEmail: string;
+  cardSecondClass: string,
 }
 
-function OfferScreen ({isAuthorized, userEmail}: OfferScreenProps):JSX.Element {
+function OfferScreen ({isAuthorized, userEmail, cardSecondClass}: OfferScreenProps):JSX.Element {
   return (
     <div className="page">
       <Header isAuthorized={isAuthorized} userEmail={userEmail} />
@@ -164,9 +165,15 @@ function OfferScreen ({isAuthorized, userEmail}: OfferScreenProps):JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCard />
-              <PlaceCard />
-              <PlaceCard />
+              <PlaceCard
+                secondClass={cardSecondClass}
+              />
+              <PlaceCard
+                secondClass={cardSecondClass}
+              />
+              <PlaceCard
+                secondClass={cardSecondClass}
+              />
             </div>
           </section>
         </div>
