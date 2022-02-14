@@ -1,5 +1,5 @@
-import PlaceCard from '../place-card/place-card';
 import Header from '../header/header';
+import PlaceCard from '../place-card/place-card';
 
 type mainPageScreenProps = {
   isAuthorized: boolean;
