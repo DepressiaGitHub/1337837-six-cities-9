@@ -1,34 +1,32 @@
-import Header from '../header/header';
-import PlaceCard from '../place-card/place-card';
+import Header from '../../header/header';
+import CitiesPlaceCard from '../../cities-place-card/cities-place-card';
 
 type mainPageScreenProps = {
-  userEmail: string;
   placesCount: number;
-  cardSecondClass: string,
 }
 
-function MainPageScreen ({userEmail, placesCount, cardSecondClass}: mainPageScreenProps):JSX.Element {
+function MainPageScreen ({placesCount}: mainPageScreenProps):JSX.Element {
   return (
 
     <div className="page page--gray page--main">
-      <Header userEmail={userEmail} />
+      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/">
                   <span>Paris</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/">
                   <span>Cologne</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/">
                   <span>Brussels</span>
                 </a>
               </li>
@@ -38,12 +36,12 @@ function MainPageScreen ({userEmail, placesCount, cardSecondClass}: mainPageScre
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/">
                   <span>Hamburg</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/">
                   <span>Dusseldorf</span>
                 </a>
               </li>
@@ -71,21 +69,11 @@ function MainPageScreen ({userEmail, placesCount, cardSecondClass}: mainPageScre
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCard
-                  secondClass={cardSecondClass}
-                />
-                <PlaceCard
-                  secondClass={cardSecondClass}
-                />
-                <PlaceCard
-                  secondClass={cardSecondClass}
-                />
-                <PlaceCard
-                  secondClass={cardSecondClass}
-                />
-                <PlaceCard
-                  secondClass={cardSecondClass}
-                />
+                <CitiesPlaceCard />
+                <CitiesPlaceCard />
+                <CitiesPlaceCard />
+                <CitiesPlaceCard />
+                <CitiesPlaceCard />
               </div>
             </section>
             <div className="cities__right-section">

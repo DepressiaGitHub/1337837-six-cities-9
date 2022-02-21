@@ -1,15 +1,11 @@
-import Header from '../header/header';
-import PlaceCard from '../place-card/place-card';
+import Header from '../../header/header';
+import NearPlacesCard from '../../near-places-card/near-places-card';
 
-type OfferScreenProps = {
-  userEmail: string;
-  cardSecondClass: string,
-}
 
-function OfferScreen ({userEmail, cardSecondClass}: OfferScreenProps):JSX.Element {
+function OfferScreen ():JSX.Element {
   return (
     <div className="page">
-      <Header userEmail={userEmail} />
+      <Header />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -164,15 +160,9 @@ function OfferScreen ({userEmail, cardSecondClass}: OfferScreenProps):JSX.Elemen
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCard
-                secondClass={cardSecondClass}
-              />
-              <PlaceCard
-                secondClass={cardSecondClass}
-              />
-              <PlaceCard
-                secondClass={cardSecondClass}
-              />
+              <NearPlacesCard />
+              <NearPlacesCard />
+              <NearPlacesCard />
             </div>
           </section>
         </div>

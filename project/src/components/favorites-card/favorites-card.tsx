@@ -1,15 +1,11 @@
-type PlaceCardProps = {
-  secondClass: string,
-};
-
-function PlaceCard ({secondClass}: PlaceCardProps):JSX.Element {
+function FavoritesCard():JSX.Element {
   return (
-    <article className={`${secondClass}__place-card place-card`}>
+    <article className="favorites__card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
-      <div className={`${secondClass}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+      <div className="favorites__image-wrapper place-card__image-wrapper">
+        <a href="/">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
         </a>
       </div>
@@ -33,7 +29,7 @@ function PlaceCard ({secondClass}: PlaceCardProps):JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <a href="/">Beautiful &amp; luxurious apartment at great location</a>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
@@ -41,4 +37,4 @@ function PlaceCard ({secondClass}: PlaceCardProps):JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default FavoritesCard;
