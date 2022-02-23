@@ -1,5 +1,5 @@
 import Header from '../../header/header';
-import NearPlacesCard from '../../near-places-card/near-places-card';
+import PlaceCard from '../../place-card/place-card';
 
 
 function OfferScreen ():JSX.Element {
@@ -160,9 +160,9 @@ function OfferScreen ():JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <NearPlacesCard />
-              <NearPlacesCard />
-              <NearPlacesCard />
+              <PlaceCard type={'offer'} />
+              <PlaceCard type={'offer'} />
+              <PlaceCard type={'offer'} />
             </div>
           </section>
         </div>

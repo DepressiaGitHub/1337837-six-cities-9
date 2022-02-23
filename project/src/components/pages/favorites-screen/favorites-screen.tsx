@@ -1,7 +1,6 @@
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-import FavoritesCard from '../../favorites-card/favorites-card';
-
+import PlaceCard from '../../place-card/place-card';
 
 function FavoritesScreen ():JSX.Element {
   return (
@@ -22,8 +21,8 @@ function FavoritesScreen ():JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FavoritesCard />
-                  <FavoritesCard />
+                  <PlaceCard type={'favorites'} />
+                  <PlaceCard type={'favorites'} />
                 </div>
               </li>
 
@@ -36,7 +35,7 @@ function FavoritesScreen ():JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FavoritesCard />
+                  <PlaceCard type={'favorites'} />
                 </div>
               </li>
             </ul>

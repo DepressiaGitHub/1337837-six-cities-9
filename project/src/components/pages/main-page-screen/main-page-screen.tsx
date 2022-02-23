@@ -1,5 +1,5 @@
 import Header from '../../header/header';
-import CitiesPlaceCard from '../../cities-place-card/cities-place-card';
+import PlaceCard from '../../place-card/place-card';
 
 type mainPageScreenProps = {
   placesCount: number;
@@ -69,11 +69,11 @@ function MainPageScreen ({placesCount}: mainPageScreenProps):JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CitiesPlaceCard />
-                <CitiesPlaceCard />
-                <CitiesPlaceCard />
-                <CitiesPlaceCard />
-                <CitiesPlaceCard />
+                <PlaceCard />
+                <PlaceCard />
+                <PlaceCard />
+                <PlaceCard />
+                <PlaceCard />
               </div>
             </section>
             <div className="cities__right-section">
