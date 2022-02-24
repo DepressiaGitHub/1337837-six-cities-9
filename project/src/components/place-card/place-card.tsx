@@ -3,7 +3,7 @@ type PlaceCardType = {
 }
 
 function PlaceCard({type}: PlaceCardType):JSX.Element {
-  const firstClass = ():string[] => {
+  const getPlaceCard = ():string[] => {
     switch (type) {
       case 'favorites':
         return (
@@ -30,11 +30,11 @@ function PlaceCard({type}: PlaceCardType):JSX.Element {
   };
 
   return (
-    <article className={`${firstClass()[0]} place-card`}>
+    <article className={`${getPlaceCard()[0]} place-card`}>
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
-      <div className={`${firstClass()[1]} place-card__image-wrapper`}>
+      <div className={`${getPlaceCard()[1]} place-card__image-wrapper`}>
         <a href="/">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
         </a>
