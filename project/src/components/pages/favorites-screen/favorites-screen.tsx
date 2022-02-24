@@ -1,19 +1,12 @@
-import Header from '../header/header';
-import Footer from '../footer/footer';
-import PlaceCard from '../place-card/place-card';
+import Header from '../../header/header';
+import Footer from '../../footer/footer';
+import PlaceCard from '../../place-card/place-card';
 
-type FavoritesScreenProps = {
-  isAuthorized: boolean;
-  userEmail: string;
-  cardSecondClass: string,
-}
-
-function FavoritesScreen ({isAuthorized, userEmail, cardSecondClass}: FavoritesScreenProps):JSX.Element {
+function FavoritesScreen ():JSX.Element {
   return (
 
     <div className="page">
-      <Header isAuthorized={isAuthorized} userEmail={userEmail} />
-
+      <Header />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -22,33 +15,27 @@ function FavoritesScreen ({isAuthorized, userEmail, cardSecondClass}: FavoritesS
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <a className="locations__item-link" href="/">
                       <span>Amsterdam</span>
                     </a>
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <PlaceCard
-                    secondClass={cardSecondClass}
-                  />
-                  <PlaceCard
-                    secondClass={cardSecondClass}
-                  />
+                  <PlaceCard type={'favorites'} />
+                  <PlaceCard type={'favorites'} />
                 </div>
               </li>
 
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <a className="locations__item-link" href="/">
                       <span>Cologne</span>
                     </a>
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <PlaceCard
-                    secondClass={cardSecondClass}
-                  />
+                  <PlaceCard type={'favorites'} />
                 </div>
               </li>
             </ul>

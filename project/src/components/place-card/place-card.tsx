@@ -1,15 +1,41 @@
-type PlaceCardProps = {
-  secondClass: string,
-};
+type PlaceCardType = {
+  type?: string;
+}
 
-function PlaceCard ({secondClass}: PlaceCardProps):JSX.Element {
+function PlaceCard({type}: PlaceCardType):JSX.Element {
+  const getPlaceCard = ():string[] => {
+    switch (type) {
+      case 'favorites':
+        return (
+          [
+            'favorites__card',
+            'favorites__image-wrapper',
+          ]
+        );
+      case 'offer':
+        return (
+          [
+            'near-places__card',
+            'near-places__image-wrapper',
+          ]
+        );
+      default:
+        return (
+          [
+            'cities__place-card',
+            'cities__image-wrapper',
+          ]
+        );
+    }
+  };
+
   return (
-    <article className={`${secondClass}__place-card place-card`}>
+    <article className={`${getPlaceCard()[0]} place-card`}>
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
-      <div className={`${secondClass}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+      <div className={`${getPlaceCard()[1]} place-card__image-wrapper`}>
+        <a href="/">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
         </a>
       </div>
@@ -33,7 +59,7 @@ function PlaceCard ({secondClass}: PlaceCardProps):JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <a href="/">Beautiful &amp; luxurious apartment at great location</a>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
