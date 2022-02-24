@@ -3,39 +3,38 @@ type PlaceCardType = {
 }
 
 function PlaceCard({type}: PlaceCardType):JSX.Element {
-
-  const GetPlaceCardTemplate = () => {
+  const firstClass = ():string[] => {
     switch (type) {
       case 'favorites':
         return (
-          `<article className="favorites__card place-card">
-            <div className="place-card__mark">
-              <span>Premium</span>
-            </div>
-            <div className="favorites__image-wrapper place-card__image-wrapper">`
+          [
+            'favorites__card',
+            'favorites__image-wrapper',
+          ]
         );
-        break;
       case 'offer':
         return (
-          `<article className="near-places__card place-card">
-            <div className="place-card__mark">
-              <span>Premium</span>
-            </div>
-            <div className="near-places__image-wrapper place-card__image-wrapper">`
+          [
+            'near-places__card',
+            'near-places__image-wrapper',
+          ]
         );
-        break;
       default:
         return (
-          `<article className="cities__place-card place-card">
-            <div className="place-card__mark">
-              <span>Premium</span>
-            </div>
-            <div className="cities__image-wrapper place-card__image-wrapper">`
+          [
+            'cities__place-card',
+            'cities__image-wrapper',
+          ]
         );
     }
   };
+
   return (
-    {GetPlaceCardTemplate}
+    <article className={`${firstClass()[0]} place-card`}>
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>
+      <div className={`${firstClass()[1]} place-card__image-wrapper`}>
         <a href="/">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
         </a>
