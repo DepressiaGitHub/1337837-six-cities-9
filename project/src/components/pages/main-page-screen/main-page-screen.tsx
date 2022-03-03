@@ -1,5 +1,5 @@
 import Header from '../../header/header';
-import PlaceCard from '../../place-card/place-card';
+import OffersList from  '../../offers-list/offers-list';
 
 type mainPageScreenProps = {
   placesCount: number;
@@ -68,13 +68,7 @@ function MainPageScreen ({placesCount}: mainPageScreenProps):JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-              </div>
+              <OffersList />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

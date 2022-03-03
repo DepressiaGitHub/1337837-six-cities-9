@@ -1,8 +1,18 @@
+import { offers } from '../../../mocks/offers';
 import Header from '../../header/header';
-import PlaceCard from '../../place-card/place-card';
+import NearPlacesCard from '../../near-places-card/near-places-card';
+import ReviewsForm from '../../reviews-form/reviews-form';
+import { Offer } from '../../types/offer';
 
 
 function OfferScreen ():JSX.Element {
+  function shuffle(array:Offer[]) {
+    array.sort(() => Math.random() - 0.5);
+    return array;
+  }
+
+  const otherCards = shuffle(offers.slice(0)).slice(0, 3);
+
   return (
     <div className="page">
       <Header />
@@ -151,6 +161,7 @@ function OfferScreen ():JSX.Element {
                     </div>
                   </li>
                 </ul>
+                <ReviewsForm />
               </section>
             </div>
           </div>
@@ -160,9 +171,7 @@ function OfferScreen ():JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCard type={'offer'} />
-              <PlaceCard type={'offer'} />
-              <PlaceCard type={'offer'} />
+              {otherCards.map((offer) => <NearPlacesCard key={offer.id} offer={offer} />)}
             </div>
           </section>
         </div>

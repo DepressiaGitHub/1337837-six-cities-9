@@ -1,35 +1,24 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../types/offer';
 
-type PlaceCardProps = {
+type FavoriteCardProps = {
   offer: Offer;
 }
 
-function PlaceCard(props: PlaceCardProps):JSX.Element {
+function FavoritePlacesCard(props: FavoriteCardProps):JSX.Element {
   const {id, placeName, placeType, price, premiumMark, favorite, imgPath, rating } = props.offer;
-  const mouseOverHandler = () => {
-    // eslint-disable-next-line no-console
-    console.log('Навёл на карточку мышку');
-  };
-  const mouseOutHandler = () => {
-    // eslint-disable-next-line no-console
-    console.log('Убрал с карточки мышку');
-  };
 
   return (
-    <article className="cities__place-card place-card"
-      onMouseOver={mouseOverHandler}
-      onMouseOut={mouseOutHandler}
-    >
+    <article className="favorites__card place-card">
       <div className="place-card__mark" hidden={!premiumMark}>
         <span>Premium</span>
       </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`offer/${id}`}>
-          <img className="place-card__image" src={imgPath} width="260" height="200" alt="Place image" />
+      <div className="favorites__image-wrapper place-card__image-wrapper">
+        <Link to={`/offer/${id}`}>
+          <img className="place-card__image" src={imgPath} width="150" height="110" alt="Place image" />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -49,7 +38,7 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`offer/${id}`}>{placeName}</Link>
+          <Link to={`/offer/${id}`}>{placeName}</Link>
         </h2>
         <p className="place-card__type">{placeType}</p>
       </div>
@@ -57,4 +46,4 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default FavoritePlacesCard;

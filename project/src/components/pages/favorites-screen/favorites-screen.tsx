@@ -1,6 +1,7 @@
+import { offers } from '../../../mocks/offers';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-import PlaceCard from '../../place-card/place-card';
+import FavoritePlacesCard from '../../favorite-places-card/favorite-places-card';
 
 function FavoritesScreen ():JSX.Element {
   return (
@@ -21,8 +22,7 @@ function FavoritesScreen ():JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <PlaceCard type={'favorites'} />
-                  <PlaceCard type={'favorites'} />
+                  {offers.map((offer) => <FavoritePlacesCard key={offer.id} offer={offer} />)}
                 </div>
               </li>
 
@@ -35,7 +35,7 @@ function FavoritesScreen ():JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <PlaceCard type={'favorites'} />
+                  {offers.map((offer) => <FavoritePlacesCard key={offer.id} offer={offer} />)}
                 </div>
               </li>
             </ul>
