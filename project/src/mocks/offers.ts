@@ -12,6 +12,14 @@ export const offers: Offer[] = [
     favorite: false,
     rating: 4,
     imgPath: `${IMG_URL}apartment-01.jpg`,
+    city: {
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
   },
   {
     id: '00002',
@@ -22,6 +30,14 @@ export const offers: Offer[] = [
     favorite: true,
     rating: 4,
     imgPath: `${IMG_URL}room.jpg`,
+    city: {
+      location: {
+        latitude: 52.369553943508,
+        longitude: 4.85309666406198,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
   },
   {
     id: '00003',
@@ -32,6 +48,14 @@ export const offers: Offer[] = [
     favorite: false,
     rating: 4,
     imgPath: `${IMG_URL}apartment-02.jpg`,
+    city: {
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
   },
   {
     id: '00004',
@@ -42,5 +66,13 @@ export const offers: Offer[] = [
     favorite: false,
     rating: 5,
     imgPath: `${IMG_URL}apartment-03.jpg`,
+    city: {
+      location: {
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
   },
 ];
