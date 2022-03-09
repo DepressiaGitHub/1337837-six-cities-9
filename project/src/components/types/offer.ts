@@ -1,3 +1,14 @@
+export type Location = {
+  latitude: number,
+  longitude: number,
+  zoom: number,
+}
+
+export type City = {
+  location: Location,
+  name: string,
+}
+
 export type Offer = {
   id: string,
   placeName: string,
@@ -7,4 +18,5 @@ export type Offer = {
   favorite: boolean,
   rating: number,
   imgPath: string,
+  city: City,
 }
