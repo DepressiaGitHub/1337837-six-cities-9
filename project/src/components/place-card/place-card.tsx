@@ -18,8 +18,8 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
 
   return (
     <article className="cities__place-card place-card"
-      onMouseOver={mouseOverHandler}
-      onMouseOut={mouseOutHandler}
+      onMouseEnter={mouseOverHandler}
+      onMouseLeave={mouseOutHandler}
     >
       <div className="place-card__mark" hidden={!premiumMark}>
         <span>Premium</span>
