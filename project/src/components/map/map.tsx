@@ -29,23 +29,31 @@ function Map({city, offers}: mapProps): JSX.Element {
   // });
 
   useEffect(() => {
+    const layerGroup = leaflet.layerGroup();
     if (map) {
       offers.forEach((offer) => {
         // eslint-disable-next-line no-console
         console.log(`Широта: ${offer.city.location.latitude}, Долгота: ${offer.city.location.longitude}`);
-        leaflet
-          .marker(
-            {
-              lat: offer.city.location.latitude,
-              lng: offer.city.location.longitude,
-            },
-            {
-              icon: defaultCustomIcon,
-            },
-          )
-          .addTo(map);
+        const marker = leaflet.marker(
+          {
+            lat: offer.city.location.latitude,
+            lng: offer.city.location.longitude,
+          },
+          {
+            icon: defaultCustomIcon,
+          },
+        );
+        layerGroup.addLayer(marker);
       });
+
+      layerGroup.addTo(map);
     }
+
+    return () => {
+      if (map) {
+        layerGroup.remove();
+      }
+    };
   }, [defaultCustomIcon, map, offers]);
 
   return (
