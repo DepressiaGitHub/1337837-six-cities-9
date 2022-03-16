@@ -4,13 +4,13 @@ const IMG_URL = '/img/';
 
 export const offers: Offer[] = [
   {
-    id: '00001',
+    id: 1,
     placeName: 'Wood and stone place',
     placeType: 'Private room',
     price: 80,
     premiumMark: false,
     favorite: true,
-    rating: 4,
+    rating: 2,
     imgPath: `${IMG_URL}room.jpg`,
     city: {
       location: {
@@ -22,7 +22,61 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00002',
+    id: 2,
+    placeName: 'Canal View Prinsengracht',
+    placeType: 'Apartment',
+    price: 132,
+    premiumMark: false,
+    favorite: false,
+    rating: 4,
+    imgPath: `${IMG_URL}apartment-02.jpg`,
+    city: {
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
+        zoom: 10,
+      },
+      name: 'Paris',
+    },
+  },
+  {
+    id: 3,
+    placeName: 'Wood and stone place',
+    placeType: 'Private room',
+    price: 80,
+    premiumMark: false,
+    favorite: true,
+    rating: 4,
+    imgPath: `${IMG_URL}room.jpg`,
+    city: {
+      location: {
+        latitude: 52.385553943508,
+        longitude: 4.86409666406198,
+        zoom: 10,
+      },
+      name: 'Cologne',
+    },
+  },
+  {
+    id: 4,
+    placeName: 'Canal View Prinsengracht',
+    placeType: 'Apartment',
+    price: 132,
+    premiumMark: false,
+    favorite: false,
+    rating: 4,
+    imgPath: `${IMG_URL}apartment-02.jpg`,
+    city: {
+      location: {
+        latitude: 52.4909553943508,
+        longitude: 4.989309666406198,
+        zoom: 10,
+      },
+      name: 'Cologne',
+    },
+  },
+  {
+    id: 5,
     placeName: 'Wood and stone place',
     placeType: 'Private room',
     price: 80,
@@ -40,13 +94,13 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00003',
+    id: 6,
     placeName: 'Canal View Prinsengracht',
     placeType: 'Apartment',
     price: 132,
     premiumMark: false,
     favorite: false,
-    rating: 4,
+    rating: 3,
     imgPath: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
@@ -58,7 +112,25 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00004',
+    id: 7,
+    placeName: 'Nice, cozy, warm big bed apartment',
+    placeType: 'Apartment',
+    price: 180,
+    premiumMark: true,
+    favorite: false,
+    rating: 5,
+    imgPath: `${IMG_URL}apartment-03.jpg`,
+    city: {
+      location: {
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
+        zoom: 10,
+      },
+      name: 'Cologne',
+    },
+  },
+  {
+    id: 8,
     placeName: 'Beautiful &amp; luxurious apartment at great location',
     placeType: 'Apartment',
     price: 120,
@@ -76,13 +148,13 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00005',
+    id: 9,
     placeName: 'Wood and stone place',
     placeType: 'Private room',
     price: 80,
     premiumMark: false,
     favorite: true,
-    rating: 4,
+    rating: 3,
     imgPath: `${IMG_URL}room.jpg`,
     city: {
       location: {
@@ -94,13 +166,13 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00006',
+    id: 10,
     placeName: 'Canal View Prinsengracht',
     placeType: 'Apartment',
     price: 132,
     premiumMark: false,
     favorite: false,
-    rating: 4,
+    rating: 1,
     imgPath: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
@@ -112,13 +184,13 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00007',
+    id: 11,
     placeName: 'Beautiful &amp; luxurious apartment at great location',
     placeType: 'Apartment',
     price: 120,
     premiumMark: true,
     favorite: false,
-    rating: 4,
+    rating: 3,
     imgPath: `${IMG_URL}apartment-01.jpg`,
     city: {
       location: {
@@ -130,7 +202,7 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00008',
+    id: 12,
     placeName: 'Wood and stone place',
     placeType: 'Private room',
     price: 80,
@@ -148,13 +220,13 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00009',
+    id: 13,
     placeName: 'Canal View Prinsengracht',
     placeType: 'Apartment',
     price: 132,
     premiumMark: false,
     favorite: false,
-    rating: 4,
+    rating: 3,
     imgPath: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
@@ -166,7 +238,7 @@ export const offers: Offer[] = [
     },
   },
   {
-    id: '00010',
+    id: 14,
     placeName: 'Nice, cozy, warm big bed apartment',
     placeType: 'Apartment',
     price: 180,
@@ -181,6 +253,24 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Amsterdam',
+    },
+  },
+  {
+    id: 15,
+    placeName: 'Nice, cozy, warm big bed apartment',
+    placeType: 'Apartment',
+    price: 180,
+    premiumMark: true,
+    favorite: false,
+    rating: 5,
+    imgPath: `${IMG_URL}apartment-03.jpg`,
+    city: {
+      location: {
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
+        zoom: 10,
+      },
+      name: 'Dusseldorf',
     },
   },
 ];

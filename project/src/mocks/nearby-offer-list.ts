@@ -4,7 +4,7 @@ const IMG_URL = '/img/';
 
 export const nearbyOfferList: Offer[] = [
   {
-    id: '00001',
+    id: 1,
     placeName: 'Beautiful &amp; luxurious apartment at great location',
     placeType: 'Apartment',
     price: 120,
@@ -22,7 +22,7 @@ export const nearbyOfferList: Offer[] = [
     },
   },
   {
-    id: '00002',
+    id: 2,
     placeName: 'Wood and stone place',
     placeType: 'Private room',
     price: 80,
@@ -40,7 +40,7 @@ export const nearbyOfferList: Offer[] = [
     },
   },
   {
-    id: '00003',
+    id: 3,
     placeName: 'Canal View Prinsengracht',
     placeType: 'Apartment',
     price: 132,

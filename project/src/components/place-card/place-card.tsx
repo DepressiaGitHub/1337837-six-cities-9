@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { hoverOffer } from '../../store/action';
 import { Offer } from '../types/offer';
 
 type PlaceCardProps = {
@@ -7,13 +9,13 @@ type PlaceCardProps = {
 
 function PlaceCard(props: PlaceCardProps):JSX.Element {
   const {id, placeName, placeType, price, premiumMark, favorite, imgPath, rating } = props.offer;
+  const dispatch = useAppDispatch();
+
   const mouseOverHandler = () => {
-    // eslint-disable-next-line no-console
-    console.log('Навёл на карточку мышку');
+    dispatch(hoverOffer(id));
   };
   const mouseOutHandler = () => {
-    // eslint-disable-next-line no-console
-    console.log('Убрал с карточки мышку');
+    dispatch(hoverOffer(-1));
   };
 
   return (

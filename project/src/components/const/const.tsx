@@ -13,6 +13,8 @@ export enum AuthorizationStatus {
 
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
+export const SORT = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+
 export const MIN_REVIEW_LENGTH = 50;
 
 export const RATING_STARS = [5, 4, 3, 2, 1];

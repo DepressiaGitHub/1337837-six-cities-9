@@ -1,11 +1,12 @@
 import { useRef, useEffect } from 'react';
+import { useAppSelector } from '../../hooks';
 import useMap from '../../hooks/useMap';
 import { City, Offer } from '../types/offer';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const URL_MARKER_DEFAULT = 'img/pin.svg';
-// const URL_MARKER_ACTIVE = 'img/pin-active.svg';
+const URL_MARKER_ACTIVE = 'img/pin-active.svg';
 
 type mapProps = {
   city: City,
@@ -13,6 +14,7 @@ type mapProps = {
 }
 
 function Map({city, offers}: mapProps): JSX.Element {
+  const activeOffer = useAppSelector((state) => state.activeOffer);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -22,25 +24,23 @@ function Map({city, offers}: mapProps): JSX.Element {
     iconAnchor: [14, 39],
   });
 
-  // const currentCustomIcon = leaflet.icon({
-  //   iconUrl: URL_MARKER_ACTIVE,
-  //   iconSize: [28, 39],
-  //   iconAnchor: [14, 39],
-  // });
+  const currentCustomIcon = leaflet.icon({
+    iconUrl: URL_MARKER_ACTIVE,
+    iconSize: [28, 39],
+    iconAnchor: [14, 39],
+  });
 
   useEffect(() => {
     const layerGroup = leaflet.layerGroup();
     if (map) {
       offers.forEach((offer) => {
-        // eslint-disable-next-line no-console
-        console.log(`Широта: ${offer.city.location.latitude}, Долгота: ${offer.city.location.longitude}`);
         const marker = leaflet.marker(
           {
             lat: offer.city.location.latitude,
             lng: offer.city.location.longitude,
           },
           {
-            icon: defaultCustomIcon,
+            icon: (offer.id === activeOffer ? currentCustomIcon : defaultCustomIcon),
           },
         );
         layerGroup.addLayer(marker);
@@ -54,7 +54,7 @@ function Map({city, offers}: mapProps): JSX.Element {
         layerGroup.remove();
       }
     };
-  }, [defaultCustomIcon, map, offers]);
+  }, [activeOffer, currentCustomIcon, defaultCustomIcon, map, offers]);
 
   return (
     <div
