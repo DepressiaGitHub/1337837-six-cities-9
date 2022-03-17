@@ -10,4 +10,4 @@ export const changeCity = createAction<string>(Action.CHANGE_CITY);
 
 export const changeSort = createAction<string>(Action.CHANGE_SORT);
 
-export const hoverOffer = createAction<number>(Action.HOVER_OFFER);
+export const hoverOffer = createAction<number | null>(Action.HOVER_OFFER);

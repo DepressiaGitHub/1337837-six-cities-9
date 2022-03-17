@@ -15,7 +15,7 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
     dispatch(hoverOffer(id));
   };
   const mouseOutHandler = () => {
-    dispatch(hoverOffer(-1));
+    dispatch(hoverOffer(null));
   };
 
   return (

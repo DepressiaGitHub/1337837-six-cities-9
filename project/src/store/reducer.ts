@@ -33,11 +33,19 @@ const getOffersBySort = (currentSort: string, array: Offer[]) => {
   return sortedOffers;
 };
 
-const DEFAULT_CITY_INDEX = 0;
+const DEFAULT_CITY_INDEX = 1;
 const offersByCity = getOffersByCity(CITIES[DEFAULT_CITY_INDEX], offers);
-const offerByHover = -1;
+const offerByHover = null;
 
-const initialState = {
+type initialStateProps = {
+  activeCity: string,
+  offers: Offer[],
+  activeSort: string,
+  sortedOffers: Offer[],
+  activeOffer: number | null,
+}
+
+const initialState: initialStateProps = {
   activeCity: CITIES[DEFAULT_CITY_INDEX],
   offers: offersByCity,
   activeSort: SORT[0],

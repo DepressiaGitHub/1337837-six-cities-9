@@ -14,8 +14,8 @@ export const offers: Offer[] = [
     imgPath: `${IMG_URL}room.jpg`,
     city: {
       location: {
-        latitude: 52.369553943508,
-        longitude: 4.85309666406198,
+        latitude: 48.8534100,
+        longitude: 2.3488000,
         zoom: 10,
       },
       name: 'Paris',
@@ -32,8 +32,8 @@ export const offers: Offer[] = [
     imgPath: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.929309666406198,
+        latitude: 48.6534100,
+        longitude: 2.4488000,
         zoom: 10,
       },
       name: 'Paris',
