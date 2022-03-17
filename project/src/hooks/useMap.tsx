@@ -27,6 +27,15 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: City) {
       setMap(instance);
     }
 
+    if (map) {
+      const center = {
+        lat: city.location.latitude,
+        lng: city.location.longitude,
+      };
+
+      map.setView(center);
+    }
+
   }, [mapRef, map, city]);
 
   return map;
