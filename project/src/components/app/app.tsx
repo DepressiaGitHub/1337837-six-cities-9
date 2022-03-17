@@ -7,20 +7,13 @@ import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../pages/offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
 
-
-type AppScreenProps = {
-  placesCount: number;
-}
-
-function App({placesCount}: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main}
           element={
-            <MainPageScreen
-              placesCount={placesCount}
-            />
+            <MainPageScreen />
           }
         />
         <Route path={AppRoute.Login}

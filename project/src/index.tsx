@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './components/app/app';
-
-const Setting = {
-  PLACES_COUNT: 23,
-};
+import { store } from './store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      placesCount = {Setting.PLACES_COUNT}
-    />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'));
