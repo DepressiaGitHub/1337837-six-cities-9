@@ -140,8 +140,8 @@ export const offers: Offer[] = [
     imgPath: `${IMG_URL}apartment-01.jpg`,
     city: {
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.85309666406198,
+        latitude: 50.7504500,
+        longitude: 4.4487800,
         zoom: 10,
       },
       name: 'Brussels',
@@ -158,8 +158,8 @@ export const offers: Offer[] = [
     imgPath: `${IMG_URL}room.jpg`,
     city: {
       location: {
-        latitude: 52.369553943508,
-        longitude: 4.85309666406198,
+        latitude: 50.8504500,
+        longitude: 4.3487800,
         zoom: 10,
       },
       name: 'Brussels',
@@ -176,8 +176,8 @@ export const offers: Offer[] = [
     imgPath: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.929309666406198,
+        latitude: 50.9104500,
+        longitude: 4.4187800,
         zoom: 10,
       },
       name: 'Brussels',
