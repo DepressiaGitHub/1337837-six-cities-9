@@ -4,14 +4,14 @@ import { changeSort } from '../../store/action';
 import { SORT } from '../const/const';
 
 function PlacesOptions():JSX.Element {
-  const activeSort = useAppSelector((state) => state.activeSort);
+  const selectedCity = useAppSelector((state) => state.selectedCity);
   const dispatch = useAppDispatch();
 
   return (
     <ul className="places__options places__options--custom places__options--opened">
       {SORT.map((type) => (
         <React.Fragment key={type}>
-          <li className={`places__option ${activeSort === type ? 'places__option--active' : ''}`} tabIndex={0}
+          <li className={`places__option ${selectedCity === type ? 'places__option--active' : ''}`} tabIndex={0}
             onClick={(evt: MouseEvent) => {
               evt.preventDefault();
               dispatch(changeSort(type));

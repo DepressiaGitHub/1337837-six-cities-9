@@ -14,7 +14,7 @@ type mapProps = {
 }
 
 function Map({city, offers}: mapProps): JSX.Element {
-  const activeOffer = useAppSelector((state) => state.activeOffer);
+  const offerByHover = useAppSelector((state) => state.offerByHover);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -40,7 +40,7 @@ function Map({city, offers}: mapProps): JSX.Element {
             lng: offer.city.location.longitude,
           },
           {
-            icon: (offer.id === activeOffer ? currentCustomIcon : defaultCustomIcon),
+            icon: (offer.id === offerByHover ? currentCustomIcon : defaultCustomIcon),
           },
         );
         layerGroup.addLayer(marker);
@@ -54,7 +54,7 @@ function Map({city, offers}: mapProps): JSX.Element {
         layerGroup.remove();
       }
     };
-  }, [activeOffer, currentCustomIcon, defaultCustomIcon, map, offers]);
+  }, [offerByHover, currentCustomIcon, defaultCustomIcon, map, offers]);
 
   return (
     <div
