@@ -8,7 +8,8 @@ type PlaceCardProps = {
 }
 
 function PlaceCard(props: PlaceCardProps):JSX.Element {
-  const {id, placeName, placeType, price, premiumMark, favorite, imgPath, rating } = props.offer;
+  const {id, placeName, placeType, price, premiumMark, favorite, previewImage, rating } = props.offer;
+
   const dispatch = useAppDispatch();
 
   const mouseOverHandler = () => {
@@ -28,7 +29,7 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`offer/${id}`}>
-          <img className="place-card__image" src={imgPath} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">

@@ -11,7 +11,7 @@ export const nearbyOfferList: Offer[] = [
     premiumMark: true,
     favorite: false,
     rating: 4,
-    imgPath: `${IMG_URL}apartment-01.jpg`,
+    previewImage: `${IMG_URL}apartment-01.jpg`,
     city: {
       location: {
         latitude: 52.3909553943508,
@@ -19,6 +19,11 @@ export const nearbyOfferList: Offer[] = [
         zoom: 12,
       },
       name: 'Amsterdam',
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 12,
     },
   },
   {
@@ -29,7 +34,7 @@ export const nearbyOfferList: Offer[] = [
     premiumMark: false,
     favorite: true,
     rating: 4,
-    imgPath: `${IMG_URL}room.jpg`,
+    previewImage: `${IMG_URL}room.jpg`,
     city: {
       location: {
         latitude: 52.369553943508,
@@ -37,6 +42,11 @@ export const nearbyOfferList: Offer[] = [
         zoom: 12,
       },
       name: 'Amsterdam',
+    },
+    location: {
+      latitude: 52.369553943508,
+      longitude: 4.85309666406198,
+      zoom: 12,
     },
   },
   {
@@ -47,7 +57,7 @@ export const nearbyOfferList: Offer[] = [
     premiumMark: false,
     favorite: false,
     rating: 4,
-    imgPath: `${IMG_URL}apartment-02.jpg`,
+    previewImage: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
         latitude: 52.3909553943508,
@@ -55,6 +65,11 @@ export const nearbyOfferList: Offer[] = [
         zoom: 12,
       },
       name: 'Amsterdam',
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 12,
     },
   },
 ];

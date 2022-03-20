@@ -1,78 +1,100 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSort, hoverOffer } from './action';
+import { changeCity, changeSort, hoverOffer, loadDataAction, setError } from './action';
 import { CITIES } from '../components/const/const';
 import { SORT } from '../components/const/const';
 import { Offer } from '../components/types/offer';
-import { offers } from '../mocks/offers';
+// import { offers } from '../mocks/offers';
 
 const getOffersByCity = (currentCity: string, array: Offer[]) => array.filter(({city}) => currentCity === city.name);
 
 const getOffersBySort = (currentSort: string, array: Offer[]) => {
-  const sortedOffers = array.slice();
+  const offersSortedByType = array.slice();
 
   switch (currentSort) {
     case SORT[0]:
       break;
 
     case SORT[1]:
-      sortedOffers.sort((a: Offer, b: Offer) => a.price - b.price);
+      offersSortedByType.sort((a: Offer, b: Offer) => a.price - b.price);
       break;
 
     case SORT[2]:
-      sortedOffers.sort((a: Offer, b: Offer) => b.price - a.price);
+      offersSortedByType.sort((a: Offer, b: Offer) => b.price - a.price);
       break;
 
     case SORT[3]:
-      sortedOffers.sort((a: Offer, b: Offer) => b.rating - a.rating);
+      offersSortedByType.sort((a: Offer, b: Offer) => b.rating - a.rating);
       break;
 
     default:
       break;
   }
 
-  return sortedOffers;
+  return offersSortedByType;
 };
 
-const DEFAULT_CITY_INDEX = 1;
-const offersByCity = getOffersByCity(CITIES[DEFAULT_CITY_INDEX], offers);
+const DEFAULT_CITY_INDEX = 0;
+// const offersByCity = getOffersByCity(CITIES[DEFAULT_CITY_INDEX], offers);
+// const offersByType = getOffersBySort(SORT[0], offersByCity);
 const offerByHover = null;
 
 type initialStateProps = {
   activeCity: string,
   offers: Offer[],
-  activeSort: string,
-  sortedOffers: Offer[],
-  activeOffer: number | null,
+  selectedType: string,
+  offersSortedByCity: Offer[],
+  offersSortedByType: Offer[],
+  offerByHover: number | null,
+  error: string,
+  data: Offer[],
+  isDataLoaded: boolean,
 }
 
 const initialState: initialStateProps = {
   activeCity: CITIES[DEFAULT_CITY_INDEX],
-  offers: offersByCity,
-  activeSort: SORT[0],
-  sortedOffers: offersByCity,
-  activeOffer: offerByHover,
+  offers: [],
+  selectedType: SORT[0],
+  offersSortedByCity: [],
+  offersSortedByType: [],
+  offerByHover: offerByHover,
+  error: '',
+  data: [],
+  isDataLoaded: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, action) => {
       state.activeCity = action.payload;
-      state.offers = getOffersByCity(state.activeCity, offers);
+      state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
 
       // Выводим по умолчанию сортировку по первому варианту
-      state.activeSort = SORT[0];
-      state.sortedOffers = getOffersBySort(state.activeSort, state.offers);
+      state.selectedType = SORT[0];
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
     });
 
   builder
     .addCase(changeSort, (state, action) => {
-      state.activeSort = action.payload;
-      state.sortedOffers = getOffersBySort(state.activeSort, state.offers);
+      state.selectedType = action.payload;
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
     });
 
   builder
     .addCase(hoverOffer, (state, action) => {
-      state.activeOffer = action.payload;
+      state.offerByHover = action.payload;
+    });
+
+  builder
+    .addCase(loadDataAction, (state, action) => {
+      state.data = action.payload;
+      state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
+      state.isDataLoaded = true;
+    });
+
+  builder
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 
