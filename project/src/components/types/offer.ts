@@ -19,4 +19,5 @@ export type Offer = {
   rating: number,
   previewImage: string,
   city: City,
+  location: Location,
 }

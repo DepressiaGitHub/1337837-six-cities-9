@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import { Fragment } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../const/const';
 import MainPageScreen from '../pages/main-page-screen/main-page-screen';
 import SignInScreen from '../pages/sign-in-screen/sign-in-screen';
@@ -8,6 +7,7 @@ import OfferScreen from '../pages/offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
+import NotFound from '../not-found/not-found';
 
 function App(): JSX.Element {
   const { isDataLoaded } = useAppSelector((state) => state);
@@ -46,14 +46,7 @@ function App(): JSX.Element {
           }
         />
         <Route path="*" element={
-          <Fragment>
-            <h1>
-              404.
-              <br />
-              <small>Page not found</small>
-            </h1>
-            <Link to="/">Go to main page</Link>
-          </Fragment>
+          <NotFound />
         }
         />
       </Routes>

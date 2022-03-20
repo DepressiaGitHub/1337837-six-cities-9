@@ -1,6 +1,9 @@
 function LoadingScreen(): JSX.Element {
   return (
-    <p>Loading ...</p>
+    <div className="preloader">
+      <p className="preloader__text">Loading ...</p>
+      <div className="preloader__ring"/>
+    </div>
   );
 }
 

@@ -36,8 +36,8 @@ function Map({city, offers}: mapProps): JSX.Element {
       offers.forEach((offer) => {
         const marker = leaflet.marker(
           {
-            lat: offer.city.location.latitude,
-            lng: offer.city.location.longitude,
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
           },
           {
             icon: (offer.id === offerByHover ? currentCustomIcon : defaultCustomIcon),

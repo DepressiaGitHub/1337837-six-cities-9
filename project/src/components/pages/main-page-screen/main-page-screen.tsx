@@ -8,6 +8,7 @@ import { useAppSelector } from '../../../hooks';
 
 function MainPageScreen ():JSX.Element {
   const {activeCity, offersSortedByCity, offersSortedByType} = useAppSelector((state) => state);
+  const cityLocation = offersSortedByCity[0].city;
 
   return (
     <div className="page page--gray page--main">
@@ -42,7 +43,7 @@ function MainPageScreen ():JSX.Element {
               <div className="cities__right-section">
                 <section className="cities__map map">
                   <Map
-                    city={offersSortedByCity[0].city}
+                    city={cityLocation}
                     offers={offersSortedByCity}
                   />
                 </section>

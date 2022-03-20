@@ -41,7 +41,7 @@ const offerByHover = null;
 type initialStateProps = {
   activeCity: string,
   offers: Offer[],
-  selectedCity: string,
+  selectedType: string,
   offersSortedByCity: Offer[],
   offersSortedByType: Offer[],
   offerByHover: number | null,
@@ -53,7 +53,7 @@ type initialStateProps = {
 const initialState: initialStateProps = {
   activeCity: CITIES[DEFAULT_CITY_INDEX],
   offers: [],
-  selectedCity: SORT[0],
+  selectedType: SORT[0],
   offersSortedByCity: [],
   offersSortedByType: [],
   offerByHover: offerByHover,
@@ -69,14 +69,14 @@ export const reducer = createReducer(initialState, (builder) => {
       state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
 
       // Выводим по умолчанию сортировку по первому варианту
-      state.selectedCity = SORT[0];
-      state.offersSortedByType = getOffersBySort(state.selectedCity, state.offersSortedByCity);
+      state.selectedType = SORT[0];
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
     });
 
   builder
     .addCase(changeSort, (state, action) => {
-      state.selectedCity = action.payload;
-      state.offersSortedByType = getOffersBySort(state.selectedCity, state.offersSortedByCity);
+      state.selectedType = action.payload;
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
     });
 
   builder
@@ -88,7 +88,7 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadDataAction, (state, action) => {
       state.data = action.payload;
       state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
-      state.offersSortedByType = getOffersBySort(state.selectedCity, state.offersSortedByCity);
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
       state.isDataLoaded = true;
     });
 

@@ -20,6 +20,11 @@ export const offers: Offer[] = [
       },
       name: 'Paris',
     },
+    location: {
+      latitude: 48.8534100,
+      longitude: 2.3488000,
+      zoom: 10,
+    },
   },
   {
     id: 2,
@@ -37,6 +42,11 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Paris',
+    },
+    location: {
+      latitude: 48.6534100,
+      longitude: 2.4488000,
+      zoom: 10,
     },
   },
   {
@@ -56,6 +66,11 @@ export const offers: Offer[] = [
       },
       name: 'Cologne',
     },
+    location: {
+      latitude: 52.385553943508,
+      longitude: 4.86409666406198,
+      zoom: 10,
+    },
   },
   {
     id: 4,
@@ -73,6 +88,11 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Cologne',
+    },
+    location: {
+      latitude: 52.4909553943508,
+      longitude: 4.989309666406198,
+      zoom: 10,
     },
   },
   {
@@ -92,6 +112,11 @@ export const offers: Offer[] = [
       },
       name: 'Cologne',
     },
+    location: {
+      latitude: 52.369553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 6,
@@ -109,6 +134,11 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Cologne',
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 10,
     },
   },
   {
@@ -128,6 +158,11 @@ export const offers: Offer[] = [
       },
       name: 'Cologne',
     },
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 8,
@@ -145,6 +180,11 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Brussels',
+    },
+    location: {
+      latitude: 50.7504500,
+      longitude: 4.4487800,
+      zoom: 10,
     },
   },
   {
@@ -164,6 +204,11 @@ export const offers: Offer[] = [
       },
       name: 'Brussels',
     },
+    location: {
+      latitude: 50.8504500,
+      longitude: 4.3487800,
+      zoom: 10,
+    },
   },
   {
     id: 10,
@@ -181,6 +226,11 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Brussels',
+    },
+    location: {
+      latitude: 50.9104500,
+      longitude: 4.4187800,
+      zoom: 10,
     },
   },
   {
@@ -200,6 +250,11 @@ export const offers: Offer[] = [
       },
       name: 'Amsterdam',
     },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 12,
@@ -217,6 +272,11 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Amsterdam',
+    },
+    location: {
+      latitude: 52.369553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
     },
   },
   {
@@ -236,6 +296,11 @@ export const offers: Offer[] = [
       },
       name: 'Amsterdam',
     },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 14,
@@ -254,6 +319,11 @@ export const offers: Offer[] = [
       },
       name: 'Amsterdam',
     },
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 15,
@@ -271,6 +341,11 @@ export const offers: Offer[] = [
         zoom: 10,
       },
       name: 'Dusseldorf',
+    },
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 10,
     },
   },
 ];
