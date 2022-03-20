@@ -11,7 +11,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: true,
     rating: 2,
-    imgPath: `${IMG_URL}room.jpg`,
+    previewImage: `${IMG_URL}room.jpg`,
     city: {
       location: {
         latitude: 48.8534100,
@@ -29,7 +29,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: false,
     rating: 4,
-    imgPath: `${IMG_URL}apartment-02.jpg`,
+    previewImage: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
         latitude: 48.6534100,
@@ -47,7 +47,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: true,
     rating: 4,
-    imgPath: `${IMG_URL}room.jpg`,
+    previewImage: `${IMG_URL}room.jpg`,
     city: {
       location: {
         latitude: 52.385553943508,
@@ -65,7 +65,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: false,
     rating: 4,
-    imgPath: `${IMG_URL}apartment-02.jpg`,
+    previewImage: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
         latitude: 52.4909553943508,
@@ -83,7 +83,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: true,
     rating: 4,
-    imgPath: `${IMG_URL}room.jpg`,
+    previewImage: `${IMG_URL}room.jpg`,
     city: {
       location: {
         latitude: 52.369553943508,
@@ -101,7 +101,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: false,
     rating: 3,
-    imgPath: `${IMG_URL}apartment-02.jpg`,
+    previewImage: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
         latitude: 52.3909553943508,
@@ -119,7 +119,7 @@ export const offers: Offer[] = [
     premiumMark: true,
     favorite: false,
     rating: 5,
-    imgPath: `${IMG_URL}apartment-03.jpg`,
+    previewImage: `${IMG_URL}apartment-03.jpg`,
     city: {
       location: {
         latitude: 52.3809553943508,
@@ -137,7 +137,7 @@ export const offers: Offer[] = [
     premiumMark: true,
     favorite: false,
     rating: 4,
-    imgPath: `${IMG_URL}apartment-01.jpg`,
+    previewImage: `${IMG_URL}apartment-01.jpg`,
     city: {
       location: {
         latitude: 50.7504500,
@@ -155,7 +155,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: true,
     rating: 3,
-    imgPath: `${IMG_URL}room.jpg`,
+    previewImage: `${IMG_URL}room.jpg`,
     city: {
       location: {
         latitude: 50.8504500,
@@ -173,7 +173,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: false,
     rating: 1,
-    imgPath: `${IMG_URL}apartment-02.jpg`,
+    previewImage: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
         latitude: 50.9104500,
@@ -191,7 +191,7 @@ export const offers: Offer[] = [
     premiumMark: true,
     favorite: false,
     rating: 3,
-    imgPath: `${IMG_URL}apartment-01.jpg`,
+    previewImage: `${IMG_URL}apartment-01.jpg`,
     city: {
       location: {
         latitude: 52.3909553943508,
@@ -209,7 +209,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: true,
     rating: 4,
-    imgPath: `${IMG_URL}room.jpg`,
+    previewImage: `${IMG_URL}room.jpg`,
     city: {
       location: {
         latitude: 52.369553943508,
@@ -227,7 +227,7 @@ export const offers: Offer[] = [
     premiumMark: false,
     favorite: false,
     rating: 3,
-    imgPath: `${IMG_URL}apartment-02.jpg`,
+    previewImage: `${IMG_URL}apartment-02.jpg`,
     city: {
       location: {
         latitude: 52.3909553943508,
@@ -245,7 +245,7 @@ export const offers: Offer[] = [
     premiumMark: true,
     favorite: false,
     rating: 5,
-    imgPath: `${IMG_URL}apartment-03.jpg`,
+    previewImage: `${IMG_URL}apartment-03.jpg`,
     city: {
       location: {
         latitude: 52.3809553943508,
@@ -263,7 +263,7 @@ export const offers: Offer[] = [
     premiumMark: true,
     favorite: false,
     rating: 5,
-    imgPath: `${IMG_URL}apartment-03.jpg`,
+    previewImage: `${IMG_URL}apartment-03.jpg`,
     city: {
       location: {
         latitude: 52.3809553943508,

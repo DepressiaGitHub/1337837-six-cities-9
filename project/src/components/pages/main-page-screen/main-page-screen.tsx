@@ -8,10 +8,11 @@ import { useAppSelector } from '../../../hooks';
 
 function MainPageScreen ():JSX.Element {
   const {activeCity, offersSortedByCity, offersSortedByType} = useAppSelector((state) => state);
+
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={`page__main page__main--index ${offersSortedByType.length > 0 ? '' : 'page__main--index-empty'}`}>
+      <main className={`page__main page__main--index ${offersSortedByCity.length > 0 ? '' : 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -19,11 +20,11 @@ function MainPageScreen ():JSX.Element {
           </section>
         </div>
         <div className="cities">
-          {offersSortedByType.length > 0 ? (
+          {offersSortedByCity.length > 0 ? (
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offersSortedByType.length} places to stay in {activeCity}</b>
+                <b className="places__found">{offersSortedByCity.length} places to stay in {activeCity}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>

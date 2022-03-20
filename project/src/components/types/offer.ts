@@ -17,6 +17,6 @@ export type Offer = {
   premiumMark: boolean,
   favorite: boolean,
   rating: number,
-  imgPath: string,
+  previewImage: string,
   city: City,
 }

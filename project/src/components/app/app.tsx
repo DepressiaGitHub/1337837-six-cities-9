@@ -6,8 +6,18 @@ import SignInScreen from '../pages/sign-in-screen/sign-in-screen';
 import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../pages/offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
+import { useAppSelector } from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function App(): JSX.Element {
+  const { isDataLoaded } = useAppSelector((state) => state);
+
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
