@@ -5,7 +5,6 @@ import FavoritePlacesCard from '../../favorite-places-card/favorite-places-card'
 
 function FavoritesScreen ():JSX.Element {
   return (
-
     <div className="page">
       <Header />
       <main className="page__main page__main--favorites">

@@ -1,25 +1,29 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../const/const';
+import { Route, Routes } from 'react-router-dom';
+import { AppRoute } from '../const/const';
 import MainPageScreen from '../pages/main-page-screen/main-page-screen';
 import SignInScreen from '../pages/sign-in-screen/sign-in-screen';
 import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../pages/offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
+import LoggedRoute from '../logged-route/logged-route';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFound from '../not-found/not-found';
+import { isCheckedAuth } from '../../util';
+import { HistoryRouter } from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
-  const { isDataLoaded } = useAppSelector((state) => state);
+  const { authorizationStatus, isDataLoaded } = useAppSelector((state) => state);
 
-  if (!isDataLoaded) {
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
       <LoadingScreen />
     );
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoute.Main}
           element={
@@ -28,13 +32,17 @@ function App(): JSX.Element {
         />
         <Route path={AppRoute.Login}
           element={
-            <SignInScreen />
+            <LoggedRoute
+              authorizationStatus={authorizationStatus}
+            >
+              <SignInScreen />
+            </LoggedRoute>
           }
         />
         <Route path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
+              authorizationStatus={authorizationStatus}
             >
               <FavoritesScreen />
             </PrivateRoute>
@@ -50,7 +58,7 @@ function App(): JSX.Element {
         }
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
