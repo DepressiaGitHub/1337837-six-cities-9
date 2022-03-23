@@ -1,17 +1,19 @@
-import { Review } from '../types/review';
+import { Comment } from '../types/comment';
+import dayjs from 'dayjs';
 
 type ReviewProps = {
-  review: Review;
+  comment: Comment;
 }
 
 function ReviewsItem(props: ReviewProps):JSX.Element {
-  const { user, rating, date, comment } = props.review;
+  const formatDate = (date:string, format:string) => dayjs(date).format(format).toString();
+  const { user, rating, date, comment } = props.comment;
 
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={user.imgPath} width="54" height="54" alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">{user.name}</span>
       </div>
@@ -23,7 +25,7 @@ function ReviewsItem(props: ReviewProps):JSX.Element {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={formatDate(date, 'YYYY-MM-DD')}>{formatDate(date, 'MMMM YYYY')}</time>
       </div>
     </li>
   );

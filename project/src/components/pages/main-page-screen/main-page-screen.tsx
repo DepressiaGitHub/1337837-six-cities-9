@@ -10,9 +10,12 @@ function MainPageScreen ():JSX.Element {
   const {activeCity, offersSortedByCity, offersSortedByType} = useAppSelector((state) => state);
   const cityLocation = offersSortedByCity[0].city;
 
+  // eslint-disable-next-line no-console
+  console.log(offersSortedByCity);
+
   return (
     <div className="page page--gray page--main">
-      <Header />
+      <Header logo />
       <main className={`page__main page__main--index ${offersSortedByCity.length > 0 ? '' : 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

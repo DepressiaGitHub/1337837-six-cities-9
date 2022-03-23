@@ -1,15 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSort, hoverOffer, loadDataAction, requireAuthorization } from './action';
+import { changeCity, changeSort, hoverOffer, loadDataAction, loadDataPropertyAction, loadDataCommentsAction, loadDatNearbyAction, requireAuthorization } from './action';
 import { CITIES } from '../components/const/const';
 import { SORT } from '../components/const/const';
 import { Offer } from '../components/types/offer';
+import { Comment } from '../components/types/comment';
 import { AuthorizationStatus } from '../components/const/const';
-// import { offers } from '../mocks/offers';
 import { getOffersByCity, getOffersBySort } from '../util';
+import { Property } from '../components/types/property';
 
 const DEFAULT_CITY_INDEX = 0;
-// const offersByCity = getOffersByCity(CITIES[DEFAULT_CITY_INDEX], offers);
-// const offersByType = getOffersBySort(SORT[0], offersByCity);
 const offerByHover = null;
 
 type initialStateProps = {
@@ -22,6 +21,10 @@ type initialStateProps = {
   data: Offer[],
   isDataLoaded: boolean,
   authorizationStatus: AuthorizationStatus,
+  property: Property | null,
+  isDataPropertyLoaded: boolean,
+  comments: Comment[],
+  nearbyOffers: Offer[],
 }
 
 const initialState: initialStateProps = {
@@ -34,6 +37,10 @@ const initialState: initialStateProps = {
   data: [],
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  property: null,
+  isDataPropertyLoaded: false,
+  comments: [],
+  nearbyOffers: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -67,8 +74,24 @@ export const reducer = createReducer(initialState, (builder) => {
     });
 
   builder
+    .addCase(loadDataPropertyAction, (state, action) => {
+      state.property = action.payload;
+      state.isDataPropertyLoaded = true;
+    });
+
+  builder
+    .addCase(loadDataCommentsAction, (state, action) => {
+      state.comments = action.payload;
+    });
+
+  builder
+    .addCase(loadDatNearbyAction, (state, action) => {
+      state.nearbyOffers = action.payload;
+    });
+
+  builder
     .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus =action.payload;
+      state.authorizationStatus = action.payload;
     });
 });
 
