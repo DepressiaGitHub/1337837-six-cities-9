@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSort, hoverOffer, loadDataAction, loadDataPropertyAction, loadDataCommentsAction, loadDatNearbyAction, requireAuthorization } from './action';
+import { changeCity, changeSort, hoverOffer, loadDataAction, requireDataProperty, loadDataPropertyAction, loadDataCommentsAction, loadDatNearbyAction, requireAuthorization, sendDataCommentAction } from './action';
 import { CITIES } from '../components/const/const';
 import { SORT } from '../components/const/const';
 import { Offer } from '../components/types/offer';
@@ -7,6 +7,7 @@ import { Comment } from '../components/types/comment';
 import { AuthorizationStatus } from '../components/const/const';
 import { getOffersByCity, getOffersBySort } from '../util';
 import { Property } from '../components/types/property';
+import { MyComment } from '../components/types/my-comment';
 
 const DEFAULT_CITY_INDEX = 0;
 const offerByHover = null;
@@ -22,9 +23,9 @@ type initialStateProps = {
   isDataLoaded: boolean,
   authorizationStatus: AuthorizationStatus,
   property: Property | null,
-  isDataPropertyLoaded: boolean,
   comments: Comment[],
   nearbyOffers: Offer[],
+  myComment: MyComment | null,
 }
 
 const initialState: initialStateProps = {
@@ -38,12 +39,20 @@ const initialState: initialStateProps = {
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   property: null,
-  isDataPropertyLoaded: false,
   comments: [],
   nearbyOffers: [],
+  myComment: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(loadDataAction, (state, action) => {
+      state.data = action.payload;
+      state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
+      state.isDataLoaded = true;
+    });
+
   builder
     .addCase(changeCity, (state, action) => {
       state.activeCity = action.payload;
@@ -66,17 +75,13 @@ export const reducer = createReducer(initialState, (builder) => {
     });
 
   builder
-    .addCase(loadDataAction, (state, action) => {
-      state.data = action.payload;
-      state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
-      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
-      state.isDataLoaded = true;
+    .addCase(loadDataPropertyAction, (state, action) => {
+      state.property = action.payload;
     });
 
   builder
-    .addCase(loadDataPropertyAction, (state, action) => {
-      state.property = action.payload;
-      state.isDataPropertyLoaded = true;
+    .addCase(requireDataProperty, (state) => {
+      state.property = null;
     });
 
   builder
@@ -92,6 +97,11 @@ export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    });
+
+  builder
+    .addCase(sendDataCommentAction, (state, action) => {
+      state.myComment = action.payload;
     });
 });
 

@@ -1,8 +1,15 @@
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
+import { store } from '../../store';
+import { postDataCommentAction } from '../../store/api-actions';
 import { MIN_REVIEW_LENGTH } from '../const/const';
 import { RATING_STARS } from '../const/const';
+import { MyComment } from '../types/my-comment';
 
-function ReviewsForm():JSX.Element {
+type ReviewsFormProps = {
+  id: number,
+}
+
+function ReviewsForm({id}: ReviewsFormProps):JSX.Element {
   const [rating, setRating] = useState<number | null>(null);
   const [review, setReview] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
@@ -20,6 +27,21 @@ function ReviewsForm():JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     // Код для отправки формы.
     evt.preventDefault();
+    if (rating === null) {
+      return;
+    }
+    const comment: MyComment = {
+      comment: review,
+      rating: rating,
+    };
+
+    const result = {
+      offerId: id,
+      comment,
+    };
+
+    store.dispatch(postDataCommentAction(result));
+
     setRating(null);
     setReview('');
   };

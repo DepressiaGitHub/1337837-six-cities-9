@@ -8,7 +8,7 @@ import PrivateRoute from '../private-route/private-route';
 import LoggedRoute from '../logged-route/logged-route';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
-import NotFound from '../not-found/not-found';
+import NotFoundScreen from '../pages/not-found-screeen/not-found-screeen';
 import { isCheckedAuth } from '../../util';
 import { HistoryRouter } from '../history-route/history-route';
 import browserHistory from '../../browser-history';
@@ -54,7 +54,11 @@ function App(): JSX.Element {
           }
         />
         <Route path="*" element={
-          <NotFound />
+          <NotFoundScreen />
+        }
+        />
+        <Route path={AppRoute.NotFound} element={
+          <NotFoundScreen />
         }
         />
       </Routes>

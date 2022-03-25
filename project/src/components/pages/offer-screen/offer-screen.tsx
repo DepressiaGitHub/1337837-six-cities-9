@@ -10,7 +10,7 @@ import { useAppSelector } from '../../../hooks';
 import React, { useEffect } from 'react';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import { isAuth } from '../../../util';
-import NotFound from '../../not-found/not-found';
+import { requireDataProperty } from '../../../store/action';
 
 function OfferScreen ():JSX.Element {
   const params = useParams();
@@ -20,6 +20,11 @@ function OfferScreen ():JSX.Element {
     store.dispatch(fetchDataPropertyAction(id));
     store.dispatch(fetchDataCommentsAction(id));
     store.dispatch(fetchDataNearbyAction(id));
+
+    return () => {
+      // Тут надо сбросить флаг, чтобы при заходе на новое объявление не было видно старых данных пока грузятся новые.
+      store.dispatch(requireDataProperty());
+    };
   }, [id]);
 
   const { authorizationStatus } = useAppSelector((state) => state);
@@ -32,13 +37,6 @@ function OfferScreen ():JSX.Element {
       <LoadingScreen />
     );
   }
-
-  if (!property) {
-    return <NotFound />;
-  }
-
-  // eslint-disable-next-line no-console
-  console.log(property);
 
   const {images, isFavorite, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = property;
 
@@ -137,7 +135,7 @@ function OfferScreen ():JSX.Element {
                   comments={comments}
                 />
                 {isAuth(authorizationStatus) && (
-                  <ReviewsForm />
+                  <ReviewsForm id={id}/>
                 )}
               </section>
             </div>
