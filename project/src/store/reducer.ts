@@ -1,5 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSort, hoverOffer, loadDataAction, requireDataProperty, loadDataPropertyAction, loadDataCommentsAction, loadDatNearbyAction, requireAuthorization, sendDataCommentAction } from './action';
+import {
+  changeCity,
+  changeSort,
+  hoverOffer,
+  loadDataAction,
+  requireDataProperty,
+  loadDataPropertyAction,
+  loadDataCommentsAction,
+  loadDatNearbyAction,
+  requireAuthorization,
+  setFormCommentData
+} from './action';
 import { CITIES } from '../components/const/const';
 import { SORT } from '../components/const/const';
 import { Offer } from '../components/types/offer';
@@ -26,6 +37,7 @@ type initialStateProps = {
   comments: Comment[],
   nearbyOffers: Offer[],
   myComment: MyComment | null,
+  reviewFormStatus: 'initial'|'error'|'sending',
 }
 
 const initialState: initialStateProps = {
@@ -42,6 +54,7 @@ const initialState: initialStateProps = {
   comments: [],
   nearbyOffers: [],
   myComment: null,
+  reviewFormStatus: 'initial',
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -100,8 +113,8 @@ export const reducer = createReducer(initialState, (builder) => {
     });
 
   builder
-    .addCase(sendDataCommentAction, (state, action) => {
-      state.myComment = action.payload;
+    .addCase(setFormCommentData, (state, action) => {
+      state.reviewFormStatus = action.payload;
     });
 });
 

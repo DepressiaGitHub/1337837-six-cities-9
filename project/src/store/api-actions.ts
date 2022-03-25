@@ -3,7 +3,15 @@ import { store } from '.';
 import { api } from '.';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../components/const/const';
 import { Offer } from '../components/types/offer';
-import { loadDataAction, loadDataPropertyAction, loadDataCommentsAction, loadDatNearbyAction, redirectToRoute, requireAuthorization, sendDataCommentAction } from './action';
+import {
+  loadDataAction,
+  loadDataPropertyAction,
+  loadDataCommentsAction,
+  loadDatNearbyAction,
+  redirectToRoute,
+  requireAuthorization,
+  setFormCommentData
+} from './action';
 import { errorHandle } from '../services/error-handle';
 import { saveToken, dropToken } from '../services/token';
 import { AuthData } from '../components/types/auth-data';
@@ -127,12 +135,23 @@ export const postDataCommentAction = createAsyncThunk(
   'USER_SEND_COMMENT',
   async ({offerId, comment}: {offerId: number; comment: MyComment}) => {
     try {
+      //Promises
+      // api.post<MyComment>(`${APIRoute.Comments}/${offerId}`, comment).then(({data}) => {
+      //   store.dispatch(sendDataCommentAction(data));
+      //   store.dispatch(setFormCommentData('initial'));
+      // });
+      //store.dispatch(sendDataCommentAction((await api.post<MyComment>(`${APIRoute.Comments}/${offerId}`, comment)).data));
+      //
+      //
       if (offerId) {
-        const {data} = await api.post<MyComment>(`${APIRoute.Comments}/${offerId}`, comment); // Отправляем свой комментарий
-        store.dispatch(sendDataCommentAction(data));
+        store.dispatch(setFormCommentData('sending'));
+        const {data} = await api.post<Comment[]>(`${APIRoute.Comments}/${offerId}`, comment); // Отправляем свой комментарий
+        store.dispatch(loadDataCommentsAction(data));
+        store.dispatch(setFormCommentData('initial'));
       }
     } catch(error) {
       errorHandle(error);
+      store.dispatch(setFormCommentData('error'));
     }
   },
 );

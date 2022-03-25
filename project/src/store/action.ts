@@ -3,7 +3,6 @@ import { Offer } from '../components/types/offer';
 import { Property } from '../components/types/property';
 import { AppRoute, AuthorizationStatus } from '../components/const/const';
 import { Comment } from '../components/types/comment';
-import { MyComment } from '../components/types/my-comment';
 
 export const Action = {
   CHANGE_CITY: 'CHANGE_CITY',
@@ -18,6 +17,7 @@ export const Action = {
   SET_AUTHORIZATION: 'SET_AUTHORIZATION',
   REDIRECT_TO_ROUTE: 'REDIRECT_TO_ROUTE',
   SEND_DATA_COMMENT_ACTION: 'SEND_DATA_COMMENT_ACTION',
+  COMMENT_FORM_STATUS: 'COMMENT_FORM_STATUS',
 };
 
 export const changeCity = createAction<string>(Action.CHANGE_CITY);
@@ -40,4 +40,6 @@ export const requireAuthorization = createAction<AuthorizationStatus>(Action.SET
 
 export const redirectToRoute = createAction<AppRoute>(Action.REDIRECT_TO_ROUTE);
 
-export const sendDataCommentAction = createAction<MyComment>(Action.SEND_DATA_COMMENT_ACTION);
+export const sendDataCommentAction = createAction<Comment>(Action.SEND_DATA_COMMENT_ACTION);
+
+export const setFormCommentData = createAction<'initial'|'error'|'sending'>(Action.COMMENT_FORM_STATUS);
