@@ -3,12 +3,14 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Room = '/offer/:id',
+  NotFound = '/404',
 }
 
 export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
 }
 
 export enum AuthorizationStatus {

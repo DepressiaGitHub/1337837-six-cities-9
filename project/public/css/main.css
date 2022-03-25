@@ -41,7 +41,7 @@
 }
 
 .not-found {
-  height: 100vh;
+  height: calc(100vh - 80px - 137px);
   display: flex;
   flex-direction: column;
   justify-content: center;

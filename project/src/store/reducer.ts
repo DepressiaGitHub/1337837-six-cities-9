@@ -1,15 +1,26 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSort, hoverOffer, loadDataAction, requireAuthorization } from './action';
+import {
+  changeCity,
+  changeSort,
+  hoverOffer,
+  loadDataAction,
+  requireDataProperty,
+  loadDataPropertyAction,
+  loadDataCommentsAction,
+  loadDatNearbyAction,
+  requireAuthorization,
+  setFormCommentData
+} from './action';
 import { CITIES } from '../components/const/const';
 import { SORT } from '../components/const/const';
 import { Offer } from '../components/types/offer';
+import { Comment } from '../components/types/comment';
 import { AuthorizationStatus } from '../components/const/const';
-// import { offers } from '../mocks/offers';
 import { getOffersByCity, getOffersBySort } from '../util';
+import { Property } from '../components/types/property';
+import { MyComment } from '../components/types/my-comment';
 
 const DEFAULT_CITY_INDEX = 0;
-// const offersByCity = getOffersByCity(CITIES[DEFAULT_CITY_INDEX], offers);
-// const offersByType = getOffersBySort(SORT[0], offersByCity);
 const offerByHover = null;
 
 type initialStateProps = {
@@ -22,6 +33,11 @@ type initialStateProps = {
   data: Offer[],
   isDataLoaded: boolean,
   authorizationStatus: AuthorizationStatus,
+  property: Property | null,
+  comments: Comment[],
+  nearbyOffers: Offer[],
+  myComment: MyComment | null,
+  reviewFormStatus: 'initial'|'error'|'sending',
 }
 
 const initialState: initialStateProps = {
@@ -34,9 +50,22 @@ const initialState: initialStateProps = {
   data: [],
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  property: null,
+  comments: [],
+  nearbyOffers: [],
+  myComment: null,
+  reviewFormStatus: 'initial',
 };
 
 export const reducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(loadDataAction, (state, action) => {
+      state.data = action.payload;
+      state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
+      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
+      state.isDataLoaded = true;
+    });
+
   builder
     .addCase(changeCity, (state, action) => {
       state.activeCity = action.payload;
@@ -59,16 +88,33 @@ export const reducer = createReducer(initialState, (builder) => {
     });
 
   builder
-    .addCase(loadDataAction, (state, action) => {
-      state.data = action.payload;
-      state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
-      state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
-      state.isDataLoaded = true;
+    .addCase(loadDataPropertyAction, (state, action) => {
+      state.property = action.payload;
+    });
+
+  builder
+    .addCase(requireDataProperty, (state) => {
+      state.property = null;
+    });
+
+  builder
+    .addCase(loadDataCommentsAction, (state, action) => {
+      state.comments = action.payload;
+    });
+
+  builder
+    .addCase(loadDatNearbyAction, (state, action) => {
+      state.nearbyOffers = action.payload;
     });
 
   builder
     .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus =action.payload;
+      state.authorizationStatus = action.payload;
+    });
+
+  builder
+    .addCase(setFormCommentData, (state, action) => {
+      state.reviewFormStatus = action.payload;
     });
 });
 

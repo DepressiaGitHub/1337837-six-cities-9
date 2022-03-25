@@ -3,18 +3,42 @@ import NearPlacesList from '../../near-places-list/near-places-list';
 import ReviewsForm from '../../reviews-form/reviews-form';
 import ReviewList from '../../reviews-list/reviews-list';
 import Map from '../../map/map';
-import { nearbyOfferList } from '../../../mocks/nearby-offer-list';
-import { Offer } from '../../types/offer';
-import { reviews } from '../../../mocks/reviews';
-
+import { useParams } from 'react-router-dom';
+import { store } from '../../../store';
+import { fetchDataPropertyAction, fetchDataCommentsAction, fetchDataNearbyAction } from '../../../store/api-actions';
+import { useAppSelector } from '../../../hooks';
+import React, { useEffect } from 'react';
+import LoadingScreen from '../../loading-screen/loading-screen';
+import { isAuth } from '../../../util';
+import { requireDataProperty } from '../../../store/action';
 
 function OfferScreen ():JSX.Element {
-  function shuffle(array:Offer[]) {
-    array.sort(() => Math.random() - 0.5);
-    return array;
+  const params = useParams();
+  const id = Number(params.id);
+
+  useEffect(() => {
+    store.dispatch(fetchDataPropertyAction(id));
+    store.dispatch(fetchDataCommentsAction(id));
+    store.dispatch(fetchDataNearbyAction(id));
+
+    return () => {
+      // Тут надо сбросить флаг, чтобы при заходе на новое объявление не было видно старых данных пока грузятся новые.
+      store.dispatch(requireDataProperty());
+    };
+  }, [id]);
+
+  const { authorizationStatus } = useAppSelector((state) => state);
+  const { property } = useAppSelector((state) => state);
+  const { comments } = useAppSelector((state) => state);
+  const { nearbyOffers } = useAppSelector((state) => state);
+
+  if (property === null || nearbyOffers.length === 0) {
+    return (
+      <LoadingScreen />
+    );
   }
 
-  const shuffleNearbyOfferList = shuffle(nearbyOfferList);
+  const {images, isFavorite, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = property;
 
   return (
     <div className="page">
@@ -23,36 +47,27 @@ function OfferScreen ():JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
-              </div>
+              {images.map((src) => (
+                <React.Fragment key={src}>
+                  <div className="property__image-wrapper">
+                    <img className="property__image" src={src} alt="Photo studio" />
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              <div className="property__mark">
-                <span>Premium</span>
-              </div>
+              {isPremium && (
+                <div className="property__mark">
+                  <span>Premium</span>
+                </div>
+              )}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
+                <button className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active': ''}`} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -61,96 +76,74 @@ function OfferScreen ():JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: '80%'}}></span>
+                  <span style={{width: `${rating * 20}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  Apartment
+                  {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  Max {maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;120</b>
+                <b className="property__price-value">&euro;{price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <li className="property__inside-item">
-                    Wi-Fi
-                  </li>
-                  <li className="property__inside-item">
-                    Washing machine
-                  </li>
-                  <li className="property__inside-item">
-                    Towels
-                  </li>
-                  <li className="property__inside-item">
-                    Heating
-                  </li>
-                  <li className="property__inside-item">
-                    Coffee machine
-                  </li>
-                  <li className="property__inside-item">
-                    Baby seat
-                  </li>
-                  <li className="property__inside-item">
-                    Kitchen
-                  </li>
-                  <li className="property__inside-item">
-                    Dishwasher
-                  </li>
-                  <li className="property__inside-item">
-                    Cabel TV
-                  </li>
-                  <li className="property__inside-item">
-                    Fridge
-                  </li>
+                  {goods.map((good) => (
+                    <React.Fragment key={good}>
+                      <li className="property__inside-item">
+                        {good}
+                      </li>
+                    </React.Fragment>
+                  ))}
                 </ul>
               </div>
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div className={`property__avatar-wrapper ${host.isPro ? 'property__avatar-wrapper--pro' : ''} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {host.name}
                   </span>
-                  <span className="property__user-status">
-                    Pro
-                  </span>
+                  {host.isPro && (
+                    <span className="property__user-status">
+                      Pro
+                    </span>
+                  )}
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                    {description}
                   </p>
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
                 <ReviewList
-                  reviews={reviews}
+                  comments={comments}
                 />
-                <ReviewsForm />
+                {isAuth(authorizationStatus) && (
+                  <ReviewsForm id={id}/>
+                )}
               </section>
             </div>
           </div>
           <section className="property__map map">
             <Map
-              city={nearbyOfferList[0].city}
-              offers={nearbyOfferList}
+              city={nearbyOffers[0].city}
+              offers={nearbyOffers}
             />
           </section>
         </section>
@@ -158,7 +151,7 @@ function OfferScreen ():JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <NearPlacesList
-              offers={shuffleNearbyOfferList}
+              offers={nearbyOffers}
             />
           </section>
         </div>

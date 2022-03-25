@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { hoverOffer } from '../../store/action';
 import { Offer } from '../types/offer';
 
 type NearCardProps = {
@@ -8,8 +10,20 @@ type NearCardProps = {
 function NearPlacesCard(props: NearCardProps):JSX.Element {
   const {id, placeName, placeType, price, premiumMark, favorite, previewImage, rating } = props.offer;
 
+  const dispatch = useAppDispatch();
+
+  const mouseOverHandler = () => {
+    dispatch(hoverOffer(id));
+  };
+  const mouseOutHandler = () => {
+    dispatch(hoverOffer(null));
+  };
+
   return (
-    <article className="near-places__card place-card">
+    <article className="near-places__card place-card"
+      onMouseEnter={mouseOverHandler}
+      onMouseLeave={mouseOutHandler}
+    >
       <div className="place-card__mark" hidden={!premiumMark}>
         <span>Premium</span>
       </div>

@@ -5,9 +5,9 @@ import { reducer } from '../reducer';
 type Reducer = ReturnType<typeof reducer>;
 
 export const redirect: Middleware<unknown, Reducer> =
-  (_store) =>
-    (next) =>
-      (action) => {
+  (_store) => // Тут ссылка на хранилище.
+    (next) => // Тут доступ к диспатчу.
+      (action) => { // Тут текущее действие.
         if (action.type === 'REDIRECT_TO_ROUTE') {
           browserHistory.push(action.payload);
         }
