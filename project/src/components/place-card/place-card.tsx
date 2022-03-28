@@ -8,7 +8,7 @@ type PlaceCardProps = {
 }
 
 function PlaceCard(props: PlaceCardProps):JSX.Element {
-  const {id, placeName, placeType, price, premiumMark, favorite, previewImage, rating } = props.offer;
+  const { id, placeName, placeType, price, premiumMark, favorite, previewImage, rating } = props.offer;
 
   const dispatch = useAppDispatch();
 

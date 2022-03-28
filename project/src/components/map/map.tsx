@@ -18,6 +18,9 @@ function Map({city, offers}: mapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
+  // eslint-disable-next-line no-console
+  console.log('Map: render');
+
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
     iconSize: [28, 39],

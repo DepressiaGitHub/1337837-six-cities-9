@@ -8,6 +8,9 @@ function LocationsList():JSX.Element {
   const activeCity = useAppSelector((state) => state.activeCity);
   const dispatch = useAppDispatch();
 
+  // eslint-disable-next-line no-console
+  console.log('LocationsList: render');
+
   return (
     <ul className="locations__list tabs__list">
       {CITIES.map((city) => (

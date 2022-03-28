@@ -6,12 +6,11 @@ import {store} from '../../store';
 import {setFormCommentData} from '../../store/action';
 import {postDataCommentAction} from '../../store/api-actions';
 import {MyComment} from '../types/my-comment';
+import { useParams } from 'react-router-dom';
 
-type ReviewsFormProps = {
-  id: number,
-}
-
-function ReviewsForm({id}: ReviewsFormProps):JSX.Element {
+function ReviewsForm():JSX.Element {
+  const params = useParams();
+  const id = Number(params.id);
   const [rating, setRating] = useState<number | null>(null);
   const [review, setReview] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);

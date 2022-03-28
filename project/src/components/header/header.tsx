@@ -10,8 +10,11 @@ type HeaderProps = {
 }
 
 function Header (props: HeaderProps):JSX.Element {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
+
+  // eslint-disable-next-line no-console
+  console.log('Header: render');
 
   return (
     <header className="header">

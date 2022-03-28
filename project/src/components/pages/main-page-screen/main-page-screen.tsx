@@ -1,22 +1,28 @@
 import Header from '../../header/header';
-import PlacesOptions from '../../places-options/places-options';
-import OffersList from  '../../offers-list/offers-list';
-import Map from '../../map/map';
 import LocationsList from '../../locations-list/locations-list';
-import MainPageScreenEmpty from './main-page-screen-empty';
+import MainPageScreenEmpty from '../../main-page-screen-empty/main-page-screen-empty';
 import { useAppSelector } from '../../../hooks';
+import { useCallback } from 'react';
+import MainPageScreenFill from '../../main-page-screen-fill/main-page-screen-fill';
 
 function MainPageScreen ():JSX.Element {
-  const {activeCity, offersSortedByCity, offersSortedByType} = useAppSelector((state) => state);
-  const cityLocation = offersSortedByCity[0].city;
+  const offersSortedByCity = useAppSelector((state) => state.offersSortedByCity);
+
+  // const [isPageMainShow, setIsPageMainShow] = useState(false);
+  // useEffect(() => {
+  //   setIsPageMainShow(offersSortedByCity.length > 0);
+  // }, [offersSortedByCity]);
+
+  // Сохраняет значение функции пока не изменится аргумент из зависимостей.
+  const isPageMainShow = useCallback(() => offersSortedByCity.length > 0, [offersSortedByCity]);
 
   // eslint-disable-next-line no-console
-  console.log(offersSortedByCity);
+  console.log('MainPageScreen: render');
 
   return (
     <div className="page page--gray page--main">
       <Header logo />
-      <main className={`page__main page__main--index ${offersSortedByCity.length > 0 ? '' : 'page__main--index-empty'}`}>
+      <main className={`page__main page__main--index ${isPageMainShow() ? '' : 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -24,36 +30,10 @@ function MainPageScreen ():JSX.Element {
           </section>
         </div>
         <div className="cities">
-          {offersSortedByCity.length > 0 ? (
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offersSortedByCity.length} places to stay in {activeCity}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
-                  <span className="places__sorting-type" tabIndex={0}>
-                    Popular
-                    <svg className="places__sorting-arrow" width="7" height="4">
-                      <use xlinkHref="#icon-arrow-select"></use>
-                    </svg>
-                  </span>
-                  <PlacesOptions />
-                </form>
-                <OffersList
-                  offers={offersSortedByType}
-                />
-              </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map
-                    city={cityLocation}
-                    offers={offersSortedByCity}
-                  />
-                </section>
-              </div>
-            </div>
+          {isPageMainShow() ? (
+            <MainPageScreenFill />
           ) : (
-            <MainPageScreenEmpty city={activeCity}/>
+            <MainPageScreenEmpty />
           )}
         </div>
       </main>
