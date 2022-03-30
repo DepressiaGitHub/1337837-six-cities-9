@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeCity } from '../../store/action';
-import { CITIES } from '../const/const';
+import { CITIES } from '../../const';
 
 function LocationsList():JSX.Element {
   const activeCity = useAppSelector((state) => state.activeCity);

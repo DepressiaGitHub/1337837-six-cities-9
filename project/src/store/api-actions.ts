@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { store } from '.';
 import { api } from '.';
-import { APIRoute, AppRoute, AuthorizationStatus } from '../components/const/const';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { Offer } from '../types/offer';
 import {
   loadDataAction,

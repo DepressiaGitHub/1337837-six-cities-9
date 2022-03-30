@@ -1,6 +1,5 @@
-import { AuthorizationStatus } from './components/const/const';
+import { SORT, AuthorizationStatus } from './const';
 import { Offer } from './types/offer';
-import { SORT } from './components/const/const';
 
 export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean => authorizationStatus === AuthorizationStatus.Unknown;
 

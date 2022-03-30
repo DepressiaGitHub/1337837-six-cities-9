@@ -1,5 +1,5 @@
 import { store } from '../store';
-import { AuthorizationStatus } from '../components/const/const';
+import { AuthorizationStatus } from '../const';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus,

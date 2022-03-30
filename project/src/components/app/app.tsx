@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../const/const';
+import { AppRoute } from '../../const';
 import MainPageScreen from '../pages/main-page-screen/main-page-screen';
 import SignInScreen from '../pages/sign-in-screen/sign-in-screen';
 import FavoritesScreen from '../pages/favorites-screen/favorites-screen';

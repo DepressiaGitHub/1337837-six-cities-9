@@ -1,7 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
 import { Property } from '../types/property';
-import { AppRoute, AuthorizationStatus } from '../components/const/const';
+import { AppRoute, AuthorizationStatus } from '../const';
 import { Comment } from '../types/comment';
 
 export const Action = {

@@ -1,7 +1,7 @@
 import React, { memo, MouseEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeSort } from '../../store/action';
-import { SORT } from '../const/const';
+import { SORT } from '../../const';
 
 function PlacesOptions():JSX.Element {
   const selectedType = useAppSelector((state) => state.selectedType);

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
-import { MIN_REVIEW_LENGTH } from '../const/const';
-import { RATING_STARS } from '../const/const';
+import { MIN_REVIEW_LENGTH } from '../../const';
+import { RATING_STARS } from '../../const';
 import {useAppSelector} from '../../hooks';
 import {store} from '../../store';
 import {setFormCommentData} from '../../store/action';

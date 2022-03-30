@@ -11,11 +11,9 @@ import {
   requireAuthorization,
   setFormCommentData
 } from './action';
-import { CITIES } from '../components/const/const';
-import { SORT } from '../components/const/const';
+import { CITIES, SORT, AuthorizationStatus } from '../const';
 import { Offer } from '../types/offer';
 import { Comment } from '../types/comment';
-import { AuthorizationStatus } from '../components/const/const';
 import { getOffersByCity, getOffersBySort } from '../util';
 import { Property } from '../types/property';
 import { MyComment } from '../types/my-comment';

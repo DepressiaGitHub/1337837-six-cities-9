@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AuthorizationStatus, NameSpace } from '../components/const/const';
+import { AuthorizationStatus, NameSpace } from '../const';
 import { UserProcess } from '../types/state';
 
 const initialState: UserProcess = {
