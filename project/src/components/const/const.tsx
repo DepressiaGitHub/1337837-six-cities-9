@@ -19,6 +19,12 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum NameSpace {
+  data = 'DATA',
+  game = 'GAME',
+  user = 'USER',
+}
+
 export enum HTTP_CODE {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,

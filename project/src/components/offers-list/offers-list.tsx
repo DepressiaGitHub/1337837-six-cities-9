@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../hooks';
 import PlaceCard from '../place-card/place-card';
-import { Offer } from '../types/offer';
+import { Offer } from '../../types/offer';
 
 function OffersList():JSX.Element {
   const offers: Offer[] = useAppSelector((state) => state.offersSortedByType);

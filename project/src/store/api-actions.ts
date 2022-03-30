@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { store } from '.';
 import { api } from '.';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../components/const/const';
-import { Offer } from '../components/types/offer';
+import { Offer } from '../types/offer';
 import {
   loadDataAction,
   loadDataPropertyAction,
@@ -14,11 +14,11 @@ import {
 } from './action';
 import { errorHandle } from '../services/error-handle';
 import { saveToken, dropToken } from '../services/token';
-import { AuthData } from '../components/types/auth-data';
-import { UserData } from '../components/types/user-data';
-import { Property } from '../components/types/property';
-import { Comment } from '../components/types/comment';
-import { MyComment } from '../components/types/my-comment';
+import { AuthData } from '../types/auth-data';
+import { UserData } from '../types/user-data';
+import { Property } from '../types/property';
+import { Comment } from '../types/comment';
+import { MyComment } from '../types/my-comment';
 
 // Список наших ассинхронных действий.
 // Получаем все объявления.

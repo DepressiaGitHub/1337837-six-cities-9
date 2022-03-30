@@ -13,12 +13,12 @@ import {
 } from './action';
 import { CITIES } from '../components/const/const';
 import { SORT } from '../components/const/const';
-import { Offer } from '../components/types/offer';
-import { Comment } from '../components/types/comment';
+import { Offer } from '../types/offer';
+import { Comment } from '../types/comment';
 import { AuthorizationStatus } from '../components/const/const';
 import { getOffersByCity, getOffersBySort } from '../util';
-import { Property } from '../components/types/property';
-import { MyComment } from '../components/types/my-comment';
+import { Property } from '../types/property';
+import { MyComment } from '../types/my-comment';
 
 const DEFAULT_CITY_INDEX = 0;
 const offerByHover = null;

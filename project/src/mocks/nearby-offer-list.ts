@@ -1,4 +1,4 @@
-import { Offer } from '../components/types/offer';
+import { Offer } from '../types/offer';
 
 const IMG_URL = '/img/';
 

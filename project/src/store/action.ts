@@ -1,8 +1,8 @@
 import {createAction} from '@reduxjs/toolkit';
-import { Offer } from '../components/types/offer';
-import { Property } from '../components/types/property';
+import { Offer } from '../types/offer';
+import { Property } from '../types/property';
 import { AppRoute, AuthorizationStatus } from '../components/const/const';
-import { Comment } from '../components/types/comment';
+import { Comment } from '../types/comment';
 
 export const Action = {
   CHANGE_CITY: 'CHANGE_CITY',

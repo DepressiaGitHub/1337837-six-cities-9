@@ -1,5 +1,5 @@
 import request from 'axios';
-import { ErrorType } from '../components/types/error';
+import { ErrorType } from '../types/error';
 import { AppRoute, HTTP_CODE } from '../components/const/const';
 import { toast } from 'react-toastify';
 import { store } from '../store';

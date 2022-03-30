@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { hoverOffer } from '../../store/action';
-import { Offer } from '../types/offer';
+import { Offer } from '../../types/offer';
 
 type NearCardProps = {
   offer: Offer;

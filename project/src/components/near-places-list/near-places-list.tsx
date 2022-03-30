@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../hooks';
 import NearPlacesCard from '../near-places-card/near-places-card';
-import { Offer } from '../types/offer';
+import { Offer } from '../../types/offer';
 
 function NearPlacesList():JSX.Element {
   const offers: Offer[] = useAppSelector((state) => state.nearbyOffers);

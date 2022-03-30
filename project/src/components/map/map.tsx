@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
 import useMap from '../../hooks/useMap';
-import { City, Offer } from '../types/offer';
+import { City, Offer } from '../../types/offer';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 

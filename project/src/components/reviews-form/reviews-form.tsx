@@ -5,7 +5,7 @@ import {useAppSelector} from '../../hooks';
 import {store} from '../../store';
 import {setFormCommentData} from '../../store/action';
 import {postDataCommentAction} from '../../store/api-actions';
-import {MyComment} from '../types/my-comment';
+import {MyComment} from '../../types/my-comment';
 import { useParams } from 'react-router-dom';
 
 function ReviewsForm():JSX.Element {
