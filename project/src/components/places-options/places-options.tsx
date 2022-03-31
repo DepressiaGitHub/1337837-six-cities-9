@@ -1,10 +1,10 @@
 import React, { memo, MouseEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { changeSort } from '../../store/action';
+import { changeSort } from '../../store/app-data/app-data';
 import { SORT } from '../../const';
 
 function PlacesOptions():JSX.Element {
-  const selectedType = useAppSelector((state) => state.selectedType);
+  const selectedType = useAppSelector(({DATA}) => DATA.selectedType);
   const dispatch = useAppDispatch();
 
   // eslint-disable-next-line no-console

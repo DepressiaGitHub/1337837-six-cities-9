@@ -14,7 +14,7 @@ type mapProps = {
 }
 
 function Map({city, offers}: mapProps): JSX.Element {
-  const offerByHover = useAppSelector((state) => state.offerByHover);
+  const offerByHover = useAppSelector(({APP}) => APP.offerByHover);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 

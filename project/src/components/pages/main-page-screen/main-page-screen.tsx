@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import MainPageScreenFill from '../../main-page-screen-fill/main-page-screen-fill';
 
 function MainPageScreen ():JSX.Element {
-  const offersSortedByCity = useAppSelector((state) => state.offersSortedByCity);
+  const offersSortedByCity = useAppSelector(({DATA}) => DATA.offersSortedByCity);
 
   // const [isPageMainShow, setIsPageMainShow] = useState(false);
   // useEffect(() => {

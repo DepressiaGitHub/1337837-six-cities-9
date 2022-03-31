@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { hoverOffer } from '../../store/action';
+import { hoverOffer } from '../../store/app-process/app-process';
 import { Offer } from '../../types/offer';
 
 type NearCardProps = {

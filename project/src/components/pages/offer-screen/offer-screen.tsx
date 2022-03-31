@@ -7,7 +7,7 @@ import { fetchDataPropertyAction, fetchDataCommentsAction, fetchDataNearbyAction
 import { useAppSelector } from '../../../hooks';
 import React, { useEffect } from 'react';
 import LoadingScreen from '../../loading-screen/loading-screen';
-import { requireDataProperty } from '../../../store/action';
+import { requireDataProperty } from '../../../store/app-data/app-data';
 import Reviews from '../../reviews/reviews';
 
 function OfferScreen ():JSX.Element {
@@ -25,8 +25,8 @@ function OfferScreen ():JSX.Element {
     };
   }, [id]);
 
-  const property = useAppSelector((state) => state.property);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
+  const property = useAppSelector(({DATA}) => DATA.property);
+  const nearbyOffers = useAppSelector(({DATA}) => DATA.nearbyOffers);
 
   if (property === null || nearbyOffers.length === 0) {
     return (

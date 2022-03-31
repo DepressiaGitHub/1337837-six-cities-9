@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks';
 
 function MainPageScreenEmpty ():JSX.Element {
-  const activeCity = useAppSelector((state) => state.activeCity);
+  const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
 
   // eslint-disable-next-line no-console
   console.log('MainPageScreenEmpty: render');

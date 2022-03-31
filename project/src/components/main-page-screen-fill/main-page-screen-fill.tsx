@@ -4,8 +4,8 @@ import OffersList from '../offers-list/offers-list';
 import PlacesOptions from '../places-options/places-options';
 
 function MainPageScreenFill ():JSX.Element {
-  const activeCity = useAppSelector((state) => state.activeCity);
-  const offersSortedByCity = useAppSelector((state) => state.offersSortedByCity);
+  const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
+  const offersSortedByCity = useAppSelector(({DATA}) => DATA.offersSortedByCity);
   const cityLocation = offersSortedByCity[0].city;
 
   // eslint-disable-next-line no-console

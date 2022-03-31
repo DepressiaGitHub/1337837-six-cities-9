@@ -4,13 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { isAuth } from '../../util';
 import React from 'react';
 import { logoutAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type HeaderProps = {
   logo?: boolean,
 }
 
 function Header (props: HeaderProps):JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
   // eslint-disable-next-line no-console

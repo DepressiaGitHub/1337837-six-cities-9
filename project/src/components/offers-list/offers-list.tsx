@@ -3,7 +3,7 @@ import PlaceCard from '../place-card/place-card';
 import { Offer } from '../../types/offer';
 
 function OffersList():JSX.Element {
-  const offers: Offer[] = useAppSelector((state) => state.offersSortedByType);
+  const offers: Offer[] = useAppSelector(({DATA}) => DATA.offersSortedByType);
 
   // eslint-disable-next-line no-console
   console.log('OffersList: render');
