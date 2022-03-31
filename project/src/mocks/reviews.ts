@@ -1,4 +1,4 @@
-import { Review } from '../components/types/review';
+import { Review } from '../types/review';
 
 const IMG_URL = '/img/';
 

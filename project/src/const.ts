@@ -19,11 +19,21 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum NameSpace {
+  data = 'DATA',
+  app = 'APP',
+  user = 'USER',
+}
+
 export enum HTTP_CODE {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
   NOT_FOUND = 404,
 }
+
+export const DEFAULT_CITY_INDEX = 0;
+
+export const DEFAULT_SORT_INDEX = 0;
 
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 

@@ -1,7 +1,5 @@
 import Header from '../../header/header';
 import NearPlacesList from '../../near-places-list/near-places-list';
-import ReviewsForm from '../../reviews-form/reviews-form';
-import ReviewList from '../../reviews-list/reviews-list';
 import Map from '../../map/map';
 import { useParams } from 'react-router-dom';
 import { store } from '../../../store';
@@ -9,8 +7,8 @@ import { fetchDataPropertyAction, fetchDataCommentsAction, fetchDataNearbyAction
 import { useAppSelector } from '../../../hooks';
 import React, { useEffect } from 'react';
 import LoadingScreen from '../../loading-screen/loading-screen';
-import { isAuth } from '../../../util';
-import { requireDataProperty } from '../../../store/action';
+import { requireDataProperty } from '../../../store/app-data/app-data';
+import Reviews from '../../reviews/reviews';
 
 function OfferScreen ():JSX.Element {
   const params = useParams();
@@ -27,10 +25,8 @@ function OfferScreen ():JSX.Element {
     };
   }, [id]);
 
-  const { authorizationStatus } = useAppSelector((state) => state);
-  const { property } = useAppSelector((state) => state);
-  const { comments } = useAppSelector((state) => state);
-  const { nearbyOffers } = useAppSelector((state) => state);
+  const property = useAppSelector(({DATA}) => DATA.property);
+  const nearbyOffers = useAppSelector(({DATA}) => DATA.nearbyOffers);
 
   if (property === null || nearbyOffers.length === 0) {
     return (
@@ -39,6 +35,9 @@ function OfferScreen ():JSX.Element {
   }
 
   const {images, isFavorite, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = property;
+
+  // eslint-disable-next-line no-console
+  console.log('OfferScreen: render');
 
   return (
     <div className="page">
@@ -129,15 +128,7 @@ function OfferScreen ():JSX.Element {
                   </p>
                 </div>
               </div>
-              <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
-                <ReviewList
-                  comments={comments}
-                />
-                {isAuth(authorizationStatus) && (
-                  <ReviewsForm id={id}/>
-                )}
-              </section>
+              <Reviews />
             </div>
           </div>
           <section className="property__map map">
@@ -150,9 +141,7 @@ function OfferScreen ():JSX.Element {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <NearPlacesList
-              offers={nearbyOffers}
-            />
+            <NearPlacesList />
           </section>
         </div>
       </main>

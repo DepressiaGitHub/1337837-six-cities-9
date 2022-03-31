@@ -1,21 +1,20 @@
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
-import { MIN_REVIEW_LENGTH } from '../const/const';
-import { RATING_STARS } from '../const/const';
+import { MIN_REVIEW_LENGTH } from '../../const';
+import { RATING_STARS } from '../../const';
 import {useAppSelector} from '../../hooks';
 import {store} from '../../store';
-import {setFormCommentData} from '../../store/action';
+import { setFormCommentData } from '../../store/app-data/app-data';
 import {postDataCommentAction} from '../../store/api-actions';
-import {MyComment} from '../types/my-comment';
+import {MyComment} from '../../types/my-comment';
+import { useParams } from 'react-router-dom';
 
-type ReviewsFormProps = {
-  id: number,
-}
-
-function ReviewsForm({id}: ReviewsFormProps):JSX.Element {
+function ReviewsForm():JSX.Element {
+  const params = useParams();
+  const id = Number(params.id);
   const [rating, setRating] = useState<number | null>(null);
   const [review, setReview] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const formState = useAppSelector((state) => state.reviewFormStatus);
+  const formState = useAppSelector(({DATA}) => DATA.reviewFormStatus);
 
   const reviewChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     // Код для обновления состояния.

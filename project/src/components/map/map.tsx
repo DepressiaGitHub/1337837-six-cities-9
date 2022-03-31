@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
 import useMap from '../../hooks/useMap';
-import { City, Offer } from '../types/offer';
+import { City, Offer } from '../../types/offer';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -14,9 +14,12 @@ type mapProps = {
 }
 
 function Map({city, offers}: mapProps): JSX.Element {
-  const offerByHover = useAppSelector((state) => state.offerByHover);
+  const offerByHover = useAppSelector(({APP}) => APP.offerByHover);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+
+  // eslint-disable-next-line no-console
+  console.log('Map: render');
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,

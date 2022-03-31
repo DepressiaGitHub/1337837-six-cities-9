@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../const/const';
+import { AppRoute } from '../../const';
 import MainPageScreen from '../pages/main-page-screen/main-page-screen';
 import SignInScreen from '../pages/sign-in-screen/sign-in-screen';
 import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
@@ -12,9 +12,11 @@ import NotFoundScreen from '../pages/not-found-screeen/not-found-screeen';
 import { isCheckedAuth } from '../../util';
 import { HistoryRouter } from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function App(): JSX.Element {
-  const { authorizationStatus, isDataLoaded } = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isDataLoaded = useAppSelector(({DATA}) => DATA.isDataLoaded);
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (

@@ -1,11 +1,14 @@
-import React, { MouseEvent } from 'react';
+import React, { memo, MouseEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { changeSort } from '../../store/action';
-import { SORT } from '../const/const';
+import { changeSort } from '../../store/app-data/app-data';
+import { SORT } from '../../const';
 
 function PlacesOptions():JSX.Element {
-  const selectedType = useAppSelector((state) => state.selectedType);
+  const selectedType = useAppSelector(({DATA}) => DATA.selectedType);
   const dispatch = useAppDispatch();
+
+  // eslint-disable-next-line no-console
+  console.log('PlacesOptions: render');
 
   return (
     <ul className="places__options places__options--custom places__options--opened">
@@ -24,4 +27,4 @@ function PlacesOptions():JSX.Element {
   );
 }
 
-export default PlacesOptions;
+export default memo(PlacesOptions);

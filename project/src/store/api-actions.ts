@@ -1,24 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { store } from '.';
 import { api } from '.';
-import { APIRoute, AppRoute, AuthorizationStatus } from '../components/const/const';
-import { Offer } from '../components/types/offer';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
+import { Offer } from '../types/offer';
+import { redirectToRoute } from './action';
 import {
   loadDataAction,
   loadDataPropertyAction,
   loadDataCommentsAction,
-  loadDatNearbyAction,
-  redirectToRoute,
-  requireAuthorization,
+  loadDataNearbyAction,
   setFormCommentData
-} from './action';
+} from './app-data/app-data';
+import { requireAuthorization } from './user-process/user-process';
 import { errorHandle } from '../services/error-handle';
 import { saveToken, dropToken } from '../services/token';
-import { AuthData } from '../components/types/auth-data';
-import { UserData } from '../components/types/user-data';
-import { Property } from '../components/types/property';
-import { Comment } from '../components/types/comment';
-import { MyComment } from '../components/types/my-comment';
+import { AuthData } from '../types/auth-data';
+import { UserData } from '../types/user-data';
+import { Property } from '../types/property';
+import { Comment } from '../types/comment';
+import { MyComment } from '../types/my-comment';
 
 // Список наших ассинхронных действий.
 // Получаем все объявления.
@@ -74,7 +74,7 @@ export const fetchDataNearbyAction = createAsyncThunk(
     try {
       if (offerId) {
         const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${offerId}/nearby`);
-        store.dispatch(loadDatNearbyAction(data));
+        store.dispatch(loadDataNearbyAction(data));
       }
     } catch(error) {
       errorHandle(error);
@@ -135,14 +135,6 @@ export const postDataCommentAction = createAsyncThunk(
   'USER_SEND_COMMENT',
   async ({offerId, comment}: {offerId: number; comment: MyComment}) => {
     try {
-      //Promises
-      // api.post<MyComment>(`${APIRoute.Comments}/${offerId}`, comment).then(({data}) => {
-      //   store.dispatch(sendDataCommentAction(data));
-      //   store.dispatch(setFormCommentData('initial'));
-      // });
-      //store.dispatch(sendDataCommentAction((await api.post<MyComment>(`${APIRoute.Comments}/${offerId}`, comment)).data));
-      //
-      //
       if (offerId) {
         store.dispatch(setFormCommentData('sending'));
         const {data} = await api.post<Comment[]>(`${APIRoute.Comments}/${offerId}`, comment); // Отправляем свой комментарий

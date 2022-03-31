@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../const/const';
+import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { isAuth } from '../../util';
 import React from 'react';
 import { logoutAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type HeaderProps = {
   logo?: boolean,
 }
 
 function Header (props: HeaderProps):JSX.Element {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
+
+  // eslint-disable-next-line no-console
+  console.log('Header: render');
 
   return (
     <header className="header">

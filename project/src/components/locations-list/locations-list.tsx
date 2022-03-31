@@ -1,12 +1,15 @@
 import React, { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { changeCity } from '../../store/action';
-import { CITIES } from '../const/const';
+import { changeCity } from '../../store/app-data/app-data';
+import { CITIES } from '../../const';
 
 function LocationsList():JSX.Element {
-  const activeCity = useAppSelector((state) => state.activeCity);
+  const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
   const dispatch = useAppDispatch();
+
+  // eslint-disable-next-line no-console
+  console.log('LocationsList: render');
 
   return (
     <ul className="locations__list tabs__list">

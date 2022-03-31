@@ -1,4 +1,4 @@
-import { Comment } from '../types/comment';
+import { Comment } from '../../types/comment';
 import dayjs from 'dayjs';
 
 type ReviewProps = {
