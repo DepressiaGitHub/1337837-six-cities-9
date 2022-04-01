@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeCity } from '../../store/app-data/app-data';
 import { CITIES } from '../../const';
+import { getActiveCity } from '../../store/app-data/selectors';
 
 function LocationsList():JSX.Element {
-  const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
+  // const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
+  const activeCity = useAppSelector(getActiveCity);
   const dispatch = useAppDispatch();
 
   // eslint-disable-next-line no-console

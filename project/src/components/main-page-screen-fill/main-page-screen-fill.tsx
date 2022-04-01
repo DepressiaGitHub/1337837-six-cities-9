@@ -1,11 +1,14 @@
 import { useAppSelector } from '../../hooks';
+import { getActiveCity, getOffersSortedByCity } from '../../store/app-data/selectors';
 import Map from '../map/map';
 import OffersList from '../offers-list/offers-list';
 import PlacesOptions from '../places-options/places-options';
 
 function MainPageScreenFill ():JSX.Element {
-  const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
-  const offersSortedByCity = useAppSelector(({DATA}) => DATA.offersSortedByCity);
+  // const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
+  const activeCity = useAppSelector(getActiveCity);
+  // const offersSortedByCity = useAppSelector(({DATA}) => DATA.offersSortedByCity);
+  const offersSortedByCity = useAppSelector(getOffersSortedByCity);
   const cityLocation = offersSortedByCity[0].city;
 
   // eslint-disable-next-line no-console

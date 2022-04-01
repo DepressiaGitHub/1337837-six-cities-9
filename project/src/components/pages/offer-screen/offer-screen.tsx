@@ -9,6 +9,7 @@ import React, { useEffect } from 'react';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import { requireDataProperty } from '../../../store/app-data/app-data';
 import Reviews from '../../reviews/reviews';
+import { getNearbyOffers, getProperty } from '../../../store/app-data/selectors';
 
 function OfferScreen ():JSX.Element {
   const params = useParams();
@@ -25,8 +26,10 @@ function OfferScreen ():JSX.Element {
     };
   }, [id]);
 
-  const property = useAppSelector(({DATA}) => DATA.property);
-  const nearbyOffers = useAppSelector(({DATA}) => DATA.nearbyOffers);
+  // const property = useAppSelector(({DATA}) => DATA.property);
+  const property = useAppSelector(getProperty);
+  // const nearbyOffers = useAppSelector(({DATA}) => DATA.nearbyOffers);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
 
   if (property === null || nearbyOffers.length === 0) {
     return (

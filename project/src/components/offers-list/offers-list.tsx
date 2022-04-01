@@ -1,9 +1,11 @@
 import { useAppSelector } from '../../hooks';
 import PlaceCard from '../place-card/place-card';
 import { Offer } from '../../types/offer';
+import { getOffersSortedByType } from '../../store/app-data/selectors';
 
 function OffersList():JSX.Element {
-  const offers: Offer[] = useAppSelector(({DATA}) => DATA.offersSortedByType);
+  // const offers: Offer[] = useAppSelector(({DATA}) => DATA.offersSortedByType);
+  const offers: Offer[] = useAppSelector(getOffersSortedByType);
 
   // eslint-disable-next-line no-console
   console.log('OffersList: render');

@@ -1,9 +1,11 @@
 import { useAppSelector } from '../../hooks';
 import NearPlacesCard from '../near-places-card/near-places-card';
 import { Offer } from '../../types/offer';
+import { getNearbyOffers } from '../../store/app-data/selectors';
 
 function NearPlacesList():JSX.Element {
-  const offers: Offer[] = useAppSelector(({DATA}) => DATA.nearbyOffers);
+  // const offers: Offer[] = useAppSelector(({DATA}) => DATA.nearbyOffers);
+  const offers: Offer[] = useAppSelector(getNearbyOffers);
 
   // eslint-disable-next-line no-console
   console.log('NearPlacesList: render');

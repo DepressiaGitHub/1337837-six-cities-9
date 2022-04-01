@@ -4,9 +4,11 @@ import MainPageScreenEmpty from '../../main-page-screen-empty/main-page-screen-e
 import { useAppSelector } from '../../../hooks';
 import { useCallback } from 'react';
 import MainPageScreenFill from '../../main-page-screen-fill/main-page-screen-fill';
+import { getOffersSortedByCity } from '../../../store/app-data/selectors';
 
 function MainPageScreen ():JSX.Element {
-  const offersSortedByCity = useAppSelector(({DATA}) => DATA.offersSortedByCity);
+  // const offersSortedByCity = useAppSelector(({DATA}) => DATA.offersSortedByCity);
+  const offersSortedByCity = useAppSelector(getOffersSortedByCity);
 
   // const [isPageMainShow, setIsPageMainShow] = useState(false);
   // useEffect(() => {
