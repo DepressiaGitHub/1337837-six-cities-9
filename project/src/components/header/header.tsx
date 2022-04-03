@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { isAuth } from '../../util';
-import React from 'react';
+import React, { memo } from 'react';
 import { logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getUserData } from '../../store/app-data/selectors';
@@ -78,4 +78,4 @@ function Header (props: HeaderProps):JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);

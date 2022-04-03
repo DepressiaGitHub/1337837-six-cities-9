@@ -24,7 +24,6 @@ function Login ():JSX.Element {
     setPassword(evt.target.value);
   };
 
-
   return (
     <section className="login">
       <h1 className="login__title">Sign in</h1>

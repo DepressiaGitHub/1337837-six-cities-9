@@ -80,7 +80,43 @@ export const appData = createSlice({
         // if (currentOffer) {
         //   currentOffer = action.payload;
         // }
-        state.data[state.updateOffer.id - 1] = action.payload;
+
+        // let currentOfferByCity = state.offersSortedByCity.find((offer) => offer.id === action.payload.id);
+        // if (currentOfferByCity) {
+        //   currentOfferByCity = action.payload;
+        // }
+
+        // let currentOfferByType = state.offersSortedByType.find((offer) => offer.id === action.payload.id);
+        // if (currentOfferByType) {
+        //   currentOfferByType = action.payload;
+        // }
+
+        const indexData = state.data.findIndex((offer) => offer.id === action.payload.id);
+        state.data = [
+          ...state.data.slice(0, indexData),
+          action.payload,
+          ...state.data.slice(indexData + 1),
+        ];
+
+        const indexDataByCity = state.offersSortedByCity.findIndex((offer) => offer.id === action.payload.id);
+        state.offersSortedByCity = [
+          ...state.offersSortedByCity.slice(0, indexDataByCity),
+          action.payload,
+          ...state.offersSortedByCity.slice(indexDataByCity + 1),
+        ];
+
+        const indexDataByType = state.offersSortedByType.findIndex((offer) => offer.id === action.payload.id);
+        state.offersSortedByType = [
+          ...state.offersSortedByType.slice(0, indexDataByType),
+          action.payload,
+          ...state.offersSortedByType.slice(indexDataByType + 1),
+        ];
+
+        const indexDateByFavorites = state.favoriteOffers.findIndex((offer) => offer.id === action.payload.id);
+        state.favoriteOffers = [
+          ...state.favoriteOffers.slice(0, indexDateByFavorites),
+          ...state.favoriteOffers.slice(indexDateByFavorites + 1),
+        ];
       }
     },
   },
