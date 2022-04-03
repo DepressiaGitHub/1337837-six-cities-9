@@ -16,7 +16,7 @@ function MainPageScreen ():JSX.Element {
   // }, [offersSortedByCity]);
 
   // Сохраняет значение функции пока не изменится аргумент из зависимостей.
-  const isPageMainShow = useCallback(() => offersSortedByCity.length > 0, [offersSortedByCity]);
+  const isMainPageShow = useCallback(() => offersSortedByCity.length > 0, [offersSortedByCity]);
 
   // eslint-disable-next-line no-console
   console.log('MainPageScreen: render');
@@ -24,7 +24,7 @@ function MainPageScreen ():JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header logo />
-      <main className={`page__main page__main--index ${isPageMainShow() ? '' : 'page__main--index-empty'}`}>
+      <main className={`page__main page__main--index ${isMainPageShow() ? '' : 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -32,7 +32,7 @@ function MainPageScreen ():JSX.Element {
           </section>
         </div>
         <div className="cities">
-          {isPageMainShow() ? (
+          {isMainPageShow() ? (
             <MainPageScreenFill />
           ) : (
             <MainPageScreenEmpty />

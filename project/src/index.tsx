@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
-import { fetchDataAction, cheachAuthAction } from './store/api-actions';
+import { fetchDataAction, checkAuthAction } from './store/api-actions';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchDataAction());
-store.dispatch(cheachAuthAction());
 
 ReactDOM.render(
   <React.StrictMode>

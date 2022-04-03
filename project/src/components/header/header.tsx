@@ -5,6 +5,7 @@ import { isAuth } from '../../util';
 import React from 'react';
 import { logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getUserData } from '../../store/app-data/selectors';
 
 type HeaderProps = {
   logo?: boolean,
@@ -13,6 +14,9 @@ type HeaderProps = {
 function Header (props: HeaderProps):JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
+
+  // const user = useAppSelector(({DATA}) => DATA.user);
+  const user = useAppSelector(getUserData);
 
   // eslint-disable-next-line no-console
   console.log('Header: render');
@@ -27,7 +31,7 @@ function Header (props: HeaderProps):JSX.Element {
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </a>
             ) : (
-              <Link to={'/'} className="header__logo-link">
+              <Link to={AppRoute.Main} className="header__logo-link">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </Link>
             )}
@@ -39,8 +43,9 @@ function Header (props: HeaderProps):JSX.Element {
                   <li className="header__nav-item user">
                     <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
                       <div className="header__avatar-wrapper user__avatar-wrapper">
+                        <img className="header__avatar" src={user?.avatarUrl} alt="user avatar" width="20" height="20" />
                       </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      <span className="header__user-name user__name">{user?.email}</span>
                     </Link>
                   </li>
                   <li className="header__nav-item">

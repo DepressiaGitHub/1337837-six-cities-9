@@ -1,4 +1,7 @@
 function LoadingScreen(): JSX.Element {
+  // eslint-disable-next-line no-console
+  console.log('LoadingScreen: render');
+
   return (
     <div className="preloader">
       <p className="preloader__text">Loading ...</p>

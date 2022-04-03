@@ -1,6 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoute, CITIES } from '../../../const';
 import { useAppDispatch } from '../../../hooks';
 import { loginAction } from '../../../store/api-actions';
+import { changeCity } from '../../../store/app-data/app-data';
+import { getRandomCity } from '../../../util';
 
 function SignInScreen ():JSX.Element {
   const [login, setLogin] = useState<string>('');
@@ -24,15 +28,17 @@ function SignInScreen ():JSX.Element {
     setPassword(evt.target.value);
   };
 
+  const randomCity = getRandomCity(CITIES);
+
   return (
     <div className="page page--gray page--login">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link to={AppRoute.Main} className="header__logo-link">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -75,9 +81,13 @@ function SignInScreen ():JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/">
-                <span>Amsterdam</span>
-              </a>
+              <Link
+                to={AppRoute.Main}
+                className="locations__item-link"
+                onClick={() => dispatch(changeCity(randomCity))}
+              >
+                <span>{randomCity}</span>
+              </Link>
             </div>
           </section>
         </div>

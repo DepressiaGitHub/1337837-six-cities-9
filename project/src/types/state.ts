@@ -3,6 +3,7 @@ import { AuthorizationStatus } from '../const';
 import { Offer } from './offer';
 import { Property } from './property';
 import { Comment } from './comment';
+import { UserData } from './user-data';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus,
@@ -10,6 +11,7 @@ export type UserProcess = {
 
 export type AppData = {
   data: Offer[],
+  user: UserData | null,
   activeCity: string,
   offersSortedByCity: Offer[],
   selectedType: string,
@@ -19,6 +21,9 @@ export type AppData = {
   comments: Comment[],
   nearbyOffers: Offer[],
   reviewFormStatus: 'initial'|'error'|'sending',
+  favoriteOffers: Offer[],
+  isFavoriteLoaded: boolean,
+  updateOffer: Offer | null,
 };
 
 export type AppProcess = {

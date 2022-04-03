@@ -11,11 +11,11 @@ export type City = {
 
 export type Offer = {
   id: number,
-  placeName: string,
-  placeType: string,
+  title: string,
+  type: string,
   price: number,
-  premiumMark: boolean,
-  favorite: boolean,
+  isPremium: boolean,
+  isFavorite: boolean,
   rating: number,
   previewImage: string,
   city: City,

@@ -3,13 +3,17 @@ import NearPlacesList from '../../near-places-list/near-places-list';
 import Map from '../../map/map';
 import { useParams } from 'react-router-dom';
 import { store } from '../../../store';
-import { fetchDataPropertyAction, fetchDataCommentsAction, fetchDataNearbyAction } from '../../../store/api-actions';
+import { fetchDataPropertyAction, fetchDataCommentsAction, fetchDataNearbyAction, postFavoritesAction } from '../../../store/api-actions';
 import { useAppSelector } from '../../../hooks';
 import React, { useEffect } from 'react';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import { requireDataProperty } from '../../../store/app-data/app-data';
 import Reviews from '../../reviews/reviews';
 import { getNearbyOffers, getProperty } from '../../../store/app-data/selectors';
+import { getAuthorizationStatus } from '../../../store/user-process/selectors';
+import { isAuth } from '../../../util';
+import { redirectToRoute } from '../../../store/action';
+import { AppRoute } from '../../../const';
 
 function OfferScreen ():JSX.Element {
   const params = useParams();
@@ -31,6 +35,8 @@ function OfferScreen ():JSX.Element {
   // const nearbyOffers = useAppSelector(({DATA}) => DATA.nearbyOffers);
   const nearbyOffers = useAppSelector(getNearbyOffers);
 
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   if (property === null || nearbyOffers.length === 0) {
     return (
       <LoadingScreen />
@@ -41,6 +47,18 @@ function OfferScreen ():JSX.Element {
 
   // eslint-disable-next-line no-console
   console.log('OfferScreen: render');
+
+  const toggleFavorites = () => {
+    if (isAuth(authorizationStatus)) {
+      const status = isFavorite ? 0 : 1;
+      store.dispatch(postFavoritesAction({
+        hotelId: id,
+        status: status,
+      }));
+    } else {
+      store.dispatch(redirectToRoute(AppRoute.Login));
+    }
+  };
 
   return (
     <div className="page">
@@ -69,7 +87,14 @@ function OfferScreen ():JSX.Element {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active': ''}`} type="button">
+                <button
+                  className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active': ''}`}
+                  type="button"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    toggleFavorites();
+                  }}
+                >
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>

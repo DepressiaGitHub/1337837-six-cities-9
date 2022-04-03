@@ -3,7 +3,7 @@ import { MIN_REVIEW_LENGTH } from '../../const';
 import { RATING_STARS } from '../../const';
 import {useAppSelector} from '../../hooks';
 import {store} from '../../store';
-import { setFormCommentData } from '../../store/app-data/app-data';
+import { setFormCommentStatus } from '../../store/app-data/app-data';
 import {postDataCommentAction} from '../../store/api-actions';
 import {MyComment} from '../../types/my-comment';
 import { useParams } from 'react-router-dom';
@@ -30,7 +30,7 @@ function ReviewsForm():JSX.Element {
   }, [formState]);
 
   useEffect(() =>
-    () => {store.dispatch(setFormCommentData('initial'));
+    () => {store.dispatch(setFormCommentStatus('initial'));
     }, []);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
