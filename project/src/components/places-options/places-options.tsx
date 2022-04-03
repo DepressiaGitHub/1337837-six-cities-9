@@ -5,13 +5,9 @@ import { SORT } from '../../const';
 import { getSelectedType } from '../../store/app-data/selectors';
 
 function PlacesOptions():JSX.Element {
-  // const selectedType = useAppSelector(({DATA}) => DATA.selectedType);
   const selectedType = useAppSelector(getSelectedType);
   const [isOpened, setIsOpened] = useState(false);
   const dispatch = useAppDispatch();
-
-  // eslint-disable-next-line no-console
-  console.log('PlacesOptions: render');
 
   return (
     <form

@@ -32,9 +32,6 @@ function FavoritesScreen ():JSX.Element {
     );
   }
 
-  // eslint-disable-next-line no-console
-  console.log('FavoritesScreen: render');
-
   return (
     <div className={`page ${isFavoritePageShow() ? '' : 'page--favorites-empty'}`}>
       <Header />

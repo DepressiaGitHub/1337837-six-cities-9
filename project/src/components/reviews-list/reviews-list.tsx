@@ -4,7 +4,6 @@ import { Comment } from '../../types/comment';
 import { getComments } from '../../store/app-data/selectors';
 
 function ReviewList():JSX.Element {
-  // const comments: Comment[] = useAppSelector(({DATA}) => DATA.comments);
   const comments: Comment[] = useAppSelector(getComments);
 
   return (

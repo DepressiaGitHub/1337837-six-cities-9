@@ -30,11 +30,8 @@ function OfferScreen ():JSX.Element {
     };
   }, [id]);
 
-  // const property = useAppSelector(({DATA}) => DATA.property);
   const property = useAppSelector(getProperty);
-  // const nearbyOffers = useAppSelector(({DATA}) => DATA.nearbyOffers);
   const nearbyOffers = useAppSelector(getNearbyOffers);
-
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (property === null || nearbyOffers.length === 0) {
@@ -44,9 +41,6 @@ function OfferScreen ():JSX.Element {
   }
 
   const {images, isFavorite, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = property;
-
-  // eslint-disable-next-line no-console
-  console.log('OfferScreen: render');
 
   const toggleFavorites = () => {
     if (isAuth(authorizationStatus)) {

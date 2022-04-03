@@ -7,19 +7,10 @@ import MainPageScreenFill from '../../main-page-screen-fill/main-page-screen-fil
 import { getOffersSortedByCity } from '../../../store/app-data/selectors';
 
 function MainPageScreen ():JSX.Element {
-  // const offersSortedByCity = useAppSelector(({DATA}) => DATA.offersSortedByCity);
   const offersSortedByCity = useAppSelector(getOffersSortedByCity);
-
-  // const [isPageMainShow, setIsPageMainShow] = useState(false);
-  // useEffect(() => {
-  //   setIsPageMainShow(offersSortedByCity.length > 0);
-  // }, [offersSortedByCity]);
 
   // Сохраняет значение функции пока не изменится аргумент из зависимостей.
   const isMainPageShow = useCallback(() => offersSortedByCity.length > 0, [offersSortedByCity]);
-
-  // eslint-disable-next-line no-console
-  console.log('MainPageScreen: render');
 
   return (
     <div className="page page--gray page--main">

@@ -6,13 +6,8 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getComments } from '../../store/app-data/selectors';
 
 function Reviews ():JSX.Element {
-  // const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  // const comments = useAppSelector(({DATA}) => DATA.comments);
   const comments = useAppSelector(getComments);
-
-  // eslint-disable-next-line no-console
-  console.log('Reviews: render');
 
   return (
     <section className="property__reviews reviews">

@@ -9,9 +9,6 @@ function FavoritesScreenFill (props: FavoritesScreenFillProps):JSX.Element {
   const favoriteOffers = props.favoriteOffers;
   const cities = new Set(favoriteOffers.map((offer) => offer.city.name));
 
-  // eslint-disable-next-line no-console
-  console.log('FavoritesScreenFill: render');
-
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">

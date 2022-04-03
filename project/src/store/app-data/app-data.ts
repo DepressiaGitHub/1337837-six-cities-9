@@ -76,21 +76,6 @@ export const appData = createSlice({
     loadUpdateOffer: (state, action) => {
       state.updateOffer = action.payload;
       if (state.updateOffer !== null) {
-        // let currentOffer = state.data.find((offer) => offer.id === action.payload.id);
-        // if (currentOffer) {
-        //   currentOffer = action.payload;
-        // }
-
-        // let currentOfferByCity = state.offersSortedByCity.find((offer) => offer.id === action.payload.id);
-        // if (currentOfferByCity) {
-        //   currentOfferByCity = action.payload;
-        // }
-
-        // let currentOfferByType = state.offersSortedByType.find((offer) => offer.id === action.payload.id);
-        // if (currentOfferByType) {
-        //   currentOfferByType = action.payload;
-        // }
-
         const indexData = state.data.findIndex((offer) => offer.id === action.payload.id);
         state.data = [
           ...state.data.slice(0, indexData),

@@ -6,12 +6,8 @@ import { CITIES } from '../../const';
 import { getActiveCity } from '../../store/app-data/selectors';
 
 function LocationsList():JSX.Element {
-  // const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
   const activeCity = useAppSelector(getActiveCity);
   const dispatch = useAppDispatch();
-
-  // eslint-disable-next-line no-console
-  console.log('LocationsList: render');
 
   return (
     <ul className="locations__list tabs__list">

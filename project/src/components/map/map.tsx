@@ -15,13 +15,9 @@ type mapProps = {
 }
 
 function Map({city, offers}: mapProps): JSX.Element {
-  // const offerByHover = useAppSelector(({APP}) => APP.offerByHover);
   const offerByHover = useAppSelector(getHoverOffer);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-
-  // eslint-disable-next-line no-console
-  console.log('Map: render');
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,

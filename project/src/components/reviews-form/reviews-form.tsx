@@ -15,7 +15,6 @@ function ReviewsForm():JSX.Element {
   const [rating, setRating] = useState<number | null>(null);
   const [review, setReview] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
-  // const formState = useAppSelector(({DATA}) => DATA.reviewFormStatus);
   const formState = useAppSelector(getReviewFormStatus);
 
   const reviewChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {

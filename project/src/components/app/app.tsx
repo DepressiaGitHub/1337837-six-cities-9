@@ -17,7 +17,6 @@ import { getIsDataLoaded } from '../../store/app-data/selectors';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  // const isDataLoaded = useAppSelector(({DATA}) => DATA.isDataLoaded);
   const isDataLoaded = useAppSelector(getIsDataLoaded);
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
