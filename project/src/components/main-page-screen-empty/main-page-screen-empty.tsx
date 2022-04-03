@@ -1,10 +1,9 @@
 import { useAppSelector } from '../../hooks';
+import { getActiveCity } from '../../store/app-data/selectors';
 
 function MainPageScreenEmpty ():JSX.Element {
-  const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
+  const activeCity = useAppSelector(getActiveCity);
 
-  // eslint-disable-next-line no-console
-  console.log('MainPageScreenEmpty: render');
   return (
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">

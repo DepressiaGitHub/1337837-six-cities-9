@@ -9,7 +9,10 @@ import {
   loadDataPropertyAction,
   loadDataCommentsAction,
   loadDataNearbyAction,
-  setFormCommentData
+  setFormCommentStatus,
+  loadFavoritesAction,
+  loadUserAction,
+  loadUpdateOffer
 } from './app-data/app-data';
 import { requireAuthorization } from './user-process/user-process';
 import { errorHandle } from '../services/error-handle';
@@ -84,12 +87,15 @@ export const fetchDataNearbyAction = createAsyncThunk(
 
 
 // Проверяем авторизован ли пользователь.
-export const cheachAuthAction = createAsyncThunk(
+export const checkAuthAction = createAsyncThunk(
   'USER_CHECK_AUTH',
   async () => {
     try {
-      await api.get(APIRoute.Login);
+      // await api.get(APIRoute.Login);
+
+      const {data} = await api.get<UserData>(APIRoute.Login);
       store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      store.dispatch(loadUserAction(data));
     } catch(error) {
       errorHandle(error);
       store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
@@ -105,6 +111,8 @@ export const loginAction = createAsyncThunk(
     try {
       const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
       saveToken(token);
+      const {data} = await api.get<UserData>(APIRoute.Login);
+      store.dispatch(loadUserAction(data));
       store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
       store.dispatch(redirectToRoute(AppRoute.Main)); // Перенаправляем на главную при успешном входе.
     } catch(error) {
@@ -123,6 +131,7 @@ export const logoutAction = createAsyncThunk(
       await api.delete(APIRoute.Logout);
       dropToken();
       store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+      store.dispatch(loadUserAction(null));
     } catch(error) {
       errorHandle(error);
     }
@@ -136,14 +145,44 @@ export const postDataCommentAction = createAsyncThunk(
   async ({offerId, comment}: {offerId: number; comment: MyComment}) => {
     try {
       if (offerId) {
-        store.dispatch(setFormCommentData('sending'));
+        store.dispatch(setFormCommentStatus('sending'));
         const {data} = await api.post<Comment[]>(`${APIRoute.Comments}/${offerId}`, comment); // Отправляем свой комментарий
         store.dispatch(loadDataCommentsAction(data));
-        store.dispatch(setFormCommentData('initial'));
+        store.dispatch(setFormCommentStatus('initial'));
       }
     } catch(error) {
       errorHandle(error);
-      store.dispatch(setFormCommentData('error'));
+      store.dispatch(setFormCommentStatus('error'));
+    }
+  },
+);
+
+
+// Получаем список избранного.
+export const fetchFavoritesAction = createAsyncThunk(
+  'DATA_FETCH_FAVORITES_OFFERS',
+  async () => {
+    try {
+      const {data} = await api.get<Offer[]>(APIRoute.Favorite);
+      store.dispatch(loadFavoritesAction(data));
+    } catch(error) {
+      errorHandle(error);
+    }
+  },
+);
+
+
+// Добавляет в избранное.
+export const postFavoritesAction = createAsyncThunk(
+  'USER_SEND_FAVORITE_STATUS',
+  async ({hotelId, status}: {hotelId: number; status: number}) => {
+    try {
+      if (hotelId) {
+        const {data} = await api.post(`${APIRoute.Favorite}/${hotelId}/${status}`); // Отправляем в список избранное
+        store.dispatch(loadUpdateOffer(data));
+      }
+    } catch(error) {
+      errorHandle(error);
     }
   },
 );

@@ -1,46 +1,45 @@
-import { offers } from '../../../mocks/offers';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-import FavoritePlacesCard from '../../favorite-places-card/favorite-places-card';
+import { useAppSelector } from '../../../hooks';
+import { Offer } from '../../../types/offer';
+import { getFavoriteOffers, getIsFavoriteLoaded } from '../../../store/app-data/selectors';
+import LoadingScreen from '../../loading-screen/loading-screen';
+import { useCallback, useEffect } from 'react';
+import { store } from '../../../store';
+import { fetchFavoritesAction } from '../../../store/api-actions';
+import FavoritesScreenFill from '../../favorites-screen-fill/favorites-screen-fill';
+import FavoritesScreenEmpty from '../../favorites-screen-empty/favorites-screen-empty';
+import { requireFavoritesProperty } from '../../../store/app-data/app-data';
 
 function FavoritesScreen ():JSX.Element {
-  return (
-    <div className="page">
-      <Header />
-      <main className="page__main page__main--favorites">
-        <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="/">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  {offers.map((offer) => <FavoritePlacesCard key={offer.id} offer={offer} />)}
-                </div>
-              </li>
+  const favoriteOffers: Offer[] = useAppSelector(getFavoriteOffers);
+  const isFavoriteLoaded = useAppSelector(getIsFavoriteLoaded);
 
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="/">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  {offers.map((offer) => <FavoritePlacesCard key={offer.id} offer={offer} />)}
-                </div>
-              </li>
-            </ul>
-          </section>
-        </div>
-      </main>
+  const isFavoritePageShow = useCallback(() => favoriteOffers.length > 0, [favoriteOffers]);
+
+  useEffect(() => {
+    store.dispatch(fetchFavoritesAction());
+
+    return () => {
+      // Тут надо сбросить флаг, чтобы при заходе не было видно старых данных пока грузятся новые.
+      store.dispatch(requireFavoritesProperty());
+    };
+  }, []);
+
+  if (!isFavoriteLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
+  return (
+    <div className={`page ${isFavoritePageShow() ? '' : 'page--favorites-empty'}`}>
+      <Header />
+      {isFavoritePageShow() ? (
+        <FavoritesScreenFill favoriteOffers={favoriteOffers} />
+      ) : (
+        <FavoritesScreenEmpty />
+      )}
       <Footer />
     </div>
   );

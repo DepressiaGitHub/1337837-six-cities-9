@@ -32,3 +32,8 @@ export const getOffersBySort = (currentSort: string, array: Offer[]) => {
 
   return offersSortedByType;
 };
+
+export const getRandomCity = (array: string[]) => {
+  const index = Math.floor(Math.random()*array.length);
+  return array[index];
+};

@@ -3,10 +3,11 @@ import { MIN_REVIEW_LENGTH } from '../../const';
 import { RATING_STARS } from '../../const';
 import {useAppSelector} from '../../hooks';
 import {store} from '../../store';
-import { setFormCommentData } from '../../store/app-data/app-data';
+import { setFormCommentStatus } from '../../store/app-data/app-data';
 import {postDataCommentAction} from '../../store/api-actions';
 import {MyComment} from '../../types/my-comment';
 import { useParams } from 'react-router-dom';
+import { getReviewFormStatus } from '../../store/app-data/selectors';
 
 function ReviewsForm():JSX.Element {
   const params = useParams();
@@ -14,7 +15,7 @@ function ReviewsForm():JSX.Element {
   const [rating, setRating] = useState<number | null>(null);
   const [review, setReview] = useState<string>('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const formState = useAppSelector(({DATA}) => DATA.reviewFormStatus);
+  const formState = useAppSelector(getReviewFormStatus);
 
   const reviewChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     // Код для обновления состояния.
@@ -28,7 +29,7 @@ function ReviewsForm():JSX.Element {
   }, [formState]);
 
   useEffect(() =>
-    () => {store.dispatch(setFormCommentData('initial'));
+    () => {store.dispatch(setFormCommentStatus('initial'));
     }, []);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {

@@ -1,15 +1,13 @@
-import React, { MouseEvent } from 'react';
+import React, { memo, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeCity } from '../../store/app-data/app-data';
 import { CITIES } from '../../const';
+import { getActiveCity } from '../../store/app-data/selectors';
 
 function LocationsList():JSX.Element {
-  const activeCity = useAppSelector(({DATA}) => DATA.activeCity);
+  const activeCity = useAppSelector(getActiveCity);
   const dispatch = useAppDispatch();
-
-  // eslint-disable-next-line no-console
-  console.log('LocationsList: render');
 
   return (
     <ul className="locations__list tabs__list">
@@ -31,4 +29,4 @@ function LocationsList():JSX.Element {
   );
 }
 
-export default LocationsList;
+export default memo(LocationsList);

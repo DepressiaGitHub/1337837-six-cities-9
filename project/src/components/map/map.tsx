@@ -4,6 +4,7 @@ import useMap from '../../hooks/useMap';
 import { City, Offer } from '../../types/offer';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { getHoverOffer } from '../../store/app-process/selectors';
 
 const URL_MARKER_DEFAULT = 'img/pin.svg';
 const URL_MARKER_ACTIVE = 'img/pin-active.svg';
@@ -14,12 +15,9 @@ type mapProps = {
 }
 
 function Map({city, offers}: mapProps): JSX.Element {
-  const offerByHover = useAppSelector(({APP}) => APP.offerByHover);
+  const offerByHover = useAppSelector(getHoverOffer);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-
-  // eslint-disable-next-line no-console
-  console.log('Map: render');
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
