@@ -23,6 +23,8 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
 
   const newPropsOffer = useAppSelector(({DATA}) => DATA.updateOffer);
 
+  const newData = useAppSelector(({DATA}) => DATA.data);
+
   const [favorite, setFavorite] = useState(isFavorite);
 
   useEffect(() => {
@@ -48,6 +50,9 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
         hotelId: id,
         status: status,
       }));
+
+      // eslint-disable-next-line no-console
+      console.log(newData);
     } else {
       dispatch(redirectToRoute(AppRoute.Login));
     }
