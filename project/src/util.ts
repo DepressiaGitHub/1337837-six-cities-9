@@ -1,4 +1,4 @@
-import { SORT, AuthorizationStatus } from './const';
+import { SORTS, AuthorizationStatus } from './const';
 import { Offer } from './types/offer';
 
 export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean => authorizationStatus === AuthorizationStatus.Unknown;
@@ -11,18 +11,18 @@ export const getOffersBySort = (currentSort: string, array: Offer[]) => {
   const offersSortedByType = array.slice();
 
   switch (currentSort) {
-    case SORT[0]:
+    case SORTS[0]:
       break;
 
-    case SORT[1]:
+    case SORTS[1]:
       offersSortedByType.sort((a: Offer, b: Offer) => a.price - b.price);
       break;
 
-    case SORT[2]:
+    case SORTS[2]:
       offersSortedByType.sort((a: Offer, b: Offer) => b.price - a.price);
       break;
 
-    case SORT[3]:
+    case SORTS[3]:
       offersSortedByType.sort((a: Offer, b: Offer) => b.rating - a.rating);
       break;
 

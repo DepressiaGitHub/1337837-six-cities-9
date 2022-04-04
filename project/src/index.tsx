@@ -7,8 +7,8 @@ import { fetchDataAction, checkAuthAction } from './store/api-actions';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-store.dispatch(fetchDataAction());
 store.dispatch(checkAuthAction());
+store.dispatch(fetchDataAction());
 
 ReactDOM.render(
   <React.StrictMode>

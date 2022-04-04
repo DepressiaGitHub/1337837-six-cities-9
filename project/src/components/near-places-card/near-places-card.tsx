@@ -61,7 +61,7 @@ function NearPlacesCard(props: NearCardProps):JSX.Element {
       </div>
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>
       </div>
       <div className="favorites__card-info place-card__info">
@@ -86,7 +86,7 @@ function NearPlacesCard(props: NearCardProps):JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating * 20}%`}}></span>
+            <span style={{width: `${Math.round(rating) * 20}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

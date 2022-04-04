@@ -1,6 +1,6 @@
 import request from 'axios';
 import { ErrorType } from '../types/error';
-import { AppRoute, HTTP_CODE } from '../const';
+import { AppRoute, httpCode } from '../const';
 import { toast } from 'react-toastify';
 import { store } from '../store';
 import { redirectToRoute } from '../store/action';
@@ -14,13 +14,13 @@ export const errorHandle = (error: ErrorType): void => {
 
   if (response) {
     switch (response.status) {
-      case HTTP_CODE.BAD_REQUEST:
+      case httpCode.BAD_REQUEST:
         toast.error(response.data.error);
         break;
-      case HTTP_CODE.UNAUTHORIZED:
+      case httpCode.UNAUTHORIZED:
         toast.error(response.data.error);
         break;
-      case HTTP_CODE.NOT_FOUND:
+      case httpCode.NOT_FOUND:
         toast.error(response.data.error);
         store.dispatch(redirectToRoute(AppRoute.NotFound)); // Перенаправляем на страницу "Not Found" при ошибке 404.
         break;

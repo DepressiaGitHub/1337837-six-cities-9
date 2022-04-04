@@ -12,18 +12,16 @@ function LocationsList():JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {CITIES.map((city) => (
-        <React.Fragment key={city}>
-          <li className="locations__item">
-            <Link to={city} className={`locations__item-link tabs__item ${activeCity === city ? 'tabs__item--active' : ''}`}
-              onClick={(evt: MouseEvent) => {
-                evt.preventDefault();
-                dispatch(changeCity(city));
-              }}
-            >
-              <span>{city}</span>
-            </Link>
-          </li>
-        </React.Fragment>
+        <li className="locations__item" key={city}>
+          <Link to={city} className={`locations__item-link tabs__item ${activeCity === city ? 'tabs__item--active' : ''}`}
+            onClick={(evt: MouseEvent) => {
+              evt.preventDefault();
+              dispatch(changeCity(city));
+            }}
+          >
+            <span>{city}</span>
+          </Link>
+        </li>
       ))}
     </ul>
   );

@@ -3,7 +3,7 @@ import {
   CITIES,
   DEFAULT_CITY_INDEX,
   DEFAULT_SORT_INDEX,
-  SORT,
+  SORTS,
   NameSpace
 } from '../../const';
 import { AppData } from '../../types/state';
@@ -14,7 +14,7 @@ const initialState: AppData = {
   user: null,
   activeCity: CITIES[DEFAULT_CITY_INDEX],
   offersSortedByCity: [],
-  selectedType: SORT[DEFAULT_SORT_INDEX],
+  selectedType: SORTS[DEFAULT_SORT_INDEX],
   offersSortedByType: [],
   isDataLoaded: false,
   property: null,
@@ -44,7 +44,7 @@ export const appData = createSlice({
       state.offersSortedByCity = getOffersByCity(state.activeCity, state.data);
 
       // Выводим по умолчанию сортировку по первому варианту
-      state.selectedType = SORT[0];
+      state.selectedType = SORTS[0];
       state.offersSortedByType = getOffersBySort(state.selectedType, state.offersSortedByCity);
     },
     changeSort: (state, action) => {

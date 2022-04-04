@@ -1,10 +1,10 @@
-import Header from '../../header/header';
-import LocationsList from '../../locations-list/locations-list';
-import MainPageScreenEmpty from '../../main-page-screen-empty/main-page-screen-empty';
-import { useAppSelector } from '../../../hooks';
+import Header from '../../components/header/header';
+import LocationsList from '../../components/locations-list/locations-list';
+import MainPageScreenEmpty from '../../components/main-page-screen-empty/main-page-screen-empty';
+import { useAppSelector } from '../../hooks';
 import { useCallback } from 'react';
-import MainPageScreenFill from '../../main-page-screen-fill/main-page-screen-fill';
-import { getOffersSortedByCity } from '../../../store/app-data/selectors';
+import MainPageScreenFill from '../../components/main-page-screen-fill/main-page-screen-fill';
+import { getOffersSortedByCity } from '../../store/app-data/selectors';
 
 function MainPageScreen ():JSX.Element {
   const offersSortedByCity = useAppSelector(getOffersSortedByCity);
