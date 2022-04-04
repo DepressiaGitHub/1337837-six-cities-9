@@ -9,15 +9,28 @@ export type City = {
   name: string,
 }
 
-export type Offer = {
+export type Host = {
   id: number,
+  name: string,
+  isPro: boolean,
+  avatarUrl: string,
+}
+
+export type Offer = {
+  bedrooms: number,
+  city: City,
+  description: string,
+  goods: string[],
+  host: Host,
+  id: number,
+  images: string[],
+  isFavorite: boolean,
+  isPremium: boolean,
+  location: Location,
+  maxAdults: number,
+  previewImage: string,
+  price: number,
+  rating: number,
   title: string,
   type: string,
-  price: number,
-  isPremium: boolean,
-  isFavorite: boolean,
-  rating: number,
-  previewImage: string,
-  city: City,
-  location: Location,
 }

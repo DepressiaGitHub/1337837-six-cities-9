@@ -1,10 +1,10 @@
 
 import { Link } from 'react-router-dom';
-import { AppRoute, CITIES } from '../../../const';
-import { useAppDispatch } from '../../../hooks';
-import { changeCity } from '../../../store/app-data/app-data';
-import { getRandomCity } from '../../../util';
-import Login from '../../login/login';
+import { AppRoute, CITIES } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { changeCity } from '../../store/app-data/app-data';
+import { getRandomCity } from '../../util';
+import Login from '../../components/login/login';
 
 function SignInScreen ():JSX.Element {
 

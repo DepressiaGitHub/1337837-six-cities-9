@@ -1,7 +1,7 @@
 import React, { memo, MouseEvent, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeSort } from '../../store/app-data/app-data';
-import { SORT } from '../../const';
+import { SORTS } from '../../const';
 import { getSelectedType } from '../../store/app-data/selectors';
 
 function PlacesOptions():JSX.Element {
@@ -24,7 +24,7 @@ function PlacesOptions():JSX.Element {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}`}>
-        {SORT.map((type) => (
+        {SORTS.map((type) => (
           <React.Fragment key={type}>
             <li className={`places__option ${selectedType === type ? 'places__option--active' : ''}`} tabIndex={0}
               onClick={(evt: MouseEvent) => {

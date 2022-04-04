@@ -53,6 +53,7 @@ function Login ():JSX.Element {
             name="password"
             placeholder="Password"
             required
+            pattern="(?!^[0-9]*$)(?!^[A-Za-zА-Яа-яЁё]*$)^([A-Za-zА-Яа-яЁё0-9]{6,50})$"
           />
         </div>
         <button className="login__submit form__submit button" type="submit">Sign in</button>

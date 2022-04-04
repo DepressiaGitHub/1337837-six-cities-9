@@ -5,7 +5,7 @@ import { Property } from '../../types/property';
 import { State } from '../../types/state';
 import { UserData } from '../../types/user-data';
 
-
+export const getOffers = (state: State): Offer[] => state[NameSpace.data].data;
 export const getOffersSortedByCity = (state: State): Offer[] => state[NameSpace.data].offersSortedByCity;
 export const getOffersSortedByType = (state: State): Offer[] => state[NameSpace.data].offersSortedByType;
 export const getIsDataLoaded = (state: State): boolean => state[NameSpace.data].isDataLoaded;

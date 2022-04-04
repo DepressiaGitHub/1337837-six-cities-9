@@ -22,9 +22,9 @@ function Header (props: HeaderProps):JSX.Element {
         <div className="header__wrapper">
           <div className="header__left">
             {props.logo ? (
-              <a className="header__logo-link header__logo-link--active">
+              <span className="header__logo-link header__logo-link--active">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              </span>
             ) : (
               <Link to={AppRoute.Main} className="header__logo-link">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
