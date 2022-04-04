@@ -7,6 +7,7 @@ type FavoritesScreenFillProps = {
 
 function FavoritesScreenFill (props: FavoritesScreenFillProps):JSX.Element {
   const favoriteOffers = props.favoriteOffers;
+
   const cities = new Set(favoriteOffers.map((offer) => offer.city.name));
 
   return (
