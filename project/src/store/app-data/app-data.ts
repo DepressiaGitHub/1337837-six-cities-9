@@ -84,6 +84,12 @@ export const appData = createSlice({
           action.payload,
           ...state.data.slice(indexData + 1),
         ];
+
+        const indexDateByFavorites = state.favoriteOffers.findIndex((offer) => offer.id === action.payload.id);
+        state.favoriteOffers = [
+          ...state.favoriteOffers.slice(0, indexDateByFavorites),
+          ...state.favoriteOffers.slice(indexDateByFavorites + 1),
+        ];
       }
     },
   },
