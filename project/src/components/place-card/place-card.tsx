@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -21,18 +19,6 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const newPropsOffer = useAppSelector(({DATA}) => DATA.updateOffer);
-
-  const [favorite, setFavorite] = useState(isFavorite);
-
-  useEffect(() => {
-    if (newPropsOffer) {
-      if (newPropsOffer.id === id) {
-        setFavorite(newPropsOffer.isFavorite);
-      }
-    }
-  }, [newPropsOffer, id]);
-
   const mouseOverHandler = () => {
     dispatch(hoverOffer(id));
   };
@@ -43,7 +29,7 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
 
   const toggleFavorites = () => {
     if (isAuth(authorizationStatus)) {
-      const status = favorite ? 0 : 1;
+      const status = isFavorite ? 0 : 1;
       dispatch(postFavoritesAction({
         hotelId: id,
         status: status,
@@ -73,7 +59,7 @@ function PlaceCard(props: PlaceCardProps):JSX.Element {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className={`place-card__bookmark-button ${favorite ? 'place-card__bookmark-button--active' : ''} button`}
+            className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`}
             type="button"
             onClick={(evt) => {
               evt.preventDefault();

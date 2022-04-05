@@ -12,7 +12,8 @@ import {
   setFormCommentStatus,
   loadFavoritesAction,
   loadUserAction,
-  loadUpdateOffer
+  loadUpdateOffer,
+  sortData
 } from './app-data/app-data';
 import { requireAuthorization } from './user-process/user-process';
 import { errorHandle } from '../services/error-handle';
@@ -31,6 +32,7 @@ export const fetchDataAction = createAsyncThunk(
     try {
       const {data} = await api.get<Offer[]>(APIRoute.Offers);
       store.dispatch(loadDataAction(data));
+      store.dispatch(sortData());
     } catch(error) {
       errorHandle(error);
     }
@@ -175,11 +177,15 @@ export const fetchFavoritesAction = createAsyncThunk(
 // Добавляет в избранное.
 export const postFavoritesAction = createAsyncThunk(
   'USER_SEND_FAVORITE_STATUS',
-  async ({hotelId, status}: {hotelId: number; status: number}) => {
+  async ({hotelId, status, isProperty}: {hotelId: number; status: number; isProperty?: boolean}) => {
     try {
       if (hotelId) {
         const {data} = await api.post(`${APIRoute.Favorite}/${hotelId}/${status}`); // Отправляем в список избранное
+        if (isProperty) {
+          store.dispatch(loadDataPropertyAction(data));
+        }
         store.dispatch(loadUpdateOffer(data));
+        store.dispatch(sortData());
       }
     } catch(error) {
       errorHandle(error);
