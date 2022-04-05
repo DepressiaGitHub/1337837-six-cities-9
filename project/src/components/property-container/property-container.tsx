@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Offer } from '../../types/offer';
 import Reviews from '../reviews/reviews';
 import { isAuth } from '../../util';
@@ -6,7 +6,8 @@ import { redirectToRoute } from '../../store/action';
 import { AppRoute } from '../../const';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { postFavoritesAction } from '../../store/api-actions';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
+import { store } from '../../store';
 
 type PropertyContainerProps = {
   offer: Offer,
@@ -17,29 +18,16 @@ function PropertyContainer (props: PropertyContainerProps):JSX.Element {
 
   const { id, isFavorite, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description } = props.offer;
 
-  const dispatch = useAppDispatch();
-
-  const newPropsOffer = useAppSelector(({DATA}) => DATA.updateOffer);
-
-  const [favorite, setFavorite] = useState(isFavorite);
-
-  useEffect(() => {
-    if (newPropsOffer) {
-      if (newPropsOffer.id === id) {
-        setFavorite(newPropsOffer.isFavorite);
-      }
-    }
-  }, [newPropsOffer, id]);
-
   const toggleFavorites = () => {
     if (isAuth(authorizationStatus)) {
-      const status = favorite ? 0 : 1;
-      dispatch(postFavoritesAction({
+      const status = isFavorite ? 0 : 1;
+      store.dispatch(postFavoritesAction({
         hotelId: id,
         status: status,
+        isProperty: true,
       }));
     } else {
-      dispatch(redirectToRoute(AppRoute.Login));
+      store.dispatch(redirectToRoute(AppRoute.Login));
     }
   };
 
@@ -56,7 +44,7 @@ function PropertyContainer (props: PropertyContainerProps):JSX.Element {
             {title}
           </h1>
           <button
-            className={`property__bookmark-button button ${favorite ? 'property__bookmark-button--active': ''}`}
+            className={`property__bookmark-button button ${isFavorite ? 'property__bookmark-button--active': ''}`}
             type="button"
             onClick={(evt) => {
               evt.preventDefault();
