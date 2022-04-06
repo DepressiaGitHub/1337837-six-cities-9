@@ -27,7 +27,7 @@ const initialState: AppData = {
 };
 
 export const appData = createSlice({
-  name: NameSpace.data,
+  name: NameSpace.Data,
   initialState,
   reducers: {
     loadDataAction: (state, action) => {

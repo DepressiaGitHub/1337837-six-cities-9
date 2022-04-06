@@ -21,9 +21,9 @@ export enum AuthorizationStatus {
 }
 
 export enum NameSpace {
-  data = 'DATA',
-  app = 'APP',
-  user = 'USER',
+  Data = 'DATA',
+  App = 'APP',
+  User = 'USER',
 }
 
 export enum httpCode {
