@@ -40,7 +40,7 @@ function OfferScreen ():JSX.Element {
     <div className="page">
       <Header />
       <main className="page__main page__main--property">
-        <section className="property">
+        <section className="property" data-testid="property">
           <PropertyGallery images={property.images} />
           <PropertyContainer offer={property} />
           <section className="property__map map">
@@ -51,7 +51,7 @@ function OfferScreen ():JSX.Element {
           </section>
         </section>
         <div className="container">
-          <section className="near-places places">
+          <section className="near-places places" data-testid="places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <NearPlacesList />
           </section>

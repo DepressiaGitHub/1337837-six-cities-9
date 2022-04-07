@@ -32,6 +32,7 @@ function Login ():JSX.Element {
         className="login__form form"
         action="#"
         method="post"
+        data-testid="login-form"
       >
         <div className="login__input-wrapper form__input-wrapper">
           <label className="visually-hidden">E-mail</label>
@@ -42,6 +43,7 @@ function Login ():JSX.Element {
             name="email"
             placeholder="Email"
             required
+            data-testid="login"
           />
         </div>
         <div className="login__input-wrapper form__input-wrapper">
@@ -54,6 +56,7 @@ function Login ():JSX.Element {
             placeholder="Password"
             required
             pattern="(?!^[0-9]*$)(?!^[A-Za-zА-Яа-яЁё]*$)^([A-Za-zА-Яа-яЁё0-9]{6,50})$"
+            data-testid="password"
           />
         </div>
         <button className="login__submit form__submit button" type="submit">Sign in</button>

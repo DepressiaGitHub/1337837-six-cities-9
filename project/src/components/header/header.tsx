@@ -17,7 +17,7 @@ function Header (props: HeaderProps):JSX.Element {
   const user = useAppSelector(getUserData);
 
   return (
-    <header className="header">
+    <header className="header" data-testid="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
