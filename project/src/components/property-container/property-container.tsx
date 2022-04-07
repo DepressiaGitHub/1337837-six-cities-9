@@ -22,7 +22,7 @@ function PropertyContainer (props: PropertyContainerProps):JSX.Element {
     if (isAuth(authorizationStatus)) {
       const status = isFavorite ? 0 : 1;
       store.dispatch(postFavoritesAction({
-        hotelId: id,
+        offerId: id,
         status: status,
         isProperty: true,
       }));

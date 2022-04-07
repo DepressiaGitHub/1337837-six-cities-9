@@ -15,7 +15,7 @@ import {
   setFormCommentStatus,
   loadFavoritesAction,
   requireFavoritesProperty,
-  loadUpdateOffer,
+  loadUpdateOffer
 } from './app-data';
 
 const state: AppData = {

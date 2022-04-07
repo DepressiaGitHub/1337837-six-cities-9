@@ -22,7 +22,7 @@ function FavoritePlacesCard(props: FavoriteCardProps):JSX.Element {
     if (isAuth(authorizationStatus)) {
       const status = isFavorite ? 0 : 1;
       dispatch(postFavoritesAction({
-        hotelId: id,
+        offerId: id,
         status: status,
       }));
     } else {
