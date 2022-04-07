@@ -7,7 +7,7 @@ function NearPlacesList():JSX.Element {
   const offers: Offer[] = useAppSelector(getNearbyOffers);
 
   return (
-    <div className="near-places__list places__list">
+    <div className="near-places__list places__list" data-testid="places-list">
       {offers.map((offer) => <NearPlacesCard key={offer.id} offer={offer} />)}
     </div>
   );

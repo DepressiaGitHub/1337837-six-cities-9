@@ -15,6 +15,7 @@ function PlacesOptions():JSX.Element {
       action="#"
       method="get"
       onClick={() => setIsOpened(!isOpened)}
+      data-testid="places-sorting"
     >
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>

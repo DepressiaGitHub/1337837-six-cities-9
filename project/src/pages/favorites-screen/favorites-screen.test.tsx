@@ -3,9 +3,8 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
-import { AuthorizationStatus } from '../../const';
+import { AuthorizationStatus, NameSpace } from '../../const';
 import FavoritesScreen from './favorites-screen';
-import { NameSpace } from '../../../src/const';
 
 const mockStore = configureMockStore();
 const store = mockStore({

@@ -55,7 +55,11 @@ function ReviewsForm():JSX.Element {
 
   return (
     <form
-      className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={handleSubmit}
+      data-testid="reviews-form"
       style={{opacity: formState === 'sending' ? 0.5 : 1, pointerEvents: formState === 'sending' ? 'none': 'initial'}}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

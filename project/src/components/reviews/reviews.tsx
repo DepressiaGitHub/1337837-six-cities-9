@@ -10,7 +10,7 @@ function Reviews ():JSX.Element {
   const comments = useAppSelector(getComments);
 
   return (
-    <section className="property__reviews reviews">
+    <section className="property__reviews reviews" data-testid="reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
       <ReviewList />
       {isAuth(authorizationStatus) && (
