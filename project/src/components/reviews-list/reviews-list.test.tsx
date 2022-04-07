@@ -4,15 +4,17 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
 import {  NameSpace } from '../../const';
-import { makeFakeOffer } from '../../utils/mocks';
+import { makeFakeCommentList, makeFakeOffer } from '../../utils/mocks';
 import ReviewList from './reviews-list';
 
 const mockStore = configureMockStore();
 const mockOffer = makeFakeOffer();
+const mockComments = makeFakeCommentList();
 const history = createMemoryHistory();
 const store = mockStore({
   [NameSpace.Data]: {
     property: mockOffer,
+    comments: mockComments,
   },
 });
 

@@ -4,19 +4,21 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
 import { NameSpace } from '../../const';
+import { makeFakeOfferList } from '../../utils/mocks';
 import MainPageScreenFill from './main-page-screen-fill';
 
 const mockStore = configureMockStore();
+const mockOffers = makeFakeOfferList();
 const store = mockStore({
   [NameSpace.Data]: {
-    activeCity: 'Paris',
+    offersSortedByCity: mockOffers,
+    activeCity: mockOffers[0].city,
   },
 });
 const history = createMemoryHistory();
 
 describe('Component: MainPageScreenFill', () => {
   it('должен отрисоваться "MainPageScreenFill" когда пользователь переходит на  "/"', () => {
-    history.push('/');
 
     render(
       <Provider store={store}>
@@ -27,7 +29,7 @@ describe('Component: MainPageScreenFill', () => {
     );
 
     expect(screen.getByTestId('places')).toBeInTheDocument();
-    expect(screen.getByTestId('places to stay in Paris')).toBeInTheDocument();
+    expect(screen.getByText(`places to stay in ${mockOffers[0].city}`)).toBeInTheDocument();
     expect(screen.getByTestId('map')).toBeInTheDocument();
   });
 });

@@ -4,15 +4,17 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
 import { NameSpace } from '../../const';
-import { makeFakeOffer } from '../../utils/mocks';
+import { makeFakeOffer, makeFakeOfferList } from '../../utils/mocks';
 import NearPlacesList from './near-places-list';
 
 const mockStore = configureMockStore();
+const mockOffers =makeFakeOfferList();
 const mockOffer = makeFakeOffer();
 const history = createMemoryHistory();
 const store = mockStore({
   [NameSpace.Data]: {
     property: mockOffer,
+    nearbyOffers: mockOffers,
   },
 });
 

@@ -13,6 +13,6 @@ describe('Reducer: process', () => {
     const state = {offerByHover: null};
 
     expect(appProcess.reducer(state, hoverOffer(hover)))
-      .toEqual({state});
+      .toEqual({offerByHover: hover.offerByHover});
   });
 });

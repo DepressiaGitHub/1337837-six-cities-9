@@ -29,6 +29,5 @@ describe('Component: PropertyGallery', () => {
     );
 
     expect(screen.getByTestId('property-gallery')).toBeInTheDocument();
-    expect(screen.getByText('Other places in the neighbourhood')).toBeInTheDocument();
   });
 });

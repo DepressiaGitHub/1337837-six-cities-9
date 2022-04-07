@@ -4,12 +4,18 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
 import { AuthorizationStatus, NameSpace } from '../../const';
+import { makeFakeOfferList } from '../../utils/mocks';
 import FavoritesScreen from './favorites-screen';
 
 const mockStore = configureMockStore();
+const mockOffer = makeFakeOfferList();
 const store = mockStore({
   [NameSpace.User]: {
     authorizationStatus: AuthorizationStatus.Auth,
+  },
+  [NameSpace.Data]: {
+    favoriteOffers: mockOffer,
+    isFavoriteLoaded: true,
   },
 });
 

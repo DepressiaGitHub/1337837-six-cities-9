@@ -3,11 +3,18 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
+import { NameSpace } from '../../const';
+import { makeFakeOfferList } from '../../utils/mocks';
 import LocationsList from './locations-list';
 
 const mockStore = configureMockStore();
-const store = mockStore({});
+const mockOffers = makeFakeOfferList();
 const history = createMemoryHistory();
+const store = mockStore({
+  [NameSpace.Data]: {
+    activeCity: mockOffers[0].city,
+  },
+});
 
 describe('Component: LocationsList', () => {
   it('должен отрисоваться "LocationsList" когда пользователь переходит на  "/"', () => {

@@ -27,7 +27,9 @@ function PlacesOptions():JSX.Element {
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}`}>
         {SORTS.map((type) => (
           <React.Fragment key={type}>
-            <li className={`places__option ${selectedType === type ? 'places__option--active' : ''}`} tabIndex={0}
+            <li
+              className={`places__option ${selectedType === type ? 'places__option--active' : ''}`} tabIndex={0}
+              data-testid={type}
               onClick={(evt: MouseEvent) => {
                 evt.preventDefault();
                 dispatch(changeSort(type));

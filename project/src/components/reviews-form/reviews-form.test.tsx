@@ -33,6 +33,5 @@ describe('Component: ReviewsForm', () => {
 
     expect(screen.getByTestId('reviews-form')).toBeInTheDocument();
     expect(screen.getByText('To submit review please make sure to set')).toBeInTheDocument();
-    expect(screen.getByText('and describe your stay with at least')).toBeInTheDocument();
   });
 });

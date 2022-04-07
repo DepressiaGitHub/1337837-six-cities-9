@@ -3,13 +3,18 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
+import { AuthorizationStatus, NameSpace } from '../../const';
 import { makeFakeOffer } from '../../utils/mocks';
 import PlaceCard from './place-card';
 
 const mockStore = configureMockStore();
 const mockOffer = makeFakeOffer();
 const history = createMemoryHistory();
-const store = mockStore({});
+const store = mockStore({
+  [NameSpace.User]: {
+    authorizationStatus: AuthorizationStatus.Auth,
+  },
+});
 
 describe('Component: PlaceCard', () => {
   it('должен отрисоваться "PlaceCard"', () => {

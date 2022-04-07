@@ -32,5 +32,6 @@ describe('Component: OfferScreen', () => {
     expect(screen.getByText('Sign out')).toBeInTheDocument();
     expect(screen.getByTestId('property')).toBeInTheDocument();
     expect(screen.getByTestId('places')).toBeInTheDocument();
+    expect(screen.getByText('Other places in the neighbourhood')).toBeInTheDocument();
   });
 });
