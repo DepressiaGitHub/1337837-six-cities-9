@@ -26,7 +26,7 @@ export enum NameSpace {
   User = 'USER',
 }
 
-export enum httpCode {
+export enum HttpCode {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
   NOT_FOUND = 404,
