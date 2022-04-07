@@ -58,6 +58,7 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
+    expect(screen.getByTestId('header')).toBeInTheDocument();
     expect(screen.getByTestId('property')).toBeInTheDocument();
     expect(screen.getByTestId('places')).toBeInTheDocument();
   });

@@ -4,7 +4,7 @@ import { HistoryRouter } from '../../components/history-route/history-route';
 import NotFoundScreen from './not-found-screeen';
 
 describe('Component: NotFoundScreen', () => {
-  it('должно корректно отрисоваться', () => {
+  it('должно корректно отрисоваться NotFoundScreen когда неверный адрес', () => {
     const history = createMemoryHistory();
 
     render(
@@ -13,12 +13,8 @@ describe('Component: NotFoundScreen', () => {
       </HistoryRouter>,
     );
 
-    const headerElement = screen.getByText('4 0 4');
-    const textElement = screen.getByText('Page not found');
-    const linkElement = screen.getByText('Go to main page');
-
-    expect(headerElement).toBeInTheDocument();
-    expect(textElement).toBeInTheDocument();
-    expect(linkElement).toBeInTheDocument();
+    expect(screen.getByText('4 0 4')).toBeInTheDocument();
+    expect(screen.getByText('Page not found')).toBeInTheDocument();
+    expect(screen.getByText('Go to main page')).toBeInTheDocument();
   });
 });
