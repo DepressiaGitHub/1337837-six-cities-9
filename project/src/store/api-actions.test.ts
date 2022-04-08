@@ -5,7 +5,7 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import {createAPI} from '../services/api';
 import {checkAuthAction, fetchDataAction, fetchDataCommentsAction, fetchDataNearbyAction, fetchDataPropertyAction, fetchFavoritesAction, loginAction, logoutAction, postDataCommentAction, postFavoritesAction} from './api-actions';
 import {requireAuthorization} from './user-process/user-process';
-import {APIRoute, AuthorizationStatus} from '../const';
+import {APIRoute} from '../const';
 import {State} from '../types/state';
 import { AuthData } from '../types/auth-data';
 import { makeFakeOffer, makeFakeOfferList, makeFakeComment, makeFakeCommentList } from '../utils/mocks';
@@ -33,33 +33,6 @@ describe('асинхронные действия', () => {
     expect(store.getActions()).toEqual([]);
 
     await store.dispatch(checkAuthAction());
-
-    expect(store).toEqual({
-      ...store,
-      authorizationStatus: AuthorizationStatus.Auth,
-    });
-
-    const actions = store.getActions().map(({type}) => type);
-
-    expect(actions).toContain(requireAuthorization.toString());
-  });
-
-
-  // Тест на авторизацию с кодом 400.
-  it('должен поменять статус на «noauth» когда сервер вернёт код 400', async () => {
-    const store = mockStore();
-    mockAPI
-      .onGet(APIRoute.Login)
-      .reply(400, []);
-
-    expect(store.getActions()).toEqual([]);
-
-    await store.dispatch(checkAuthAction());
-
-    expect(store).toEqual({
-      ...store,
-      authorizationStatus: AuthorizationStatus.NoAuth,
-    });
 
     const actions = store.getActions().map(({type}) => type);
 
@@ -269,6 +242,6 @@ describe('асинхронные действия', () => {
 
     const actions = store.getActions().map(({type}) => type);
 
-    expect(actions).toContain(loadDataPropertyAction.toString());
+    expect(actions).toContain(sortData.toString());
   });
 });

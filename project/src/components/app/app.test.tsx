@@ -3,15 +3,11 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
-import { makeFakeCommentList, makeFakeNearbyList, makeFakeOffer, makeFakeOfferList, makeFakeUser } from '../../utils/mocks';
+import { getNameSpaceData, makeFakeNearbyList, makeFakeOffer, makeFakeUser } from '../../utils/mocks';
 import { HistoryRouter } from '../history-route/history-route';
 import App from './app';
 
 const mockStore = configureMockStore();
-const mockOffer = makeFakeOffer();
-const mockOffers = makeFakeOfferList();
-const mockComments = makeFakeCommentList();
-const mockNearby = makeFakeNearbyList();
 const mockUser = makeFakeUser();
 const history = createMemoryHistory();
 
@@ -24,12 +20,9 @@ describe('Application Routing', () => {
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
       },
-      [NameSpace.Data]: {
-        data: mockOffers,
-        isDataLoaded: true,
-      },
-      [NameSpace.Data]: {
-        user: mockUser,
+      [NameSpace.Data]: getNameSpaceData(),
+      [NameSpace.App]: {
+        offerByHover: null,
       },
     });
 
@@ -40,7 +33,6 @@ describe('Application Routing', () => {
         </HistoryRouter>
       </Provider>,
     );
-
     expect(screen.getByTestId('header')).toBeInTheDocument();
     expect(screen.getByTestId('locations')).toBeInTheDocument();
   });
@@ -53,10 +45,7 @@ describe('Application Routing', () => {
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.NoAuth,
       },
-      [NameSpace.Data]: {
-        data: mockOffers,
-        isDataLoaded: true,
-      },
+      [NameSpace.Data]: getNameSpaceData(),
     });
 
     render(
@@ -81,12 +70,10 @@ describe('Application Routing', () => {
         authorizationStatus: AuthorizationStatus.Auth,
       },
       [NameSpace.Data]: {
-        data: mockOffers,
-        isDataLoaded: true,
+        ...getNameSpaceData(),
+        isFavoriteLoaded: true,
       },
-      [NameSpace.Data]: {
-        user: mockUser,
-      },
+
     });
 
     render(
@@ -109,14 +96,9 @@ describe('Application Routing', () => {
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
       },
-      [NameSpace.Data]: {
-        isDataLoaded: true,
-        property: mockOffer,
-        comments: mockComments,
-        nearbyOffers: mockNearby,
-      },
-      [NameSpace.Data]: {
-        user: mockUser,
+      [NameSpace.Data]: {...getNameSpaceData(), property: makeFakeOffer(), nearbyOffers: makeFakeNearbyList()},
+      [NameSpace.App]: {
+        offerByHover: null,
       },
     });
 
@@ -141,6 +123,7 @@ describe('Application Routing', () => {
         authorizationStatus: AuthorizationStatus.Auth,
       },
       [NameSpace.Data]: {
+        ...getNameSpaceData(),
         user: mockUser,
       },
     });
@@ -166,6 +149,7 @@ describe('Application Routing', () => {
         authorizationStatus: AuthorizationStatus.Auth,
       },
       [NameSpace.Data]: {
+        ...getNameSpaceData(),
         user: mockUser,
       },
     });

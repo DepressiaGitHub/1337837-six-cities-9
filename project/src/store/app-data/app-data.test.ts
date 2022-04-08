@@ -1,10 +1,9 @@
 import { CITIES, DEFAULT_CITY_INDEX, DEFAULT_SORT_INDEX, SORTS } from '../../const';
 import { AppData } from '../../types/state';
-import { makeFakeOffer, makeFakeCity, makeFakeOfferList, makeFakeSort, makeFakeUser, makeFakeCommentList, makeFakeNearbyList } from '../../utils/mocks';
+import { makeFakeOffer, makeFakeOfferList, makeFakeSort, makeFakeUser, makeFakeCommentList, makeFakeNearbyList } from '../../utils/mocks';
 import {
   appData,
   loadDataAction,
-  sortData,
   loadUserAction,
   changeCity,
   changeSort,
@@ -14,8 +13,7 @@ import {
   loadDataNearbyAction,
   setFormCommentStatus,
   loadFavoritesAction,
-  requireFavoritesProperty,
-  loadUpdateOffer
+  requireFavoritesProperty
 } from './app-data';
 
 const state: AppData = {
@@ -37,7 +35,7 @@ const state: AppData = {
 
 const fakeOffer = makeFakeOffer();
 const fakeOffers = makeFakeOfferList();
-const fakeCity = makeFakeCity();
+const fakeCity = fakeOffers[0].city.name;
 const fakeSort = makeFakeSort();
 const fakeUser = makeFakeUser();
 const fakeComments = makeFakeCommentList();
@@ -46,7 +44,7 @@ const fakeNearby = makeFakeNearbyList();
 describe('Reducer: data', () => {
   it('без дополнительных параметров должен возвращать исходное состояние', () => {
     expect(appData.reducer(undefined, {type: 'UNKNOWN_ACTION'}))
-      .toEqual({state});
+      .toEqual(state);
   });
 
   it('должен заполнить список объявлений при загрузке данных', () => {
@@ -55,15 +53,6 @@ describe('Reducer: data', () => {
         ...state,
         data: fakeOffers,
         isDataLoaded: true,
-      });
-  });
-
-  it('должен соритровать список объявлений', () => {
-    expect(appData.reducer(state, sortData()))
-      .toEqual({
-        ...state,
-        offersSortedByCity: fakeOffers,
-        offersSortedByType: fakeOffers,
       });
   });
 
@@ -80,9 +69,6 @@ describe('Reducer: data', () => {
       .toEqual({
         ...state,
         activeCity: fakeCity,
-        selectedType: fakeSort,
-        offersSortedByCity: fakeOffers,
-        offersSortedByType: fakeOffers,
       });
   });
 
@@ -90,7 +76,7 @@ describe('Reducer: data', () => {
     expect(appData.reducer(state, changeSort(fakeSort)))
       .toEqual({
         ...state,
-        offersSortedByType: fakeOffers,
+        selectedType: fakeSort,
       });
   });
 
@@ -148,14 +134,6 @@ describe('Reducer: data', () => {
       .toEqual({
         ...state,
         isFavoriteLoaded: false,
-      });
-  });
-
-  it('должен получить новый объект по объявлению при добавлении или удалении в избранное', () => {
-    expect(appData.reducer(state, loadUpdateOffer(fakeOffer)))
-      .toEqual({
-        ...state,
-        updateOffer: fakeOffer,
       });
   });
 });

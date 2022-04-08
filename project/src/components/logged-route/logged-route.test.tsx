@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider} from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { HistoryRouter } from '../history-route/history-route';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import LoggedRoute from './logged-route';
 
 const mockStore = configureMockStore();
@@ -12,12 +12,14 @@ const history = createMemoryHistory();
 
 describe('Component: LoggedRouter', () => {
   beforeEach(() => {
-    history.push('/favorites');
+    history.push(AppRoute.Login);
   });
 
   it('Не должен отрисовать приватный компонент, если пользователь авторизован', () => {
     const store = mockStore({
-      USER: {authorizationStatus: AuthorizationStatus.Auth},
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      },
     });
 
     render(
@@ -29,7 +31,7 @@ describe('Component: LoggedRouter', () => {
               element={<h1>Public Route</h1>}
             />
             <Route
-              path='/login'
+              path={AppRoute.Login}
               element={
                 <LoggedRoute
                   authorizationStatus={AuthorizationStatus.Auth}
@@ -43,8 +45,8 @@ describe('Component: LoggedRouter', () => {
       </Provider>,
     );
 
-    expect(screen.getByText(/Private Route/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Public Route/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/Public Route/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Private Route/i)).not.toBeInTheDocument();
   });
 
   it('Должен отрисовать компонент для всех, если пользователь не авторизован', () => {
@@ -55,11 +57,11 @@ describe('Component: LoggedRouter', () => {
         <HistoryRouter history={history}>
           <Routes>
             <Route
-              path={AppRoute.Login}
+              path={AppRoute.Main}
               element={<h1>Public Route</h1>}
             />
             <Route
-              path='/login'
+              path={AppRoute.Login}
               element={
                 <LoggedRoute
                   authorizationStatus={AuthorizationStatus.NoAuth}
@@ -73,7 +75,7 @@ describe('Component: LoggedRouter', () => {
       </Provider>,
     );
 
-    expect(screen.getByText(/Public Route/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Private Route/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/Private Route/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Public Route/i)).not.toBeInTheDocument();
   });
 });

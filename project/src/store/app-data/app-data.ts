@@ -77,6 +77,7 @@ export const appData = createSlice({
     },
     loadUpdateOffer: (state, action) => {
       state.updateOffer = action.payload;
+
       if (state.updateOffer !== null) {
         const indexData = state.data.findIndex((offer) => offer.id === action.payload.id);
         state.data = [
