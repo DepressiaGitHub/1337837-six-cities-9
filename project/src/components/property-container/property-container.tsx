@@ -22,7 +22,7 @@ function PropertyContainer (props: PropertyContainerProps):JSX.Element {
     if (isAuth(authorizationStatus)) {
       const status = isFavorite ? 0 : 1;
       store.dispatch(postFavoritesAction({
-        hotelId: id,
+        offerId: id,
         status: status,
         isProperty: true,
       }));
@@ -32,7 +32,7 @@ function PropertyContainer (props: PropertyContainerProps):JSX.Element {
   };
 
   return (
-    <div className="property__container container">
+    <div className="property__container container" data-testid="property-container">
       <div className="property__wrapper">
         {isPremium && (
           <div className="property__mark">

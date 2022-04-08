@@ -7,7 +7,7 @@ type PropertyGalleryProps = {
 function PropertyGallery (props: PropertyGalleryProps):JSX.Element {
   const { images } = props;
   return (
-    <div className="property__gallery-container container">
+    <div className="property__gallery-container container" data-testid="property-gallery">
       <div className="property__gallery">
         {images.map((src) => (
           <React.Fragment key={src}>

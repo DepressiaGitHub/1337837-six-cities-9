@@ -8,7 +8,7 @@ function ReviewList():JSX.Element {
   const comments: Comment[] = useAppSelector(getComments);
 
   return (
-    <ul className="reviews__list">
+    <ul className="reviews__list" data-testid="reviews-list">
       {comments.slice().reverse().slice(0, MAX_COMMENTS).map((comment) => <ReviewsItem key={comment.id} comment={comment} />)}
     </ul>
   );

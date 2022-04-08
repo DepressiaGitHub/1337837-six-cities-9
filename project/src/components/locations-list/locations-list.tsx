@@ -10,7 +10,7 @@ function LocationsList():JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
-    <ul className="locations__list tabs__list">
+    <ul className="locations__list tabs__list" data-testid="locations-list">
       {CITIES.map((city) => (
         <li className="locations__item" key={city}>
           <Link to={city} className={`locations__item-link tabs__item ${activeCity === city ? 'tabs__item--active' : ''}`}

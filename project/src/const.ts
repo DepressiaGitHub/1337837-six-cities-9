@@ -21,12 +21,12 @@ export enum AuthorizationStatus {
 }
 
 export enum NameSpace {
-  data = 'DATA',
-  app = 'APP',
-  user = 'USER',
+  Data = 'DATA',
+  App = 'APP',
+  User = 'USER',
 }
 
-export enum httpCode {
+export enum HttpCode {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
   NOT_FOUND = 404,

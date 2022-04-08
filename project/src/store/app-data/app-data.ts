@@ -27,7 +27,7 @@ const initialState: AppData = {
 };
 
 export const appData = createSlice({
-  name: NameSpace.data,
+  name: NameSpace.Data,
   initialState,
   reducers: {
     loadDataAction: (state, action) => {
@@ -77,6 +77,7 @@ export const appData = createSlice({
     },
     loadUpdateOffer: (state, action) => {
       state.updateOffer = action.payload;
+
       if (state.updateOffer !== null) {
         const indexData = state.data.findIndex((offer) => offer.id === action.payload.id);
         state.data = [

@@ -11,14 +11,14 @@ function MainPageScreenFill ():JSX.Element {
 
   return (
     <div className="cities__places-container container">
-      <section className="cities__places places">
+      <section className="cities__places places" data-testid="places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{offersSortedByCity.length} places to stay in {activeCity}</b>
         <PlacesOptions />
         <OffersList />
       </section>
       <div className="cities__right-section">
-        <section className="cities__map map">
+        <section className="cities__map map" data-testid="map">
           <Map
             city={cityLocation}
             offers={offersSortedByCity}

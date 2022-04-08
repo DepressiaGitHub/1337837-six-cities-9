@@ -31,7 +31,7 @@ function NearPlacesCard(props: NearCardProps):JSX.Element {
     if (isAuth(authorizationStatus)) {
       const status = isFavorite ? 0 : 1;
       dispatch(postFavoritesAction({
-        hotelId: id,
+        offerId: id,
         status: status,
       }));
     } else {
@@ -43,16 +43,24 @@ function NearPlacesCard(props: NearCardProps):JSX.Element {
     <article className="near-places__card place-card"
       onMouseEnter={mouseOverHandler}
       onMouseLeave={mouseOutHandler}
+      data-testid="place-card"
     >
       <div className="place-card__mark" hidden={!isPremium}>
         <span>Premium</span>
       </div>
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width="260"
+            height="200"
+            alt="Place"
+            data-testid="place-card-image"
+          />
         </Link>
       </div>
-      <div className="favorites__card-info place-card__info">
+      <div className="favorites__card-info place-card__info" data-testid="place-card-info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -72,13 +80,13 @@ function NearPlacesCard(props: NearCardProps):JSX.Element {
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <div className="place-card__rating rating">
+        <div className="place-card__rating rating" data-testid="place-card-rating">
           <div className="place-card__stars rating__stars">
             <span style={{width: `${Math.round(rating) * 20}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
+        <h2 className="place-card__name" data-testid="place-card-name">
           <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>

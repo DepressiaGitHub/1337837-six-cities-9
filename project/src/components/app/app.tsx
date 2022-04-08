@@ -10,8 +10,6 @@ import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundScreen from '../../pages/not-found-screeen/not-found-screeen';
 import { isCheckedAuth } from '../../util';
-import { HistoryRouter } from '../history-route/history-route';
-import browserHistory from '../../browser-history';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getIsDataLoaded } from '../../store/app-data/selectors';
 
@@ -26,46 +24,44 @@ function App(): JSX.Element {
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
-      <Routes>
-        <Route path={AppRoute.Main}
-          element={
-            <MainPageScreen />
-          }
-        />
-        <Route path={AppRoute.Login}
-          element={
-            <LoggedRoute
-              authorizationStatus={authorizationStatus}
-            >
-              <SignInScreen />
-            </LoggedRoute>
-          }
-        />
-        <Route path={AppRoute.Favorites}
-          element={
-            <PrivateRoute
-              authorizationStatus={authorizationStatus}
-            >
-              <FavoritesScreen />
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.Room}
-          element={
-            <OfferScreen/>
-          }
-        />
-        <Route path="*" element={
-          <NotFoundScreen />
+    <Routes>
+      <Route path={AppRoute.Main}
+        element={
+          <MainPageScreen />
         }
-        />
-        <Route path={AppRoute.NotFound} element={
-          <NotFoundScreen />
+      />
+      <Route path={AppRoute.Login}
+        element={
+          <LoggedRoute
+            authorizationStatus={authorizationStatus}
+          >
+            <SignInScreen />
+          </LoggedRoute>
         }
-        />
-      </Routes>
-    </HistoryRouter>
+      />
+      <Route path={AppRoute.Favorites}
+        element={
+          <PrivateRoute
+            authorizationStatus={authorizationStatus}
+          >
+            <FavoritesScreen />
+          </PrivateRoute>
+        }
+      />
+      <Route path={AppRoute.Room}
+        element={
+          <OfferScreen/>
+        }
+      />
+      <Route path="*" element={
+        <NotFoundScreen />
+      }
+      />
+      <Route path={AppRoute.NotFound} element={
+        <NotFoundScreen />
+      }
+      />
+    </Routes>
   );
 }
 
