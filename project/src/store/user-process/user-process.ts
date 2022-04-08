@@ -3,7 +3,7 @@ import { AuthorizationStatus, NameSpace } from '../../const';
 import { UserProcess } from '../../types/state';
 
 const initialState: UserProcess = {
-  authorizationStatus: AuthorizationStatus.NoAuth,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const userProcess = createSlice({

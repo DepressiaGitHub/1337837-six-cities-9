@@ -37,7 +37,7 @@ describe('Component: PlacesOptions', () => {
     expect(screen.getByText(`${mockOffer.type}`)).toBeInTheDocument();
     expect(screen.getByText(`${mockOffer.bedrooms} Bedrooms`)).toBeInTheDocument();
     expect(screen.getByText(`Max ${mockOffer.maxAdults} adults`)).toBeInTheDocument();
-    expect(screen.getByText(`${mockOffer.price}`)).toBeInTheDocument();
+    expect(screen.getByText(`€${mockOffer.price}`)).toBeInTheDocument();
     expect(screen.getByText('Meet the host')).toBeInTheDocument();
     expect(screen.getByText(`${mockOffer.host.name}`)).toBeInTheDocument();
     expect(screen.getByText(`${mockOffer.description}`)).toBeInTheDocument();

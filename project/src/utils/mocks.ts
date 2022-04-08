@@ -1,4 +1,5 @@
 import { address, datatype, image, internet, name, random } from 'faker';
+import { CITIES, DEFAULT_CITY_INDEX, DEFAULT_SORT_INDEX, SORTS } from '../const';
 import { Comment } from '../types/comment';
 import { City, Offer } from '../types/offer';
 import { AppProcess } from '../types/state';
@@ -88,4 +89,21 @@ export const makeFakeUser = (): UserData => ({
   isPro: datatype.boolean(),
   name: name.firstName(),
   token: datatype.string(30),
+});
+
+export const getNameSpaceData = () => ({
+  data: makeFakeOfferList(),
+  user: makeFakeUser(),
+  activeCity: CITIES[DEFAULT_CITY_INDEX],
+  offersSortedByCity: makeFakeOfferList(),
+  selectedType: SORTS[DEFAULT_SORT_INDEX],
+  offersSortedByType: [],
+  isDataLoaded: true,
+  property: null,
+  comments: [],
+  nearbyOffers: [],
+  reviewFormStatus: 'initial',
+  favoriteOffers: [],
+  isFavoriteLoaded: false,
+  updateOffer: null,
 });

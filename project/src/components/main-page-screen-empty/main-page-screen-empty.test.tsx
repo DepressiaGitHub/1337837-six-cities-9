@@ -11,7 +11,7 @@ const mockStore = configureMockStore();
 const mockOffers = makeFakeOfferList();
 const store = mockStore({
   [NameSpace.Data]: {
-    activeCity: mockOffers[0].city,
+    activeCity: mockOffers[0].city.name,
   },
 });
 const history = createMemoryHistory();
@@ -29,6 +29,6 @@ describe('Component: MainPageScreenEmpty', () => {
     );
 
     expect(screen.getByText('No places to stay available')).toBeInTheDocument();
-    expect(screen.getByText(`We could not find any property available at the moment in ${mockOffers[0].city}`)).toBeInTheDocument();
+    expect(screen.getByText(`We could not find any property available at the moment in ${mockOffers[0].city.name}`)).toBeInTheDocument();
   });
 });

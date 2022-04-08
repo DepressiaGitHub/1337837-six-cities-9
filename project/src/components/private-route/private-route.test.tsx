@@ -16,7 +16,7 @@ describe('Component: PrivateRouter', () => {
   });
 
   it('Должен отрисовать компонент для всех, если пользователь не авторизован', () => {
-    const store = mockStore();
+    const store = mockStore({});
 
     render(
       <Provider store={store}>

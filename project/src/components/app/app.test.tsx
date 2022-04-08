@@ -3,44 +3,69 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
-import { makeFakeOfferList } from '../../utils/mocks';
+import { makeFakeCommentList, makeFakeNearbyList, makeFakeOffer, makeFakeOfferList, makeFakeUser } from '../../utils/mocks';
 import { HistoryRouter } from '../history-route/history-route';
 import App from './app';
 
 const mockStore = configureMockStore();
+const mockOffer = makeFakeOffer();
 const mockOffers = makeFakeOfferList();
-const store = mockStore({
-  [NameSpace.User]: { authorizationStatus: AuthorizationStatus.Auth },
-  [NameSpace.Data]: {
-    isDataLoaded: true,
-    offersSortedByCity: mockOffers,
-  },
-});
-
+const mockComments = makeFakeCommentList();
+const mockNearby = makeFakeNearbyList();
+const mockUser = makeFakeUser();
 const history = createMemoryHistory();
 
-const fakeApp = (
-  <Provider store={store}>
-    <HistoryRouter history={history}>
-      <App />
-    </HistoryRouter>
-  </Provider>
-);
 
 describe('Application Routing', () => {
   it('Должен отрисоваться "MainPageScreen" когда переходим на "/"', () => {
     history.push(AppRoute.Main);
 
-    render(fakeApp);
+    const store = mockStore({
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      },
+      [NameSpace.Data]: {
+        data: mockOffers,
+        isDataLoaded: true,
+      },
+      [NameSpace.Data]: {
+        user: mockUser,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <App />
+        </HistoryRouter>
+      </Provider>,
+    );
 
     expect(screen.getByTestId('header')).toBeInTheDocument();
     expect(screen.getByTestId('locations')).toBeInTheDocument();
   });
 
+
   it('Должен отрисоваться "SignInScreen" когда переходим на "/login"', () => {
     history.push(AppRoute.Login);
 
-    render(fakeApp);
+    const store = mockStore({
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.NoAuth,
+      },
+      [NameSpace.Data]: {
+        data: mockOffers,
+        isDataLoaded: true,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <App />
+        </HistoryRouter>
+      </Provider>,
+    );
 
     expect(screen.getByTestId('header')).toBeInTheDocument();
     expect(screen.getByTestId('login-form')).toBeInTheDocument();
@@ -51,7 +76,26 @@ describe('Application Routing', () => {
   it('Должен отрисоваться "FavoritesScreen" когда переходим на "/favorites"', () => {
     history.push(AppRoute.Favorites);
 
-    render(fakeApp);
+    const store = mockStore({
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      },
+      [NameSpace.Data]: {
+        data: mockOffers,
+        isDataLoaded: true,
+      },
+      [NameSpace.Data]: {
+        user: mockUser,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <App />
+        </HistoryRouter>
+      </Provider>,
+    );
 
     expect(screen.getByTestId('header')).toBeInTheDocument();
     expect(screen.getByTestId('favorites')).toBeInTheDocument();
@@ -61,7 +105,28 @@ describe('Application Routing', () => {
   it('Должен отрисоваться "OfferScreen" когда переходим на "/offer"', () => {
     history.push(AppRoute.Room);
 
-    render(fakeApp);
+    const store = mockStore({
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      },
+      [NameSpace.Data]: {
+        isDataLoaded: true,
+        property: mockOffer,
+        comments: mockComments,
+        nearbyOffers: mockNearby,
+      },
+      [NameSpace.Data]: {
+        user: mockUser,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <App />
+        </HistoryRouter>
+      </Provider>,
+    );
 
     expect(screen.getByTestId('header')).toBeInTheDocument();
     expect(screen.getByTestId('property')).toBeInTheDocument();
@@ -71,7 +136,22 @@ describe('Application Routing', () => {
   it('должен отрисоваться "NotFoundScreen" когда переходим на "/404"', () => {
     history.push('/non-existent-route');
 
-    render(fakeApp);
+    const store = mockStore({
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      },
+      [NameSpace.Data]: {
+        user: mockUser,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <App />
+        </HistoryRouter>
+      </Provider>,
+    );
 
     expect(screen.getByText('4 0 4')).toBeInTheDocument();
     expect(screen.getByText('Page not found')).toBeInTheDocument();
@@ -79,9 +159,24 @@ describe('Application Routing', () => {
   });
 
   it('должен отрисоваться "NotFoundScreen" когда пытаемся перейти на несуществующий раздел', () => {
-    history.push('/non-existent-route');
+    history.push(AppRoute.NotFound);
 
-    render(fakeApp);
+    const store = mockStore({
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      },
+      [NameSpace.Data]: {
+        user: mockUser,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <App />
+        </HistoryRouter>
+      </Provider>,
+    );
 
     expect(screen.getByText('4 0 4')).toBeInTheDocument();
     expect(screen.getByText('Page not found')).toBeInTheDocument();
