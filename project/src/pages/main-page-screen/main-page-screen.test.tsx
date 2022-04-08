@@ -3,15 +3,33 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
-import { NameSpace } from '../../const';
-import { makeFakeOfferList } from '../../utils/mocks';
+import { AuthorizationStatus, CITIES, DEFAULT_CITY_INDEX, DEFAULT_SORT_INDEX, NameSpace, SORTS } from '../../const';
+import { makeFakeOfferList, makeFakeUser } from '../../utils/mocks';
 import MainPageScreen from './main-page-screen';
 
 const mockStore = configureMockStore();
-const mockOffer = makeFakeOfferList();
 const store = mockStore({
+  [NameSpace.User]: {
+    authorizationStatus: AuthorizationStatus.Auth,
+  },
   [NameSpace.Data]: {
-    offersSortedByCity: mockOffer,
+    data: makeFakeOfferList(),
+    user: makeFakeUser(),
+    activeCity: CITIES[DEFAULT_CITY_INDEX],
+    offersSortedByCity: makeFakeOfferList(),
+    selectedType: SORTS[DEFAULT_SORT_INDEX],
+    offersSortedByType: [],
+    isDataLoaded: true,
+    property: null,
+    comments: [],
+    nearbyOffers: [],
+    reviewFormStatus: 'initial',
+    favoriteOffers: [],
+    isFavoriteLoaded: false,
+    updateOffer: null,
+  },
+  [NameSpace.App]: {
+    offerByHover: null,
   },
 });
 

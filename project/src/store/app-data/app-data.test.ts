@@ -1,6 +1,6 @@
 import { CITIES, DEFAULT_CITY_INDEX, DEFAULT_SORT_INDEX, SORTS } from '../../const';
 import { AppData } from '../../types/state';
-import { makeFakeOffer, makeFakeCity, makeFakeOfferList, makeFakeSort, makeFakeUser, makeFakeCommentList } from '../../utils/mocks';
+import { makeFakeOffer, makeFakeCity, makeFakeOfferList, makeFakeSort, makeFakeUser, makeFakeCommentList, makeFakeNearbyList } from '../../utils/mocks';
 import {
   appData,
   loadDataAction,
@@ -41,6 +41,7 @@ const fakeCity = makeFakeCity();
 const fakeSort = makeFakeSort();
 const fakeUser = makeFakeUser();
 const fakeComments = makeFakeCommentList();
+const fakeNearby = makeFakeNearbyList();
 
 describe('Reducer: data', () => {
   it('без дополнительных параметров должен возвращать исходное состояние', () => {
@@ -118,10 +119,10 @@ describe('Reducer: data', () => {
   });
 
   it('должен заполнить список объявлений неподалёку', () => {
-    expect(appData.reducer(state, loadDataNearbyAction(fakeOffers)))
+    expect(appData.reducer(state, loadDataNearbyAction(fakeNearby)))
       .toEqual({
         ...state,
-        nearbyOffers: fakeOffers,
+        nearbyOffers: fakeNearby,
       });
   });
 
@@ -137,7 +138,7 @@ describe('Reducer: data', () => {
     expect(appData.reducer(state, loadFavoritesAction(fakeOffers)))
       .toEqual({
         ...state,
-        nearbyOffers: fakeOffers,
+        favoriteOffers: fakeOffers,
         isFavoriteLoaded: true,
       });
   });

@@ -1,5 +1,6 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
@@ -32,6 +33,10 @@ describe('Component: ReviewsForm', () => {
     );
 
     expect(screen.getByTestId('reviews-form')).toBeInTheDocument();
-    expect(screen.getByText('To submit review please make sure to set')).toBeInTheDocument();
+
+    userEvent.type(screen.getByTestId('comment'), 'Tell how was your stay, what you like and what can be improved');
+    expect(screen.getByDisplayValue('Tell how was your stay, what you like and what can be improved')).toBeInTheDocument();
+
+    expect(screen.getByText('Submit')).toBeInTheDocument();
   });
 });

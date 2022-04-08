@@ -4,11 +4,12 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
 import { AuthorizationStatus, NameSpace } from '../../const';
-import { makeFakeOffer } from '../../utils/mocks';
+import { makeFakeCommentList, makeFakeOffer } from '../../utils/mocks';
 import Reviews from './reviews';
 
 const mockStore = configureMockStore();
 const mockOffer = makeFakeOffer();
+const mockComments = makeFakeCommentList();
 const history = createMemoryHistory();
 const store = mockStore({
   [NameSpace.User]: {
@@ -16,6 +17,7 @@ const store = mockStore({
   },
   [NameSpace.Data]: {
     property: mockOffer,
+    comments: mockComments,
   },
 });
 
@@ -32,6 +34,5 @@ describe('Component: Reviews', () => {
     );
 
     expect(screen.getByTestId('reviews')).toBeInTheDocument();
-    expect(screen.getByText('Reviews')).toBeInTheDocument();
   });
 });

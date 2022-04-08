@@ -90,6 +90,7 @@ function ReviewsForm():JSX.Element {
         value={review}
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={reviewChange}
+        data-testid="comment"
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

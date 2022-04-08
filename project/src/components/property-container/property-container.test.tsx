@@ -3,16 +3,20 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
-import { NameSpace } from '../../const';
-import { makeFakeOffer } from '../../utils/mocks';
+import { AuthorizationStatus, NameSpace } from '../../const';
+import { makeFakeCommentList, makeFakeOffer } from '../../utils/mocks';
 import PropertyContainer from './property-container';
 
 const mockStore = configureMockStore();
 const mockOffer = makeFakeOffer();
 const history = createMemoryHistory();
 const store = mockStore({
+  [NameSpace.User]: {
+    authorizationStatus: AuthorizationStatus.Auth,
+  },
   [NameSpace.Data]: {
     property: mockOffer,
+    comments: makeFakeCommentList(),
   },
 });
 

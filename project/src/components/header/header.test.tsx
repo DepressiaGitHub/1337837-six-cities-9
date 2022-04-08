@@ -39,10 +39,10 @@ describe('Component: Header', () => {
   it('у неавторизованного пользователя должен отрисоваться "Header" без почты', () => {
     const store = mockStore({
       [NameSpace.User]: {
-        authorizationStatus: AuthorizationStatus.Auth,
+        authorizationStatus: AuthorizationStatus.NoAuth,
       },
       [NameSpace.Data]: {
-        user: mockUser,
+        user: null,
       },
     });
 

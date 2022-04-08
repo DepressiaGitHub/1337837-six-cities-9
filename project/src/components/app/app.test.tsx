@@ -2,14 +2,19 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
+import { makeFakeOfferList } from '../../utils/mocks';
 import { HistoryRouter } from '../history-route/history-route';
 import App from './app';
 
 const mockStore = configureMockStore();
+const mockOffers = makeFakeOfferList();
 const store = mockStore({
-  USER: { authorizationStatus: AuthorizationStatus.Auth },
-  DATA: { isDataLoaded: true },
+  [NameSpace.User]: { authorizationStatus: AuthorizationStatus.Auth },
+  [NameSpace.Data]: {
+    isDataLoaded: true,
+    offersSortedByCity: mockOffers,
+  },
 });
 
 const history = createMemoryHistory();
@@ -39,8 +44,8 @@ describe('Application Routing', () => {
 
     expect(screen.getByTestId('header')).toBeInTheDocument();
     expect(screen.getByTestId('login-form')).toBeInTheDocument();
-    expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
+    expect(screen.getByText('E-mail')).toBeInTheDocument();
+    expect(screen.getByText('Password')).toBeInTheDocument();
   });
 
   it('Должен отрисоваться "FavoritesScreen" когда переходим на "/favorites"', () => {

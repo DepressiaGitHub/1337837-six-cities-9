@@ -6,7 +6,8 @@ import { UserData } from '../types/user-data';
 
 
 const OFFERS_COUNT = 15;
-const COMMENT_COUNT = 3;
+const NEARBY_COUNT = 3;
+const COMMENT_COUNT = 5;
 const GOOODS_COUNT = 7;
 const IMAGES_COUNT = 6;
 
@@ -46,6 +47,7 @@ export const makeFakeOffer = (): Offer => ({
 } as Offer);
 
 export const makeFakeOfferList = (): Offer[] => new Array(OFFERS_COUNT).fill(null).map(() => makeFakeOffer());
+export const makeFakeNearbyList = (): Offer[] => new Array(NEARBY_COUNT).fill(null).map(() => makeFakeOffer());
 
 export const makeFakeComment = (): Comment => ({
   comment: datatype.string(50),

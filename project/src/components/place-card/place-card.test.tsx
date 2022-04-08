@@ -29,7 +29,6 @@ describe('Component: PlaceCard', () => {
 
     expect(screen.getByTestId('place-card')).toBeInTheDocument();
     expect(screen.getByTestId('place-card-image')).toBeInTheDocument();
-    expect(screen.getByText('night')).toBeInTheDocument();
     expect(screen.getByTestId('place-card-info')).toBeInTheDocument();
     expect(screen.getByTestId('place-card-rating')).toBeInTheDocument();
     expect(screen.getByTestId('place-card-name')).toBeInTheDocument();

@@ -31,7 +31,7 @@ function FavoritePlacesCard(props: FavoriteCardProps):JSX.Element {
   };
 
   return (
-    <article className="favorites__card place-card">
+    <article className="favorites__card place-card" data-testid="place-card">
       <div className="place-card__mark" hidden={!isPremium}>
         <span>Premium</span>
       </div>

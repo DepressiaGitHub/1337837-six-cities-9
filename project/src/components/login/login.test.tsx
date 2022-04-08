@@ -23,8 +23,8 @@ describe('Component: Login', () => {
 
     expect(screen.getByTestId('login-form')).toBeInTheDocument();
 
-    expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
+    expect(screen.getByText(/E-mail/i)).toBeInTheDocument();
+    expect(screen.getByText(/Password/i)).toBeInTheDocument();
 
     userEvent.type(screen.getByTestId('login'), 'alex');
     userEvent.type(screen.getByTestId('password'), 'qwerty123');

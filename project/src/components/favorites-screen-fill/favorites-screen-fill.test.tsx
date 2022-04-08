@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from '../../components/history-route/history-route';
-import { NameSpace } from '../../const';
+import { AuthorizationStatus, NameSpace } from '../../const';
 import { makeFakeOfferList } from '../../utils/mocks';
 import FavoritesScreenFill from './favorites-screen-fill';
 
@@ -11,6 +11,9 @@ const mockStore = configureMockStore();
 const mockOffers = makeFakeOfferList();
 const history = createMemoryHistory();
 const store = mockStore({
+  [NameSpace.User]: {
+    authorizationStatus: AuthorizationStatus.Auth,
+  },
   [NameSpace.Data]: {
     favoriteOffers: mockOffers,
   },
@@ -29,7 +32,6 @@ describe('Component: FavoritesScreenFill', () => {
 
     expect(screen.getByTestId('favorites')).toBeInTheDocument();
     expect(screen.getByText('Saved listing')).toBeInTheDocument();
-    expect(screen.getByText(`${mockOffers[0].city}`)).toBeInTheDocument();
-    expect(screen.getByTestId('place-card')).toBeInTheDocument();
+    expect(screen.getByText(`${mockOffers[0].city.name}`)).toBeInTheDocument();
   });
 });
